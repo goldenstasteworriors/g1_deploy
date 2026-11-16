@@ -1,0 +1,16 @@
+{
+  "episodes": 364,
+  "frames": 147675,
+  "seconds": 4922.5,
+  "task_counts": {
+    "TAKE_TUBE": 176,
+    "TAKE_DROPPER_AND_ASPIRATE": 44,
+    "RETURN_TUBE_TO_RACK": 42,
+    "DISPENSE_TO_HELD_TUBE": 41,
+    "RETURN_DROPPER": 40,
+    "WALK_BACKWARD": 5,
+    "WALK_LEFT_HOLDING_TUBE": 5,
+    "WALK_FORWARD_TO_BATH": 4,
+    "PLACE_TUBE_IN_BATH": 7
+  }
+}

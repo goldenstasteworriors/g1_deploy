@@ -1,0 +1,587 @@
+{
+  "date": "2026-11-14",
+  "session": "sess_e4cb9650df004642",
+  "server": "yanjun@100.123.202.80",
+  "remote_root": "/home/yanjun/ykj/labwam_g1",
+  "official_reference": "https://github.com/OpenWAM-Official/OpenWAM/blob/main/openwam/deploy/executors/async_executor.py",
+  "implementation": {
+    "mode": "recorded-image asynchronous execution",
+    "horizon": 32,
+    "delay_steps": 16,
+    "denoise_steps": 6,
+    "sync_default_retained": true,
+    "chunk_adoption": "previous buffer empty; trim elapsed control ticks",
+    "current_rgb_transport": "JPEG quality95; initial reference remains PNG",
+    "robot_control_changes": "none; native SONICMJ d/r and epoch retained; existing XR PD+Dex1 FF unchanged"
+  },
+  "offline_unit": {
+    "scope": "offline fake RPC/pump; no robot I/O",
+    "checks": [
+      "remaining-16 starts depth-one background request",
+      "32-step chunks adopted after previous buffer; elapsed16 skipped exactly",
+      "closed executor cannot adopt or launch a late prediction",
+      "fully expired results rejected at the model horizon boundary",
+      "recorded session advances consecutive achieved state/RGB timeline while predicting; no dropped observation indices",
+      "interrupt with blocked inference closes publication immediately; late result has no command path"
+    ],
+    "session": {
+      "event": "async_session_complete",
+      "inference_mode": "async",
+      "dataset_frame": 120,
+      "timeline_steps": 60,
+      "completion": null,
+      "warmup_hold_ticks": 3,
+      "underrun_hold_ticks": 0,
+      "chunks_adopted": 3,
+      "adoptions": [
+        {
+          "prediction_id": "96f4e6d1-c901-4e49-b10c-74b249b4cdca",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "pipeline_seconds": 0.01
+        },
+        {
+          "prediction_id": "67d83f57-6d98-4c12-b9ba-99f68213cbb6",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "pipeline_seconds": 0.01
+        },
+        {
+          "prediction_id": "9126a00e-e5c0-4b6a-a5e4-a0f317853fba",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "pipeline_seconds": 0.01
+        }
+      ]
+    }
+  },
+  "runtime": {
+    "scope": "offline actual history buffer and InferenceSession with fake neural model",
+    "checks": [
+      "deferred batch observation produces identical condition tensors and images",
+      "per-request denoise 8/20/10/8 rebuilds matching scheduler state and grids"
+    ]
+  },
+  "stream": {
+    "scope": "actual LiveCommandPump thread with fake reader/publisher; no robot IO",
+    "steps": 45,
+    "mean_interval_seconds": 0.03331969297724671,
+    "max_interval_seconds": 0.03355920299873105,
+    "checks": [
+      "one new target each 30Hz tick, no alternating idle tick",
+      "stream completion stops publication on close",
+      "operator damping revokes streaming commands independently of model"
+    ]
+  },
+  "denoise_benchmark": [
+    {
+      "steps": 20,
+      "model_seconds": 1.8664891770167742,
+      "rpc_seconds": 1.8683864059858024
+    },
+    {
+      "steps": 10,
+      "model_seconds": 0.6070026290253736,
+      "rpc_seconds": 0.6093516139953863
+    },
+    {
+      "steps": 8,
+      "model_seconds": 0.4929388190212194,
+      "rpc_seconds": 0.4950159729924053
+    },
+    {
+      "steps": 6,
+      "model_seconds": 0.3802215399919078,
+      "rpc_seconds": 0.38211830201908015
+    },
+    {
+      "steps": 8,
+      "model_seconds": 0.48975524099660106,
+      "rpc_seconds": 0.4915763989847619
+    }
+  ],
+  "real_client_with_fake_io": {
+    "scope": "real policy + recorded images + actual LiveCommandPump; fake state/publisher, no ROS/DDS or robot IO",
+    "async_stats": {
+      "event": "async_session_complete",
+      "inference_mode": "async",
+      "dataset_frame": 321,
+      "timeline_steps": 261,
+      "completion": null,
+      "warmup_hold_ticks": 13,
+      "underrun_hold_ticks": 0,
+      "chunks_adopted": 16,
+      "adoptions": [
+        {
+          "prediction_id": "21ae6aaf-afcc-416f-b3ab-65323fd15d18",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "pipeline_seconds": 0.40051966899773106
+        },
+        {
+          "prediction_id": "41ccb96f-c183-4294-9a50-9fb3f6cb7fc5",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "pipeline_seconds": 0.4968661360035185
+        },
+        {
+          "prediction_id": "09bc01ff-5151-4a1a-9b69-93de1bd494b7",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "pipeline_seconds": 0.4906595190113876
+        },
+        {
+          "prediction_id": "4045d8b0-5c01-477a-8ea4-75184e7e71bf",
+          "input_step": 48,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 64,
+          "available": 16,
+          "pipeline_seconds": 0.5038409669941757
+        },
+        {
+          "prediction_id": "5e09bde1-e5d5-4a03-bdd8-acaba6ca2a76",
+          "input_step": 64,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 80,
+          "available": 16,
+          "pipeline_seconds": 0.5113802829873748
+        },
+        {
+          "prediction_id": "67dd47c2-9bf9-41b0-a147-37489de76966",
+          "input_step": 80,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 96,
+          "available": 16,
+          "pipeline_seconds": 0.5138850010116585
+        },
+        {
+          "prediction_id": "e8621696-e560-4e2a-a3d7-1004cf4e34f1",
+          "input_step": 96,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 112,
+          "available": 16,
+          "pipeline_seconds": 0.5230895900167525
+        },
+        {
+          "prediction_id": "604b58d0-eb4e-4897-8caa-c8ad67367ff6",
+          "input_step": 112,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 128,
+          "available": 16,
+          "pipeline_seconds": 0.514010673010489
+        },
+        {
+          "prediction_id": "8771ac49-40ac-40b0-8404-adf541be1ba3",
+          "input_step": 128,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 144,
+          "available": 16,
+          "pipeline_seconds": 0.5132734759827144
+        },
+        {
+          "prediction_id": "2b142298-d37d-4a49-a808-8114c5ec4476",
+          "input_step": 144,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 160,
+          "available": 16,
+          "pipeline_seconds": 0.5205891669902485
+        },
+        {
+          "prediction_id": "0777fd66-1c56-42d3-b024-2b2642e31363",
+          "input_step": 160,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 176,
+          "available": 16,
+          "pipeline_seconds": 0.5250909090100322
+        },
+        {
+          "prediction_id": "ae1d03fd-4499-48a6-92ad-70941f61222a",
+          "input_step": 176,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 192,
+          "available": 16,
+          "pipeline_seconds": 0.5256100370024797
+        },
+        {
+          "prediction_id": "d6e58a09-f35c-4732-a5a3-d77226e69f3f",
+          "input_step": 192,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 208,
+          "available": 16,
+          "pipeline_seconds": 0.5120188169821631
+        },
+        {
+          "prediction_id": "8c1fe365-888a-40b4-8ace-1a9bc5ddd736",
+          "input_step": 208,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 224,
+          "available": 16,
+          "pipeline_seconds": 0.5168625070073176
+        },
+        {
+          "prediction_id": "90cd734b-b871-48ed-9cd4-1fd26fe51d13",
+          "input_step": 224,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 240,
+          "available": 16,
+          "pipeline_seconds": 0.5179701560118701
+        },
+        {
+          "prediction_id": "7ad17979-0049-4876-8c3e-ec0fc868ff85",
+          "input_step": 240,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 256,
+          "available": 16,
+          "pipeline_seconds": 0.513700704992516
+        }
+      ]
+    },
+    "mean_publish_interval_seconds": 0.0333343264269753,
+    "max_publish_interval_seconds": 0.03454087002319284,
+    "predictions": [
+      {
+        "input_step": 0,
+        "inference_seconds": 0.3987186120066326,
+        "pipeline_seconds": 0.40051966899773106
+      },
+      {
+        "input_step": 16,
+        "inference_seconds": 0.3860398160177283,
+        "pipeline_seconds": 0.4968661360035185
+      },
+      {
+        "input_step": 32,
+        "inference_seconds": 0.3937708580051549,
+        "pipeline_seconds": 0.4906595190113876
+      },
+      {
+        "input_step": 48,
+        "inference_seconds": 0.40536303899716586,
+        "pipeline_seconds": 0.5038409669941757
+      },
+      {
+        "input_step": 64,
+        "inference_seconds": 0.4131767989892978,
+        "pipeline_seconds": 0.5113802829873748
+      },
+      {
+        "input_step": 80,
+        "inference_seconds": 0.41468782801530324,
+        "pipeline_seconds": 0.5138850010116585
+      },
+      {
+        "input_step": 96,
+        "inference_seconds": 0.4128042020020075,
+        "pipeline_seconds": 0.5230895900167525
+      },
+      {
+        "input_step": 112,
+        "inference_seconds": 0.41415212300489657,
+        "pipeline_seconds": 0.514010673010489
+      },
+      {
+        "input_step": 128,
+        "inference_seconds": 0.41387510299682617,
+        "pipeline_seconds": 0.5132734759827144
+      },
+      {
+        "input_step": 144,
+        "inference_seconds": 0.41305368300527334,
+        "pipeline_seconds": 0.5205891669902485
+      },
+      {
+        "input_step": 160,
+        "inference_seconds": 0.4147924729913939,
+        "pipeline_seconds": 0.5250909090100322
+      },
+      {
+        "input_step": 176,
+        "inference_seconds": 0.4158375629922375,
+        "pipeline_seconds": 0.5256100370024797
+      },
+      {
+        "input_step": 192,
+        "inference_seconds": 0.4147431669989601,
+        "pipeline_seconds": 0.5120188169821631
+      },
+      {
+        "input_step": 208,
+        "inference_seconds": 0.4158729719929397,
+        "pipeline_seconds": 0.5168625070073176
+      },
+      {
+        "input_step": 224,
+        "inference_seconds": 0.4152554140018765,
+        "pipeline_seconds": 0.5179701560118701
+      },
+      {
+        "input_step": 240,
+        "inference_seconds": 0.41457252798136324,
+        "pipeline_seconds": 0.513700704992516
+      },
+      {
+        "input_step": 256,
+        "inference_seconds": 0.4140483360097278,
+        "pipeline_seconds": 0.5130011109868065
+      }
+    ]
+  },
+  "simulation": {
+    "model": "take_tube",
+    "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+    "episode": 0,
+    "start_frame": 60,
+    "final_frame": 321,
+    "executed_steps": 261,
+    "video_frames": 275,
+    "fps": 30,
+    "video_seconds": 9.166666666666666,
+    "mean_inference_seconds": 0.4093525191274239,
+    "replan_steps": null,
+    "clipped_targets": 0,
+    "timeline_steps": 261,
+    "model_action_steps": 240,
+    "inference_horizon": 32,
+    "inference_delay_steps": 16,
+    "inference_mode": "async",
+    "denoise_steps": 6,
+    "async_stats": {
+      "event": "async_session_complete",
+      "inference_mode": "async",
+      "dataset_frame": 321,
+      "timeline_steps": 261,
+      "completion": null,
+      "warmup_hold_ticks": 13,
+      "underrun_hold_ticks": 21,
+      "chunks_adopted": 15,
+      "adoptions": [
+        {
+          "prediction_id": "0417655e-56f7-4137-b4e9-1c978745666d",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "pipeline_seconds": 0.4015469299920369
+        },
+        {
+          "prediction_id": "af665961-7067-4922-b008-a4e2b7300dba",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "pipeline_seconds": 0.5159362850245088
+        },
+        {
+          "prediction_id": "7615de45-9671-4f2d-a150-a29e0dd7810b",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "pipeline_seconds": 0.492540152015863
+        },
+        {
+          "prediction_id": "a6af102a-74b3-4366-8aa5-5d7bf08fc0ea",
+          "input_step": 48,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 64,
+          "available": 16,
+          "pipeline_seconds": 0.5008599559951108
+        },
+        {
+          "prediction_id": "21cafb17-9cde-4965-a26c-2bf51195dfee",
+          "input_step": 64,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 81,
+          "available": 15,
+          "pipeline_seconds": 0.5341083579987753
+        },
+        {
+          "prediction_id": "9184ecc9-b250-45d5-ba33-6dcfef064693",
+          "input_step": 81,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 98,
+          "available": 15,
+          "pipeline_seconds": 0.5430639409460127
+        },
+        {
+          "prediction_id": "f6e4be57-5e5d-44ae-a2f0-5c00a128c51d",
+          "input_step": 98,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 115,
+          "available": 15,
+          "pipeline_seconds": 0.5381779269955587
+        },
+        {
+          "prediction_id": "5c50e582-2808-4ff9-ae51-aaf74c67989c",
+          "input_step": 115,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 132,
+          "available": 15,
+          "pipeline_seconds": 0.5409554699144792
+        },
+        {
+          "prediction_id": "eab6b1c9-ecf4-48a7-bdb1-bc352fdd0c51",
+          "input_step": 132,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 149,
+          "available": 15,
+          "pipeline_seconds": 0.5397087150777224
+        },
+        {
+          "prediction_id": "af4cf248-6781-4617-b3a1-5e546f5e7efd",
+          "input_step": 149,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 166,
+          "available": 15,
+          "pipeline_seconds": 0.5388730200356804
+        },
+        {
+          "prediction_id": "63f3cdec-f122-40ba-8a41-81e47129d100",
+          "input_step": 166,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 183,
+          "available": 15,
+          "pipeline_seconds": 0.5422553329844959
+        },
+        {
+          "prediction_id": "7026e895-57a8-4716-9462-7ca4eedae790",
+          "input_step": 183,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 200,
+          "available": 15,
+          "pipeline_seconds": 0.5368823689641431
+        },
+        {
+          "prediction_id": "427390af-e1a9-48f3-9c63-db76f8ccbef5",
+          "input_step": 200,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 217,
+          "available": 15,
+          "pipeline_seconds": 0.5396597210201435
+        },
+        {
+          "prediction_id": "1ced50a6-f9eb-4a4e-8d3c-cb0b1de05d51",
+          "input_step": 217,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 234,
+          "available": 15,
+          "pipeline_seconds": 0.5388728310354054
+        },
+        {
+          "prediction_id": "284bf4a6-0ffd-4cfd-9ba9-13812a7f6a32",
+          "input_step": 234,
+          "skip_steps": 17,
+          "inference_mode": "async",
+          "adoption_step": 251,
+          "available": 15,
+          "pipeline_seconds": 0.5418444299139082
+        }
+      ]
+    },
+    "state_input": "achieved MuJoCo body29 + gripper positions; recorded state used only for initial reset",
+    "vision_input": "current recorded RGB and exact annotated reference image/initial box via deployed RPC",
+    "physics": "fixed base, XR PD, shared deployed Dex1 gravity model; no contact scene/task-success metric",
+    "gravity": {
+      "enabled": true,
+      "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+      "scale": 1.0,
+      "payload": {},
+      "end_effector_payload": {
+        "left": {
+          "mass_kg": 0.55,
+          "com_m": [
+            0.0994305720243543,
+            -6.848746937903122e-05,
+            7.343262126451591e-06
+          ]
+        },
+        "right": {
+          "mass_kg": 0.55,
+          "com_m": [
+            0.0994305720243543,
+            -6.848746937903122e-05,
+            7.343262126451591e-06
+          ]
+        }
+      },
+      "removed_rubber_hand_mass_kg": {
+        "left": 0.17,
+        "right": 0.17
+      },
+      "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+      "uncalibrated_extra_loads": [
+        "mount/camera adapters",
+        "held objects"
+      ],
+      "uncompensated_tools": []
+    },
+    "robot_io": false
+  },
+  "video": {
+    "path": "outputs/async_20261114/take_tube_ep0_f60_async6_final/episode_000000/simulation.mp4",
+    "decoded_frames": 275,
+    "format": "H264 yuv420p 1280x960 30fps",
+    "publication_id": "pub_9295d33e4b204b33b7e4a76d3be3b859"
+  },
+  "remote_checks": {
+    "sync_command": true,
+    "async_command": true,
+    "robot_io_opened": false,
+    "txt_both_commands_verified": true,
+    "model_service": "labwam-take-tube-8849.service; ready and alive; per_request_denoise_steps",
+    "unused_duplicate_model_service": "stopped only the duplicate unit created in this turn; retained existing 8849 unit"
+  },
+  "limits": [
+    "No real robot inference or actuator command was triggered by the agent.",
+    "Only recorded-image entry has async support; live-camera entry remains synchronous.",
+    "Six denoise steps changes generated actions relative to twenty; task success not established.",
+    "Simulation uses fixed base, recorded RGB independent of simulated actions, no object contact scene.",
+    "Offline simulation clocks measured encoding/history/model latency; SSH/rendering and duplicate proxy video decoding are excluded.",
+    "An earlier fake-IO run returned HTTP400 without worker details; cause unconfirmed. Two subsequent full fake-IO runs passed with zero underrun; client now preserves HTTP error response details."
+  ]
+}

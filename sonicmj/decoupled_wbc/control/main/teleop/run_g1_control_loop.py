@@ -1,0 +1,373 @@
+from copy import deepcopy
+import os
+import time
+
+import numpy as np
+import tyro
+
+from decoupled_wbc.control.envs.g1.g1_env import G1Env
+from decoupled_wbc.control.main.constants import (
+    CONTROL_GOAL_TOPIC,
+    DEFAULT_BASE_HEIGHT,
+    DEFAULT_NAV_CMD,
+    DEFAULT_WRIST_POSE,
+    JOINT_SAFETY_STATUS_TOPIC,
+    LOWER_BODY_POLICY_STATUS_TOPIC,
+    ROBOT_CONFIG_TOPIC,
+    SIM_RESET_TOPIC,
+    STATE_TOPIC_NAME,
+    PIPELINE_LATENCY_TOPIC,
+)
+from decoupled_wbc.control.main.teleop.configs.configs import ControlLoopConfig
+from decoupled_wbc.control.policy.wbc_policy_factory import get_wbc_policy
+from decoupled_wbc.control.robot_model.instantiation.g1 import (
+    instantiate_g1_robot_model,
+)
+from decoupled_wbc.control.utils.keyboard_dispatcher import (
+    KeyboardDispatcher,
+    KeyboardEStop,
+    KeyboardListenerPublisher,
+    ROSKeyboardDispatcher,
+    restore_terminal,
+)
+from decoupled_wbc.control.utils.damping_shutdown import DampingShutdown
+from decoupled_wbc.control.utils.collection_mode import CollectionMode
+from decoupled_wbc.control.utils.pipeline_latency import pipeline_metrics
+from decoupled_wbc.control.utils.ros_utils import (
+    ROSManager,
+    ROSMsgPublisher,
+    ROSMsgSubscriber,
+    ROSServiceServer,
+)
+from decoupled_wbc.control.utils.telemetry import Telemetry
+
+CONTROL_NODE_NAME = "ControlPolicy"
+
+
+class SimResetKeyboardPublisher:
+    def __init__(self, publisher: ROSMsgPublisher):
+        self.publisher = publisher
+
+    def handle_keyboard_button(self, key):
+        if key in {"r", "backspace"}:
+            print(f"Requesting MuJoCo reset from keyboard: {key}")
+            self.publisher.publish({"reason": f"keyboard:{key}", "timestamp": time.time()})
+
+
+def main(config: ControlLoopConfig):
+    ros_manager = ROSManager(node_name=CONTROL_NODE_NAME)
+    node = ros_manager.node
+
+    # start the robot config server
+    ROSServiceServer(ROBOT_CONFIG_TOPIC, config.to_dict())
+
+    wbc_config = config.load_wbc_yaml()
+
+    data_exp_pub = ROSMsgPublisher(STATE_TOPIC_NAME)
+    lower_body_policy_status_pub = ROSMsgPublisher(LOWER_BODY_POLICY_STATUS_TOPIC)
+    joint_safety_status_pub = ROSMsgPublisher(JOINT_SAFETY_STATUS_TOPIC)
+    sim_reset_pub = ROSMsgPublisher(SIM_RESET_TOPIC)
+    latency_pub = (
+        ROSMsgPublisher(PIPELINE_LATENCY_TOPIC)
+        if os.environ.get("DECOUPLED_PROFILE_TIMING") == "1" else None
+    )
+
+    # Initialize telemetry
+    telemetry = Telemetry(window_size=100)
+
+    waist_location = "lower_and_upper_body" if config.enable_waist else "lower_body"
+    robot_model = instantiate_g1_robot_model(
+        waist_location=waist_location,
+        high_elbow_pose=config.high_elbow_pose,
+        # Retain the existing kinematic joint order and wrist frames; hand
+        # hardware I/O is independently disabled by config.with_hands.
+        with_hands=config.with_hands or config.navigation_collection,
+    )
+
+    env = G1Env(
+        env_name=config.env_name,
+        robot_model=robot_model,
+        config=wbc_config,
+        wbc_version=config.wbc_version,
+    )
+    if env.sim and not config.sim_sync_mode:
+        env.start_simulator()
+
+    shutdown = DampingShutdown(env)
+    try:
+        shutdown.install_signals()
+        wbc_policy = get_wbc_policy("g1", robot_model, wbc_config)
+        mode = CollectionMode(env, wbc_policy, robot_model, wbc_config, shutdown)
+
+        keyboard_listener_pub = KeyboardListenerPublisher()
+        keyboard_estop = KeyboardEStop(shutdown.request_estop)
+        sim_reset_keyboard_pub = SimResetKeyboardPublisher(sim_reset_pub)
+        if config.keyboard_dispatcher_type == "raw":
+            dispatcher = KeyboardDispatcher()
+        elif config.keyboard_dispatcher_type == "ros":
+            dispatcher = ROSKeyboardDispatcher()
+        else:
+            raise ValueError(
+                f"Invalid keyboard dispatcher: {config.keyboard_dispatcher_type}, please use 'raw' or 'ros'"
+            )
+        dispatcher.register(keyboard_estop)
+        dispatcher.register(mode)
+        dispatcher.register(env)
+        dispatcher.register(wbc_policy)
+        dispatcher.register(keyboard_listener_pub)
+        dispatcher.register(sim_reset_keyboard_pub)
+        dispatcher.start()
+
+        rate = node.create_rate(config.control_frequency)
+
+        upper_body_policy_subscriber = ROSMsgSubscriber(CONTROL_GOAL_TOPIC)
+
+        last_teleop_cmd = None
+        last_data_collection_event_id = 0
+        last_data_abort_event_id = 0
+        last_goal_received_ns = None
+        previous_loop_ns = None
+        while ros_manager.ok() and not shutdown.requested.is_set():
+            t_start = time.monotonic()
+            loop_started_ns = time.monotonic_ns()
+            with telemetry.timer("total_loop"):
+                # Step simulator if in sync mode
+                with telemetry.timer("step_simulator"):
+                    if env.sim and config.sim_sync_mode:
+                        env.step_simulator()
+
+                # Measure observation time
+                with telemetry.timer("observe"):
+                    obs = env.observe()
+                    wbc_policy.set_observation(obs)
+
+                # Measure policy setup time
+                with telemetry.timer("policy_setup"):
+                    upper_body_cmd = upper_body_policy_subscriber.get_msg()
+                    goal_read_ns = time.monotonic_ns()
+
+                    t_now = time.monotonic()
+
+                    wbc_goal = {}
+                    if upper_body_cmd:
+                        last_goal_received_ns = upper_body_policy_subscriber.last_message_received_ns
+                        wbc_goal = upper_body_cmd.copy()
+                        last_teleop_cmd = upper_body_cmd.copy()
+                        if config.ik_indicator:
+                            env.set_ik_indicator(upper_body_cmd)
+                    mode.update(wbc_goal, t_now)
+                    # Send goal to policy
+                    if wbc_goal and mode.state == "running":
+                        for key in ("set_policy_action", "toggle_policy_action", "emergency_stop"):
+                            wbc_goal.pop(key, None)
+                        wbc_goal["interpolation_garbage_collection_time"] = t_now - 2 * (
+                            1 / config.control_frequency
+                        )
+                        wbc_policy.set_goal(wbc_goal)
+
+                # Measure policy action calculation time
+                with telemetry.timer("policy_action"):
+                    if mode.state in {"damped", "disconnected"}:
+                        wbc_action = {"q": obs["q"].copy()}
+                    else:
+                        wbc_action = wbc_policy.get_action(time=t_now)
+                    target_computed_ns = time.monotonic_ns()
+
+                # Measure action queue time
+                with telemetry.timer("queue_action"):
+                    if shutdown.requested.is_set():
+                        break
+                    if shutdown.estop_requested.is_set():
+                        mode.enter_damping(shutdown.estop_reason)
+                    if mode.state == "damped":
+                        env.send_damping()
+                    elif mode.state != "disconnected":
+                        sender = env.body().body_command_sender
+                        if sender.onboard_link is not None:
+                            lower = wbc_policy.lower_body_policy
+                            sender.onboard_link.context = {
+                                "running": mode.state == "running",
+                                "history": lower.obs_buffer.tolist(),
+                                "action": lower.action.tolist(),
+                                "navigation": np.asarray(lower.cmd).reshape(3).tolist(),
+                                "height": float(np.asarray(lower.height_cmd).reshape(-1)[0]),
+                                "rpy": [float(lower.roll_cmd), float(lower.pitch_cmd), float(lower.yaw_cmd)],
+                            }
+                        env.queue_action(wbc_action)
+
+                # Publish status information for InteractiveModeController
+                with telemetry.timer("publish_status"):
+                    # Get policy status - check if the lower body policy has use_policy_action enabled
+                    policy_use_action = False
+                    try:
+                        # Access the lower body policy through the decoupled whole body policy
+                        if hasattr(wbc_policy, "lower_body_policy"):
+                            policy_use_action = getattr(
+                                wbc_policy.lower_body_policy, "use_policy_action", False
+                            )
+                    except (AttributeError, TypeError):
+                        policy_use_action = False
+
+                    policy_status_msg = {"use_policy_action": policy_use_action, "timestamp": t_now}
+                    policy_status_msg.update(mode.status())
+                    lower_body_policy_status_pub.publish(policy_status_msg)
+
+                    # Get joint safety status from G1Env (which already runs the safety monitor)
+                    joint_safety_ok = env.get_joint_safety_status()
+
+                    joint_safety_status_msg = {
+                        "joint_safety_ok": joint_safety_ok,
+                        "timestamp": t_now,
+                    }
+                    joint_safety_status_pub.publish(joint_safety_status_msg)
+
+                # PICO recording events carry a persistent unique identifier
+                # so they survive the teleop/control loop timing boundary.
+                data_collection_event_id = int(wbc_goal.get("data_collection_event_id", 0))
+                data_abort_event_id = int(wbc_goal.get("data_abort_event_id", 0))
+
+                new_data_collection_event = (
+                    data_collection_event_id != 0
+                    and data_collection_event_id != last_data_collection_event_id
+                )
+                new_data_abort_event = (
+                    data_abort_event_id != 0
+                    and data_abort_event_id != last_data_abort_event_id
+                )
+
+                # Start or stop data collection. Preserve the one-frame bool
+                # fallback for non-PICO and older teleop publishers.
+                if new_data_collection_event or (
+                    data_collection_event_id == 0
+                    and wbc_goal.get("toggle_data_collection", False)
+                ):
+                    print("Recording toggle received from PICO", flush=True)
+                    dispatcher.handle_key("c")
+                if new_data_collection_event:
+                    last_data_collection_event_id = data_collection_event_id
+
+                # Abort the current episode
+                if new_data_abort_event or (
+                    data_abort_event_id == 0 and wbc_goal.get("toggle_data_abort", False)
+                ):
+                    print("Recording discard received from PICO", flush=True)
+                    dispatcher.handle_key("x")
+                if new_data_abort_event:
+                    last_data_abort_event_id = data_abort_event_id
+
+                if env.use_sim and wbc_goal.get("reset_env_and_policy", False):
+                    print("Resetting sim environment and policy")
+                    sim_reset_pub.publish({"reason": "teleop_reset_env_and_policy", "timestamp": time.time()})
+                    # Reset teleop policy & sim env
+                    dispatcher.handle_key("k")
+
+                    # Clear upper body commands
+                    upper_body_policy_subscriber._msg = None
+                    upper_body_cmd = {
+                        "target_upper_body_pose": obs["q"][
+                            robot_model.get_joint_group_indices("upper_body")
+                        ],
+                        "wrist_pose": DEFAULT_WRIST_POSE,
+                        "base_height_command": DEFAULT_BASE_HEIGHT,
+                        "navigate_cmd": DEFAULT_NAV_CMD,
+                    }
+                    last_teleop_cmd = upper_body_cmd.copy()
+
+                    time.sleep(0.5)
+
+                msg = deepcopy(obs)
+                msg.update(mode.status())
+                if config.navigation_collection:
+                    # This is a policy input, not measured odometry.
+                    msg["navigation_policy_velocity"] = (
+                        np.asarray(wbc_policy.lower_body_policy.cmd).reshape(3).copy()
+                        if mode.state == "running" else np.zeros(3)
+                    )
+                if wbc_config.get("HAND_TYPE") == "dex1" and config.with_hands:
+                    # Store the actual slew-limited DDS targets from this step.
+                    for side in ("left", "right"):
+                        command = getattr(env.hands(), side).last_command
+                        msg[f"{side}_hand_dex1_action"] = (
+                            command.copy() if command is not None else obs[f"{side}_hand_dex1_q"].copy()
+                        )
+                for key in obs.keys():
+                    if key.endswith("_image"):
+                        del msg[key]
+
+                # exporting data
+                if last_teleop_cmd is None:
+                    last_teleop_cmd = {}
+                msg.update(
+                    {
+                        "action": wbc_action["q"],
+                        "action.eef": last_teleop_cmd.get("wrist_pose", DEFAULT_WRIST_POSE),
+                        "base_height_command": last_teleop_cmd.get(
+                            "base_height_command", DEFAULT_BASE_HEIGHT
+                        ),
+                        "navigate_command": last_teleop_cmd.get(
+                            "navigate_cmd", DEFAULT_NAV_CMD
+                        ),
+                        "timestamps": {
+                            "main_loop": time.time(),
+                            "proprio": time.time(),
+                        },
+                    }
+                )
+                data_exp_pub.publish(msg)
+                if latency_pub is not None:
+                    sender = env.body().body_command_sender
+                    trace = last_teleop_cmd.get("latency_trace", {})
+                    metrics = pipeline_metrics(
+                        trace, received_ns=last_goal_received_ns, goal_read_ns=goal_read_ns,
+                        send_started_ns=getattr(sender, "last_send_started_ns", None),
+                        send_finished_ns=getattr(sender, "last_send_finished_ns", None),
+                    )
+                    if "pico_sdk_read_finished_ns" in trace:
+                        metrics["pc_sdk_read_to_target_ms"] = (
+                            target_computed_ns - trace["pico_sdk_read_finished_ns"]
+                        ) / 1e6
+                        metrics["pc_frame_first_seen_to_target_ms"] = (
+                            target_computed_ns - trace["pico_frame_first_seen_ns"]
+                        ) / 1e6
+                    timings = telemetry.get_last_timing()
+                    for name in ("observe", "policy_setup", "policy_action", "queue_action", "publish_status"):
+                        if name in timings:
+                            metrics[name + "_ms"] = timings[name] * 1000
+                    metrics["control_work_ms"] = (time.monotonic_ns() - loop_started_ns) / 1e6
+                    if previous_loop_ns is not None:
+                        metrics["control_period_ms"] = (loop_started_ns - previous_loop_ns) / 1e6
+                    previous_loop_ns = loop_started_ns
+                    body_indices = robot_model.get_joint_group_indices("body")
+                    error = wbc_action["q"][body_indices] - obs["q"][body_indices]
+                    latency_pub.publish({
+                        "timestamp_ns": loop_started_ns, "metrics_ms": metrics,
+                        "control_mode": mode.state,
+                        "actuator_output_enabled": not config.diagnostic_read_only,
+                        "pico_source_timestamp_ns": trace.get("pico_source_timestamp_ns"),
+                        "pico_sdk_frame_count": trace.get("pico_sdk_frame_count"),
+                        "tracking_error_rms_rad": float(np.sqrt(np.mean(error ** 2))),
+                    })
+                end_time = time.monotonic()
+
+            if env.sim and (not env.sim.sim_thread or not env.sim.sim_thread.is_alive()):
+                raise RuntimeError("Simulator thread is not alive")
+
+            rate.sleep()
+
+            # Log timing information every 100 iterations (roughly every 2 seconds at 50Hz)
+            if config.verbose_timing:
+                # When verbose timing is enabled, always show timing
+                telemetry.log_timing_info(context="G1 Control Loop", threshold=0.0)
+    except ros_manager.exceptions() as e:
+        print(f"ROSManager interrupted by user: {e}")
+    finally:
+        # A final low-level damping burst precedes session teardown.
+        # Do not depend on native DDS/ROS destructors to complete this stop.
+        report = shutdown.finish()
+        restore_terminal()
+        os._exit(0 if report["confirmed"] else 1)
+
+
+if __name__ == "__main__":
+    config = tyro.cli(ControlLoopConfig)
+    main(config)

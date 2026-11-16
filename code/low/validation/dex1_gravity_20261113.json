@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-13",
+  "model": {
+    "scope": "Offline G1 dynamics only; no robot I/O",
+    "nominal_dex1": {
+      "left": {
+        "mass_kg": 0.55,
+        "com_m": [
+          0.0994305720243543,
+          -6.848746937903122e-05,
+          7.343262126451591e-06
+        ]
+      },
+      "right": {
+        "mass_kg": 0.55,
+        "com_m": [
+          0.0994305720243543,
+          -6.848746937903122e-05,
+          7.343262126451591e-06
+        ]
+      }
+    },
+    "removed_rubber": {
+      "left": 0.17,
+      "right": 0.17
+    },
+    "random_poses": 12,
+    "max_point_force_jacobian_error_nm": 1.2212453270876722e-15,
+    "max_potential_gradient_error_nm": 4.134811826261853e-09,
+    "checks": [
+      "rubber hands replaced, not double counted",
+      "550g per side from official nominal; COM from official G1 Dex1 model",
+      "override denotes total external payload, not additional Dex1 copy",
+      "legs/waist output remains zero"
+    ],
+    "example": {
+      "old_arm_tau_nm": [
+        0.0017044024687940945,
+        3.1669504015035312,
+        1.5435112822472632,
+        -1.2083159586184031,
+        0.07382147957566945,
+        -0.3417397732931833,
+        0.04687191842837352,
+        -2.243172394222177,
+        1.9617214186840426,
+        -0.3805062518453184,
+        -0.2017425640038957,
+        0.03484287574170218,
+        0.1551437689848617,
+        -0.010958982042593119
+      ],
+      "new_arm_tau_nm": [
+        -0.5828969860661871,
+        3.845112007634876,
+        2.3149613168782195,
+        -1.8694101515601251,
+        0.20394407680382612,
+        -0.8073008136920841,
+        0.1463659498252808,
+        -2.5299826285084897,
+        2.223570932143331,
+        -0.4341485944940418,
+        -0.11471813379935619,
+        0.07727339159767986,
+        0.36579394990541614,
+        -0.035033176888901195
+      ]
+    }
+  },
+  "pure_control": {
+    "scope": "Offline actual LowCmd serialization with captured publisher only; no robot I/O",
+    "checks": [
+      "idle publishes nothing",
+      "standing arms KP/KD/tau all zero",
+      "pure running KP=KD=0 and FF includes nominal Dex1",
+      "legs/waist FF zero; no hand writer",
+      "native d immediately uses full damping Kp0/Kd8/tau0"
+    ]
+  },
+  "assumptions": [
+    "official standard G1 direct mounting, not measured installation",
+    "official 550g nominal mass; CAD COM from 0.364946kg gripper model",
+    "camera, adapters and held objects need a total-payload override"
+  ],
+  "existing_entry": "scripts/start_g1_gravity_test.sh --execute",
+  "no_new_launcher": true
+}

@@ -1,0 +1,16 @@
+type: sonic_right_state
+dataset_dir: /root/ykj/OpenWAM/data/pick_up_test_tube_20261027_104843
+artifact_dir: /root/ykj/OpenWAM/.cache/test_tube/${experiment}
+seed: 42
+exclude_discarded: true
+val_episodes: 7
+window_stride: 8
+num_frames: 33
+video_stride: 4
+height: 384
+width: 320
+memory_enabled: false
+action_mode: wbc
+normalize_mode: min-max
+unify_action: false
+prompt: Use the right hand to grasp and lift the test tube, then hold it steady. Keep the left arm and left hand still.

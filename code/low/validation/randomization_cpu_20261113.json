@@ -1,0 +1,105 @@
+{
+  "scope": "CPU real-data augmentation and sampler checks; no model or robot started",
+  "experiments": {
+    "take_tube_local_light": {
+      "train_windows": 5156,
+      "val_windows": 815,
+      "real_samples": [
+        {
+          "index": 0,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 2578,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 5155,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        }
+      ],
+      "validation_unaugmented": true
+    },
+    "take_tube_box_robust": {
+      "train_windows": 5156,
+      "val_windows": 815,
+      "real_samples": [
+        {
+          "index": 0,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 2578,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 5155,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        }
+      ],
+      "validation_unaugmented": true
+    },
+    "general_light_balanced": {
+      "train_windows": 13353,
+      "val_windows": 2162,
+      "real_samples": [
+        {
+          "index": 0,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 6676,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 13352,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        }
+      ],
+      "validation_unaugmented": true,
+      "sampler_skill_mass": {
+        "pick_up_test_tube": 0.9999999999999493,
+        "take_dropper_and_aspirate": 1.0000000000000375,
+        "dispense_into_held_test_tube": 1.0000000000000264,
+        "return_dropper": 0.999999999999985,
+        "place_test_tube_in_water_bath": 0.9999999999999971
+      }
+    },
+    "take_tube_camera": {
+      "train_windows": 5156,
+      "val_windows": 815,
+      "real_samples": [
+        {
+          "index": 0,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 2578,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        },
+        {
+          "index": 5155,
+          "action_and_state_unchanged": true,
+          "current_frame_matches_video": true
+        }
+      ],
+      "validation_unaugmented": true
+    }
+  },
+  "box_geometry_draws": 6000,
+  "rgb_prior_geometry_aligned": true,
+  "maximum_camera_pixel_motion_per_30hz_frame": 0.2783782898055944,
+  "bounded_local_light_fields": 300,
+  "passed": true
+}

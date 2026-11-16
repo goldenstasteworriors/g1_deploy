@@ -1,0 +1,33 @@
+{
+  "repo_id": "ykjykj/LabWAM-BoxedV3-30k-20261111",
+  "downloaded_from_modelscope": true,
+  "verified_manifest_files": 67,
+  "foundation_sha256": "180a02653118b0f96da28a9cae9ec7b4c1c1e6cd0e4608b56c7b4884f8001d3d",
+  "all_foundation_components_loaded": true,
+  "offline": true,
+  "gpu_used": false,
+  "models": {
+    "general": {
+      "delta_tensors": 902,
+      "exact_match_after_loading": true,
+      "device": "cpu"
+    },
+    "take_tube": {
+      "delta_tensors": 902,
+      "exact_match_after_loading": true,
+      "device": "cpu"
+    },
+    "dispense": {
+      "delta_tensors": 902,
+      "exact_match_after_loading": true,
+      "device": "cpu"
+    },
+    "take_dropper": {
+      "delta_tensors": 902,
+      "exact_match_after_loading": true,
+      "device": "cpu"
+    }
+  },
+  "restore_directory": "/share/personal/yekangjie/lab-low/exports/modelscope_restore_20261112",
+  "scope": "full repository download, local hashes, CPU reconstruction and exact delta readback; no action rollout"
+}

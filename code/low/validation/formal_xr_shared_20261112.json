@@ -1,0 +1,11 @@
+{
+  "scope": "Real SONICMJ motor serialization/CRC and G1 dynamics, captured publisher only; no DDS or robot commands",
+  "passed": [
+    "standing gate: zero arm PD/FF and no gripper commands",
+    "formal LowCmd/CRC capture: target-angle FF, exact XR gains, correct motor mapping; legs/waist untouched",
+    "independent XR test and formal adapter emit identical arm q/kp/kd/tau",
+    "native damping clears PD/FF immediately, rejects queued command, recovery restores common implementation",
+    "diagnostic read-only does not publish",
+    "formal controller holds previous target across waiting/stop even when measured arms sag"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "episodes": 364,
+  "frames": 147675,
+  "removed": [
+    "RETURN_DROPPER-001",
+    "RETURN_DROPPER-002",
+    "RETURN_DROPPER-003"
+  ],
+  "retained_signals_unchanged": true,
+  "video_sha256_and_frame_counts_verified": 1092,
+  "boxed": 309
+}

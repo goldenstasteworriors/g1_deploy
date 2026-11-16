@@ -1,0 +1,7 @@
+{
+  "reason": "signal:2",
+  "pid": 214521,
+  "confirmed": true,
+  "confirmation_scope": "low_level_damping_published; no official FSM handover",
+  "elapsed_s": 0.5130363960051909
+}

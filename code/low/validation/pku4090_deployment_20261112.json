@@ -1,0 +1,266 @@
+{
+  "date": "2026-11-12",
+  "host": "yanjun@192.168.123.222",
+  "hostname": "pku4090",
+  "project": "/home/yanjun/ykj/labwam_g1",
+  "gpu": "RTX 4090 48 GB (49140 MiB)",
+  "torch": "2.5.1+cu124",
+  "inference_environment": ".venv_inference, read-only inheritance from existing wam",
+  "controller_environment": ".conda_controller, conda-pack migration of tested decoupled_vla_collection",
+  "controller_archive_sha256": "022cf468be08aa985baedf3a745810ede38b6100cc9b149a1f413ed90f0256cc",
+  "weights": {
+    "verified_files": 67,
+    "verified_bytes": 39284273538,
+    "foundation_included": true,
+    "kind": "weights",
+    "code_revision": "6d98ab31b24401a55842295ddefe1909d9b86789",
+    "repo": "ykjykj/LabWAM-BoxedV3-30k-20261111",
+    "revision": "master"
+  },
+  "gpu_validation": {
+    "host": "pku4090",
+    "scope": "real recorded three-view RGB and achieved states, frame 60 history, 20 denoising steps, HTTP transport; no actuation",
+    "models": {
+      "general": {
+        "load_seconds": 52.02262385499853,
+        "supported_skill_hands": [
+          [
+            "pick_up_test_tube",
+            "right"
+          ],
+          [
+            "take_dropper_and_aspirate",
+            "left"
+          ],
+          [
+            "dispense_into_held_test_tube",
+            "both"
+          ],
+          [
+            "return_dropper",
+            "left"
+          ],
+          [
+            "place_test_tube_in_water_bath",
+            "right"
+          ]
+        ],
+        "predictions": [
+          {
+            "skill": "pick_up_test_tube",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": true,
+            "inference_seconds": 2.178826108998692,
+            "gpu_used_MiB": 25025
+          },
+          {
+            "skill": "take_dropper_and_aspirate",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": true,
+            "inference_seconds": 1.28298175099917,
+            "gpu_used_MiB": 25027
+          },
+          {
+            "skill": "dispense_into_held_test_tube",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": false,
+            "inference_seconds": 1.2719810789985786,
+            "gpu_used_MiB": 25026
+          },
+          {
+            "skill": "return_dropper",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": true,
+            "inference_seconds": 1.2713670319990342,
+            "gpu_used_MiB": 25025
+          },
+          {
+            "skill": "place_test_tube_in_water_bath",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": true,
+            "inference_seconds": 1.2785055469994404,
+            "gpu_used_MiB": 25027
+          }
+        ]
+      },
+      "take_tube": {
+        "load_seconds": 50.02340259199991,
+        "supported_skill_hands": [
+          [
+            "pick_up_test_tube",
+            "right"
+          ]
+        ],
+        "predictions": [
+          {
+            "skill": "pick_up_test_tube",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": true,
+            "inference_seconds": 1.830954904000464,
+            "gpu_used_MiB": 25027
+          }
+        ]
+      },
+      "dispense": {
+        "load_seconds": 50.02167372400072,
+        "supported_skill_hands": [
+          [
+            "dispense_into_held_test_tube",
+            "both"
+          ]
+        ],
+        "predictions": [
+          {
+            "skill": "dispense_into_held_test_tube",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": false,
+            "inference_seconds": 1.828384812000877,
+            "gpu_used_MiB": 25026
+          }
+        ]
+      },
+      "take_dropper": {
+        "load_seconds": 50.02376283400008,
+        "supported_skill_hands": [
+          [
+            "take_dropper_and_aspirate",
+            "left"
+          ]
+        ],
+        "predictions": [
+          {
+            "skill": "take_dropper_and_aspirate",
+            "shape": [
+              32,
+              16
+            ],
+            "finite": true,
+            "inactive_hold": true,
+            "history_frame": 60,
+            "initial_box": true,
+            "inference_seconds": 1.8231141380001645,
+            "gpu_used_MiB": 25025
+          }
+        ]
+      }
+    }
+  },
+  "controller_cpu": {
+    "scope": "real robot kinematics and ONNX on CPU; no ROS/DDS initialization or actuation",
+    "passed": [
+      "real 43D Pinocchio joint mapping",
+      "lower 15 joints unchanged",
+      "inactive left arm and gripper hold measured state",
+      "0.5 rad/s active-arm limit",
+      "duplicate command rejected",
+      "expired target cleared",
+      "real Balance ONNX output retained exactly on lower body",
+      "invalid arm command holds measured arms without raising through the balance loop"
+    ]
+  },
+  "model_to_controller": [
+    {
+      "model": "general",
+      "skill": "pick_up_test_tube",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "general",
+      "skill": "take_dropper_and_aspirate",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "general",
+      "skill": "dispense_into_held_test_tube",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "general",
+      "skill": "return_dropper",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "general",
+      "skill": "place_test_tube_in_water_bath",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "take_tube",
+      "skill": "pick_up_test_tube",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "dispense",
+      "skill": "dispense_into_held_test_tube",
+      "accepted": 32,
+      "failures": []
+    },
+    {
+      "model": "take_dropper",
+      "skill": "take_dropper_and_aspirate",
+      "accepted": 32,
+      "failures": []
+    }
+  ],
+  "wired_replay": {
+    "scope": "isolated localhost ROS domain 213, recorded images/state, real pku4090 general model over wired HTTP; recorded state held constant; no G1 DDS or actuators",
+    "passed": {
+      "commands": 142,
+      "stops": 1,
+      "predictions": 2
+    }
+  },
+  "physical_robot_actuation_tested": false,
+  "physical_cameras_tested": false,
+  "completion_detection": null,
+  "inference_mode": "stop-and-go, prefix 8 at 30 Hz; continuous sensor history",
+  "tested_source_revision": "0307333979e55085512b690fbac9bf7ac7dad156"
+}

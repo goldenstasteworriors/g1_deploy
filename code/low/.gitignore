@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.cache/
+outputs/
+data/
+.venv/
+.conda-envs/
+*.safetensors
+*.pt
+*.mp4
+wandb/

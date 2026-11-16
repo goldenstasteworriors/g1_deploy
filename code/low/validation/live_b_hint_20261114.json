@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-14",
+  "notice_states": [
+    "idle",
+    "needs_b",
+    "pending",
+    "ready"
+  ],
+  "notice_refresh_on_grounding_change": true,
+  "condition": {
+    "initial_box_enters_target_prior": true,
+    "reference_image_not_replaced_by_current": true,
+    "observe_preserves_initial_prior": true,
+    "changing_box_changes_condition": true,
+    "robot_io": false
+  },
+  "runtime_changes": "Status text and target-binding logs only; existing b/d execution and model conditions unchanged",
+  "real_model_reference": "validation/live_operator_20261114.json",
+  "robot_io": false
+}

@@ -1,0 +1,29 @@
+{
+  "skipped": [
+    {
+      "path": "sonicmj/decoupled_wbc/control/teleop/device/SDKClient_Linux/ManusSDK/lib/libManusSDK.so",
+      "bytes": 80253728,
+      "reason": "vendor_binary_or_cache"
+    },
+    {
+      "path": "sonicmj/decoupled_wbc/control/teleop/device/SDKClient_Linux/ManusSDK/lib/libManusSDK_Integrated.so",
+      "bytes": 80253728,
+      "reason": "vendor_binary_or_cache"
+    },
+    {
+      "path": "sonicmj/decoupled_wbc/control/teleop/device/SDKClient_Linux/ManusServer.cpython-310-x86_64-linux-gnu.so",
+      "bytes": 3820896,
+      "reason": "vendor_binary_or_cache"
+    },
+    {
+      "path": "sonicmj/decoupled_wbc/control/teleop/device/pico/XRoboToolkit_PC_Service_1.0.0_ubuntu_22.04_amd64.deb",
+      "bytes": 100046068,
+      "reason": "vendor_binary_or_cache"
+    },
+    {
+      "path": "sonicmj/decoupled_wbc/control/teleop/device/pico/roboticsservice_1.0.0.0_arm64.deb",
+      "bytes": 38477318,
+      "reason": "vendor_binary_or_cache"
+    }
+  ]
+}

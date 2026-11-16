@@ -1,0 +1,48 @@
+defaults:
+  - train
+  - override dataloader: lab
+  - _self_
+
+model:
+  freeze: [video_backbone]
+  architecture:
+    variant: lab
+    action_dim: 16
+    state_dim: 31
+    attention_mask_mode: mutual
+    transfer_from_foundation: true
+    foundation_checkpoint: /workspace/ykj/OpenWAM-assets/checkpoints/OpenWAM-Alpha-Pretrain-Foundation-Model/checkpoint_step_154000.safetensors
+    condition_width: 256
+    memory_depth: 4
+    memory_temporal_every: 4
+    prior_strength: 2.0
+    jitter_scale: 0.025
+    jitter_floor: 0.1
+    delta_checkpoint: true
+
+training:
+  finetune_ckpt_path: /workspace/ykj/OpenWAM-assets/checkpoints/OpenWAM-Alpha-Pretrain-Foundation-Model
+  batch_size: 1
+  gradient_accumulation_steps: 1
+  dataset_num_workers: 0
+  num_epochs: null
+  max_steps: 1000
+  save_steps: 200
+  keep_last_k_ckpts: 2
+  save_full_states_for_resume: false
+  learning_rate: 0.00005
+  action_lr: 0.00005
+  output_path: outputs/lab
+  mixed_precision: bf16
+
+validation_every: 200
+validation_windows: 4
+verify_gradients: true
+project:
+  name: lab-low
+  wandb:
+    project: null
+    run_name: ${now:%Y-%m-%d}_lab_low
+hydra:
+  run:
+    dir: .cache/hydra/${now:%Y-%m-%d_%H-%M-%S}

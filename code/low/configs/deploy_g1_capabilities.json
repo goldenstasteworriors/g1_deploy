@@ -1,0 +1,10 @@
+{
+  "weights_repo": "ykjykj/LabWAM-BoxedV3-30k-20261111",
+  "source": "boxed_v3_suite manifests; trained skill/hand pairs, not the architectural vocabulary",
+  "models": {
+    "general": [["pick_up_test_tube", "right"], ["take_dropper_and_aspirate", "left"], ["dispense_into_held_test_tube", "both"], ["return_dropper", "left"], ["place_test_tube_in_water_bath", "right"]],
+    "take_tube": [["pick_up_test_tube", "right"]],
+    "dispense": [["dispense_into_held_test_tube", "both"]],
+    "take_dropper": [["take_dropper_and_aspirate", "left"]]
+  }
+}

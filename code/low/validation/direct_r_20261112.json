@@ -1,0 +1,35 @@
+{
+  "scope": "Offline actual SONICMJ model/interpolator/KeyboardEStop/DampingShutdown, mocked transport/client/lower policy; no robot I/O",
+  "checks": [
+    {
+      "mode": "live",
+      "passed": [
+        "r during inference terminates client without waiting for model RPC",
+        "lower standing/history/action/waist state preserved; no damping or restart",
+        "return starts at measured pose using existing duration, no new thresholds",
+        "repeated r reinitializes from latest measurement",
+        "return ends at ready; Enter alone starts a new inference epoch",
+        "late old-epoch commands rejected during and after return",
+        "native d remains immediate during return; damped r resumes standing first",
+        "r works in paused/fault/ready/standing_ready and cancels pose menu"
+      ]
+    },
+    {
+      "mode": "recorded",
+      "passed": [
+        "r during inference terminates client without waiting for model RPC",
+        "lower standing/history/action/waist state preserved; no damping or restart",
+        "return starts at measured pose using existing duration, no new thresholds",
+        "repeated r reinitializes from latest measurement",
+        "return ends at ready; Enter alone starts a new inference epoch",
+        "late old-epoch commands rejected during and after return",
+        "native d remains immediate during return; damped r resumes standing first",
+        "r works in paused/fault/ready/standing_ready and cancels pose menu"
+      ]
+    }
+  ],
+  "idle_r_no_takeover": true,
+  "session": "sess_970b50bc83a343bf",
+  "date": "2026-11-12",
+  "robot_motion_tested": false
+}

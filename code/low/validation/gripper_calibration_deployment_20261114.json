@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-14",
+  "session": "sess_4136a170b69e4bd0",
+  "rule": {"skill": "pick_up_test_tube", "interval_rad": [0.8, 1.1], "inside_interval": "min(q, 0.85)", "outside_interval": "unchanged"},
+  "location": "Shared ArmTargetBuffer.sample, after skill gating and before holding/sending native Dex1 targets",
+  "scope": ["active left or right gripper", "live camera", "recorded synchronous", "recorded asynchronous"],
+  "exclusions": ["initialization and r return poses", "other skills", "inactive gripper", "measured state feedback"],
+  "validation": {
+    "environment": "decoupled_vla_collection",
+    "robot_io": false,
+    "checks": [
+      "Inclusive interval boundaries; values outside interval unchanged",
+      "0.80 and 0.82 are not increased; correction is idempotent",
+      "Only selected hand and pick-tube skill are corrected",
+      "Initialization bindings and recovery's bimanual pose bypass correction",
+      "Original prediction and measured state remain unchanged",
+      "Stopped/held target retains correction; new initialization is unmodified",
+      "Actual shared adapter with native interpolation reaches captured Dex1.command_position calls for live/sync/async input labels",
+      "Hands-disabled phase sends no gripper commands"
+    ],
+    "temporary_test_scripts": "None; tests run using python -c"
+  },
+  "logging": "ControlTrace schema identifies calibration; raw gated and calibrated gripper targets are logged before native driver validation",
+  "limitations": ["No physical grasp tested", "No claim of calibrated contact force or guaranteed grasp success", "Existing driver per-feedback limit remains downstream"]
+}

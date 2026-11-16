@@ -1,0 +1,62 @@
+{
+  "verified_files": 52,
+  "verified_bytes": 10323996995,
+  "foundation_included": false,
+  "kind": "additional",
+  "code_revision": "b5585d513643cbf384b4dc35b05a354d25055052",
+  "repo": "ykjykj/LabWAM-Additional-30k-20261112",
+  "hostname": "pku4090",
+  "bundle": "/home/yanjun/ykj/labwam_g1/assets/modelscope_additional_20261112",
+  "completed_at": "2026-11-12 19:05:19 +0800",
+  "models": [
+    {
+      "name": "return_dropper",
+      "runtime": "/home/yanjun/ykj/labwam_g1/runtime/models/return_dropper",
+      "pairs": [
+        [
+          "return_dropper",
+          "left"
+        ]
+      ],
+      "checkpoint_tensors": {
+        "checkpoint_step_30000.safetensors": 902
+      },
+      "normalization_loaded": true
+    },
+    {
+      "name": "water_bath",
+      "runtime": "/home/yanjun/ykj/labwam_g1/runtime/models/water_bath",
+      "pairs": [
+        [
+          "place_test_tube_in_water_bath",
+          "right"
+        ]
+      ],
+      "checkpoint_tensors": {
+        "checkpoint_best.safetensors": 902,
+        "checkpoint_step_30000.safetensors": 902
+      },
+      "normalization_loaded": true
+    },
+    {
+      "name": "return_tube",
+      "runtime": "/home/yanjun/ykj/labwam_g1/runtime/models/return_tube",
+      "pairs": [
+        [
+          "return_test_tube_to_rack",
+          "right"
+        ]
+      ],
+      "checkpoint_tensors": {
+        "checkpoint_best.safetensors": 902,
+        "checkpoint_step_30000.safetensors": 902
+      },
+      "normalization_loaded": true
+    }
+  ],
+  "foundation_sha256": "180a02653118b0f96da28a9cae9ec7b4c1c1e6cd0e4608b56c7b4884f8001d3d",
+  "foundation_verified": true,
+  "runtime_staged": true,
+  "robot_control_started": false,
+  "gpu_inference_started": false
+}

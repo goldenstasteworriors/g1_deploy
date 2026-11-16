@@ -1,0 +1,8 @@
+{
+  "scope": "isolated localhost ROS domain 213, recorded images/state, real pku4090 general model over wired HTTP; recorded state held constant; no G1 DDS or actuators",
+  "passed": {
+    "commands": 142,
+    "stops": 1,
+    "predictions": 2
+  }
+}

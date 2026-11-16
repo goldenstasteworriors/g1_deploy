@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-14",
+  "model": "take_tube/checkpoint_step_30000.safetensors",
+  "scope": "Three recorded-vision/live-state deployments, episode 0 only; no new inference or actuation; not an evaluation of all trained checkpoints.",
+  "data_path": "/home/ykj/project/SONICMJ/GR00T-WholeBodyControl/outputs/thinkpad_imports/processed/lab_primitives_train_20261110_boxed_v3/data/chunk-000/episode_000000.parquet",
+  "data_sha256": "18e8aed5549489b08fdd7acc6356b0c683bbe8e28edbd1582a59e7458a59a1c1",
+  "closed_segment": "dataset frames 201..321",
+  "angle_semantics": "Dex1 motor radians; smaller is more closed; 0.0 pressed, 5.4 released in driver",
+  "data_closed_q_mean": 0.9037499935173792,
+  "data_closed_q_min": 0.9037371277809143,
+  "data_closed_q_max": 0.9037830829620361,
+  "recorded_action_closed_q_mean": 0.9000000000000002,
+  "action_used_as_training_label": false,
+  "runs": [
+    {
+      "run": 1,
+      "file": "/home/yanjun/ykj/labwam_g1/logs/recorded_operator/inference_3_1794637462466202388.log",
+      "predicted_chunks": 41,
+      "frames": [
+        1,
+        321
+      ],
+      "closed_actions": 121,
+      "model_closed_mean": 0.9765958170260279,
+      "model_closed_min": 0.881120502948761,
+      "model_closed_max": 1.0366517305374146,
+      "model_minus_data_mean": 0.07284582350864884,
+      "model_minus_data_mae": 0.07377061765056012,
+      "more_open_than_data_fraction": 0.9669421487603306,
+      "mean_recorded_q": 0.9037499935173792,
+      "control_rows": 121,
+      "measured_closed_mean": 0.9731988016731743,
+      "measured_minus_model_mean": -0.0033970153528536926,
+      "measured_minus_model_mae": 0.022892249410448286,
+      "request_equals_model": true,
+      "fully_completed": true,
+      "http400_in_log": false
+    },
+    {
+      "run": 2,
+      "file": "/home/yanjun/ykj/labwam_g1/logs/recorded_operator/inference_3_1794638360448543420.log",
+      "predicted_chunks": 30,
+      "frames": [
+        1,
+        240
+      ],
+      "closed_actions": 40,
+      "model_closed_mean": 1.0038173601031304,
+      "model_closed_min": 0.9502454996109009,
+      "model_closed_max": 1.0452923774719238,
+      "model_minus_data_mean": 0.10006432980298996,
+      "model_minus_data_mae": 0.10006432980298996,
+      "more_open_than_data_fraction": 1.0,
+      "mean_recorded_q": 0.9037530303001404,
+      "control_rows": 40,
+      "measured_closed_mean": 1.002785538762808,
+      "measured_minus_model_mean": -0.0010318213403225003,
+      "measured_minus_model_mae": 0.020232191711664196,
+      "request_equals_model": true,
+      "fully_completed": false,
+      "http400_in_log": true
+    },
+    {
+      "run": 3,
+      "file": "/home/yanjun/ykj/labwam_g1/logs/recorded_operator/inference_5_1794637661266378038.log",
+      "predicted_chunks": 39,
+      "frames": [
+        1,
+        312
+      ],
+      "closed_actions": 112,
+      "model_closed_mean": 0.9648265380944524,
+      "model_closed_min": 0.8638392090797424,
+      "model_closed_max": 1.019370436668396,
+      "model_minus_data_mean": 0.06107646918722561,
+      "model_minus_data_mae": 0.06375062199575561,
+      "more_open_than_data_fraction": 0.9375,
+      "mean_recorded_q": 0.9037500689072269,
+      "control_rows": 112,
+      "measured_closed_mean": 0.9593420151626629,
+      "measured_minus_model_mean": -0.005484522931789426,
+      "measured_minus_model_mae": 0.024840968505357,
+      "request_equals_model": true,
+      "fully_completed": false,
+      "http400_in_log": true
+    }
+  ],
+  "source_hashes": {
+    "sonicmj/decoupled_wbc/control/envs/g1/g1_dex1_hand.py": "190e1327ae5981067776183818bea64e3d8960ba35b3c16438a8c25937b9657c",
+    "code/low/lab_low/runtime.py": "476e833339fc5827b296f49a40f5ef8ed58526254910579729fdf177e7688506",
+    "code/low/lab_low/g1_bridge.py": "a71eae926d7c700e6298fbc10c5eb1a2463e679ee4585d41978782b629735ea9"
+  },
+  "limitations": [
+    "Measured gripper values summarize command-associated control samples, not latency-compensated matched sensor samples.",
+    "No finger gap, contact force, or grasp success is measured here.",
+    "Two sessions end with HTTP 400; their closed prefixes remain usable. Root cause of that error not inferred from this audit.",
+    "Raw gripper DDS target after the driver's per-feedback 0.18 rad bound is not in the existing control trace."
+  ],
+  "normalization": {
+    "right_action_index": 15,
+    "right_state_index": 30,
+    "right_action_min": 0.8465579748153687,
+    "right_action_max": 5.2705583572387695,
+    "inverse": "(normalized+1)*0.5*(max-min)+min",
+    "closed_value_0_9_representable": true
+  }
+}

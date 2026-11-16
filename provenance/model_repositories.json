@@ -1,0 +1,8 @@
+{
+  "base_and_foundation": "ykjykj/LabWAM-BoxedV3-30k-20261111",
+  "additional_skills": "ykjykj/LabWAM-Additional-30k-20261112",
+  "take_tube_light_augmentation": "ykjykj/LabWAM-TakeTube-Light-30k-20261112",
+  "original_deployment_archive": "ykjykj/LabWAM-G1-Deployment-20261112",
+  "access": "Use an authorized ModelScope account; credentials are not included.",
+  "evidence": "code/low/validation/modelscope_* and the deployed bundle metadata. Upload records are historical, not a new remote availability check."
+}

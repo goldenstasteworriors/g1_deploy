@@ -1,0 +1,73 @@
+{
+  "launcher": "/share/personal/yekangjie/lab-low/code/outputs/additional_launches/2026-11-11_22-46-12",
+  "jobs": {
+    "return_dropper": {
+      "gpu": 0,
+      "launcher_returncode": null,
+      "run": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/return_dropper/2026-11-11_22-46-12_31230",
+      "last_metric": {
+        "loss_total": 1.269774317741394,
+        "loss_video": 0.07058553397655487,
+        "loss_action": 1.1991888284683228,
+        "grad_norm": 7.382339954376221,
+        "step": 28,
+        "optimizer_step": 28,
+        "jitter_weight": 0.9354363679885864,
+        "peak_gpu_mib": 45244.69921875
+      },
+      "gradient_checks_passed": true
+    },
+    "water_bath": {
+      "gpu": 1,
+      "launcher_returncode": null,
+      "run": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/water_bath/2026-11-11_22-46-12_31231",
+      "last_metric": {
+        "loss_total": 2.9206714630126953,
+        "loss_video": 0.09226798266172409,
+        "loss_action": 2.8284034729003906,
+        "grad_norm": 23.0067081451416,
+        "step": 29,
+        "optimizer_step": 29,
+        "jitter_weight": 0.9369335770606995,
+        "peak_gpu_mib": 45244.69921875
+      },
+      "gradient_checks_passed": true
+    },
+    "take_tube_light": {
+      "gpu": 2,
+      "launcher_returncode": null,
+      "run": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/take_tube_light/2026-11-11_22-46-12_31232",
+      "last_metric": {
+        "loss_total": 3.5911476612091064,
+        "loss_video": 0.09135420620441437,
+        "loss_action": 3.499793529510498,
+        "grad_norm": 43.428897857666016,
+        "step": 21,
+        "optimizer_step": 21,
+        "jitter_weight": 0.9186047911643982,
+        "peak_gpu_mib": 45244.69921875
+      },
+      "gradient_checks_passed": true
+    },
+    "return_tube": {
+      "gpu": 3,
+      "launcher_returncode": null,
+      "run": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/return_tube/2026-11-11_22-46-12_31233",
+      "last_metric": {
+        "loss_total": 2.3511388301849365,
+        "loss_video": 0.10073432326316833,
+        "loss_action": 2.2504045963287354,
+        "grad_norm": 12.093225479125977,
+        "step": 29,
+        "optimizer_step": 29,
+        "jitter_weight": 0.9581001996994019,
+        "peak_gpu_mib": 45244.69921875
+      },
+      "gradient_checks_passed": true
+    }
+  },
+  "gpu": "0, 50956 MiB, 39 %\n1, 50956 MiB, 29 %\n2, 50956 MiB, 60 %\n3, 50956 MiB, 44 %\n",
+  "snapshot_only": true,
+  "max_steps": 30000,
+  "date": "2026-11-11"
+}

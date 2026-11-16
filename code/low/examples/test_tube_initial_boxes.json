@@ -1,0 +1,896 @@
+{
+  "dataset": "/home/ykj/project/SONICMJ/GR00T-WholeBodyControl/outputs/thinkpad_imports/pick_up_test_tube_20261027_104843",
+  "episodes": [
+    {
+      "episode_index": 1,
+      "start_frame": 0,
+      "box": [
+        551,
+        130,
+        586,
+        218
+      ],
+      "points": [
+        574,
+        142,
+        1,
+        569,
+        160,
+        1,
+        547,
+        150,
+        0,
+        588,
+        213,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 2,
+      "start_frame": 0,
+      "box": [
+        561,
+        130,
+        601,
+        213
+      ],
+      "points": [
+        589,
+        142,
+        1,
+        584,
+        160,
+        1,
+        557,
+        150,
+        0,
+        603,
+        208,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 3,
+      "start_frame": 30,
+      "box": [
+        565,
+        130,
+        605,
+        210
+      ],
+      "points": [
+        593,
+        142,
+        1,
+        588,
+        160,
+        1,
+        561,
+        150,
+        0,
+        607,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 4,
+      "start_frame": 90,
+      "box": [
+        565,
+        130,
+        605,
+        210
+      ],
+      "points": [
+        593,
+        142,
+        1,
+        588,
+        160,
+        1,
+        561,
+        150,
+        0,
+        607,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 5,
+      "start_frame": 60,
+      "box": [
+        547,
+        130,
+        584,
+        210
+      ],
+      "points": [
+        572,
+        142,
+        1,
+        567,
+        160,
+        1,
+        543,
+        150,
+        0,
+        586,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 6,
+      "start_frame": 0,
+      "box": [
+        565,
+        130,
+        605,
+        215
+      ],
+      "points": [
+        593,
+        142,
+        1,
+        588,
+        160,
+        1,
+        561,
+        150,
+        0,
+        607,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 7,
+      "start_frame": 0,
+      "box": [
+        575,
+        130,
+        615,
+        215
+      ],
+      "points": [
+        603,
+        142,
+        1,
+        598,
+        160,
+        1,
+        571,
+        150,
+        0,
+        617,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 8,
+      "start_frame": 0,
+      "box": [
+        575,
+        130,
+        615,
+        215
+      ],
+      "points": [
+        603,
+        142,
+        1,
+        598,
+        160,
+        1,
+        571,
+        150,
+        0,
+        617,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 9,
+      "start_frame": 0,
+      "box": [
+        574,
+        130,
+        614,
+        215
+      ],
+      "points": [
+        602,
+        142,
+        1,
+        597,
+        160,
+        1,
+        570,
+        150,
+        0,
+        616,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 10,
+      "start_frame": 0,
+      "box": [
+        585,
+        130,
+        625,
+        215
+      ],
+      "points": [
+        613,
+        142,
+        1,
+        608,
+        160,
+        1,
+        581,
+        150,
+        0,
+        627,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 11,
+      "start_frame": 60,
+      "box": [
+        572,
+        130,
+        611,
+        210
+      ],
+      "points": [
+        599,
+        142,
+        1,
+        594,
+        160,
+        1,
+        568,
+        150,
+        0,
+        613,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 12,
+      "start_frame": 90,
+      "box": [
+        578,
+        130,
+        620,
+        210
+      ],
+      "points": [
+        608,
+        142,
+        1,
+        603,
+        160,
+        1,
+        574,
+        150,
+        0,
+        622,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 13,
+      "start_frame": 0,
+      "box": [
+        583,
+        130,
+        623,
+        215
+      ],
+      "points": [
+        611,
+        142,
+        1,
+        606,
+        160,
+        1,
+        579,
+        150,
+        0,
+        625,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": true
+    },
+    {
+      "episode_index": 14,
+      "start_frame": 60,
+      "box": [
+        581,
+        130,
+        622,
+        210
+      ],
+      "points": [
+        610,
+        142,
+        1,
+        605,
+        160,
+        1,
+        577,
+        150,
+        0,
+        624,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 15,
+      "start_frame": 0,
+      "box": [
+        594,
+        130,
+        634,
+        215
+      ],
+      "points": [
+        622,
+        142,
+        1,
+        617,
+        160,
+        1,
+        590,
+        150,
+        0,
+        636,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 16,
+      "start_frame": 0,
+      "box": [
+        594,
+        130,
+        634,
+        215
+      ],
+      "points": [
+        622,
+        142,
+        1,
+        617,
+        160,
+        1,
+        590,
+        150,
+        0,
+        636,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 17,
+      "start_frame": 90,
+      "box": [
+        607,
+        134,
+        640,
+        210
+      ],
+      "points": [
+        628,
+        146,
+        1,
+        623,
+        164,
+        1,
+        603,
+        154,
+        0,
+        638,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 18,
+      "start_frame": 0,
+      "box": [
+        601,
+        130,
+        640,
+        215
+      ],
+      "points": [
+        628,
+        142,
+        1,
+        623,
+        160,
+        1,
+        597,
+        150,
+        0,
+        638,
+        210,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 19,
+      "start_frame": 0,
+      "box": [
+        535,
+        140,
+        577,
+        230
+      ],
+      "points": [
+        565,
+        152,
+        1,
+        560,
+        170,
+        1,
+        531,
+        160,
+        0,
+        579,
+        225,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": true
+    },
+    {
+      "episode_index": 20,
+      "start_frame": 0,
+      "box": [
+        535,
+        140,
+        577,
+        230
+      ],
+      "points": [
+        565,
+        152,
+        1,
+        560,
+        170,
+        1,
+        531,
+        160,
+        0,
+        579,
+        225,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 21,
+      "start_frame": 90,
+      "box": [
+        542,
+        140,
+        586,
+        220
+      ],
+      "points": [
+        574,
+        152,
+        1,
+        569,
+        170,
+        1,
+        538,
+        160,
+        0,
+        588,
+        215,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 22,
+      "start_frame": 90,
+      "box": [
+        548,
+        130,
+        594,
+        215
+      ],
+      "points": [
+        582,
+        142,
+        1,
+        577,
+        160,
+        1,
+        544,
+        150,
+        0,
+        596,
+        210,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 23,
+      "start_frame": 60,
+      "box": [
+        532,
+        130,
+        575,
+        210
+      ],
+      "points": [
+        563,
+        142,
+        1,
+        558,
+        160,
+        1,
+        528,
+        150,
+        0,
+        577,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 24,
+      "start_frame": 90,
+      "box": [
+        531,
+        131,
+        573,
+        215
+      ],
+      "points": [
+        561,
+        143,
+        1,
+        556,
+        161,
+        1,
+        527,
+        151,
+        0,
+        575,
+        210,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 25,
+      "start_frame": 0,
+      "box": [
+        537,
+        130,
+        583,
+        218
+      ],
+      "points": [
+        571,
+        142,
+        1,
+        566,
+        160,
+        1,
+        533,
+        150,
+        0,
+        585,
+        213,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 26,
+      "start_frame": 0,
+      "box": [
+        537,
+        130,
+        583,
+        218
+      ],
+      "points": [
+        571,
+        142,
+        1,
+        566,
+        160,
+        1,
+        533,
+        150,
+        0,
+        585,
+        213,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 27,
+      "start_frame": 30,
+      "box": [
+        500,
+        129,
+        534,
+        219
+      ],
+      "points": [
+        522,
+        141,
+        1,
+        517,
+        159,
+        1,
+        496,
+        149,
+        0,
+        536,
+        214,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 28,
+      "start_frame": 60,
+      "box": [
+        505,
+        129,
+        539,
+        210
+      ],
+      "points": [
+        527,
+        141,
+        1,
+        522,
+        159,
+        1,
+        501,
+        149,
+        0,
+        541,
+        205,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 29,
+      "start_frame": 0,
+      "box": [
+        512,
+        130,
+        552,
+        218
+      ],
+      "points": [
+        540,
+        142,
+        1,
+        535,
+        160,
+        1,
+        508,
+        150,
+        0,
+        554,
+        213,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": true
+    },
+    {
+      "episode_index": 30,
+      "start_frame": 0,
+      "box": [
+        508,
+        130,
+        548,
+        218
+      ],
+      "points": [
+        536,
+        142,
+        1,
+        531,
+        160,
+        1,
+        504,
+        150,
+        0,
+        550,
+        213,
+        0
+      ],
+      "initial_visibility": "partly_occluded_or_clear",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 31,
+      "start_frame": 90,
+      "box": [
+        506,
+        158,
+        540,
+        240
+      ],
+      "points": [
+        528,
+        170,
+        1,
+        523,
+        188,
+        1,
+        502,
+        178,
+        0,
+        542,
+        235,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 32,
+      "start_frame": 90,
+      "box": [
+        520,
+        155,
+        559,
+        239
+      ],
+      "points": [
+        547,
+        167,
+        1,
+        542,
+        185,
+        1,
+        516,
+        175,
+        0,
+        561,
+        234,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    },
+    {
+      "episode_index": 33,
+      "start_frame": 60,
+      "box": [
+        535,
+        156,
+        571,
+        235
+      ],
+      "points": [
+        559,
+        168,
+        1,
+        554,
+        186,
+        1,
+        531,
+        176,
+        0,
+        573,
+        230,
+        0
+      ],
+      "initial_visibility": "first_frame_occluded_delayed_prompt",
+      "prompt_source": "assistant_visual_review",
+      "original_discarded": false
+    }
+  ]
+}

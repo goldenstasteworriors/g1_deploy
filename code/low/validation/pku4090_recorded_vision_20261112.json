@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-12",
+  "session": "sess_4136a170b69e4bd0",
+  "server": "pku4090",
+  "deployment_root": "/home/yanjun/ykj/labwam_g1",
+  "tested_code_commit": "f3348d1",
+  "later_server_head_observed": "816c0a7",
+  "scope": "Actual configuration, subscriber-only robot input and true-model inference; no motor or hand commands published",
+  "launcher": {
+    "arguments": "--episode 0 --frame 60 --execute --check-config",
+    "passed": true,
+    "robot_io_opened": false,
+    "checked": ["recorded RGB decoding", "catalog initial pose", "native Balance/Walk ONNX configuration"]
+  },
+  "live_input": {
+    "passed": true,
+    "reader": "ReadOnlyDDSStateReader",
+    "interface": "enp132s0",
+    "state_dimensions": 31,
+    "state_source": "live body29 and two Dex1 angles",
+    "episode": 0,
+    "current_frame": 60,
+    "reference_frame": 0,
+    "skill": "pick_up_test_tube",
+    "hand": "right",
+    "prompt": "Use the right gripper to pick up the indicated test tube and keep holding it.",
+    "ego_reference_box_xyxy": [543, 129, 585, 219],
+    "RGB_views": 3,
+    "RGB_shape": [480, 640, 3],
+    "annotation_sha256": "4fd51055ccbc7a3f7eb46ae039dc19c3505b3a6c9082a292bfc3eb1475bdeb38",
+    "publishing": false
+  },
+  "model": {
+    "passed": true,
+    "checkpoint": "runtime/models/general/checkpoint_step_30000.safetensors",
+    "protocol_feature": "recorded_reference_v1",
+    "prediction_shape": [32, 16],
+    "prediction_seconds": 2.066907922999235,
+    "virtual_execution_steps": 8,
+    "recorded_frame_before": 60,
+    "recorded_frame_after": 68,
+    "exit_reason": "requested_chunk_count_reached",
+    "publishing": false,
+    "physical_execution_steps": 0,
+    "task_success_evaluated": false
+  },
+  "cleanup": {
+    "temporary_service": "127.0.0.1:8851",
+    "foreground_service_interrupted": true,
+    "remote_port_no_longer_listening_verified": true
+  },
+  "available_data_last_verified": {
+    "episodes": [0, 33, 133],
+    "episode_0_frame_range": [0, 321],
+    "episode_33_frame_range": [0, 578],
+    "episode_133_frame_range": [0, 623],
+    "extra_sample_file_sha256_checks_passed": 7,
+    "all_three_episodes_first_and_last_frames_decoded_on_server": true,
+    "all_350_episodes_transferred": false,
+    "note": "Three example episodes transferred and verified. The full 350-episode dataset has not been copied; the menu filters unavailable episodes."
+  },
+  "logs": [
+    "logs/recorded_operator/check_config.log",
+    "logs/recorded_operator/check_input.log",
+    "logs/recorded_operator/model_smoke.log"
+  ],
+  "limitations": [
+    "Recorded images are not live visual feedback of real objects.",
+    "This test verifies input and inference plumbing, not physical manipulation performance.",
+    "Later concurrent gravity/PD/telemetry changes have separate validation; the true-model test above identifies its exact code revision."
+  ]
+}

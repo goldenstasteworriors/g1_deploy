@@ -1,0 +1,22 @@
+{
+  "scope": "Offline real gravity and joint mapping, native DampingShutdown, mocked motor transport; no robot I/O",
+  "passed": [
+    "idle no output",
+    "first Enter standing, no arm torque/gains",
+    "second Enter uses official XR shoulder/elbow80/3 wrist40/1.5 gains and gravity at fixed target",
+    "measured sag cannot overwrite position target",
+    "legs/waist no gravity feedforward",
+    "no hand control",
+    "d callback immediately latches damping and cancels takeover",
+    "read-only no output"
+  ],
+  "references": [
+    "https://github.com/unitreerobotics/xr_teleoperate/blob/main/teleop/robot_control/robot_arm.py",
+    "https://github.com/unitreerobotics/xr_teleoperate/blob/main/teleop/robot_control/robot_arm_ik.py"
+  ],
+  "adaptations": [
+    "SONICMJ body loop frequency retained; no second DDS writer",
+    "Bare G1 dynamics plus optional real payload, not Dex3 hand inertias",
+    "Measured pelvis orientation and waist retained"
+  ]
+}

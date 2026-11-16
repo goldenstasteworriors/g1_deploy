@@ -1,0 +1,42 @@
+G1 XR 风格双臂重力前馈与姿态保持测试
+参考宇树 xr_teleoperate 的 G1_29_ArmIK / G1_29_ArmController。
+本入口和正式相机/数据集图像部署共用 lab_low/gravity.py 的目标角前馈和 XR 双臂增益实现。
+官方代码：
+https://github.com/unitreerobotics/xr_teleoperate/blob/main/teleop/robot_control/robot_arm_ik.py
+https://github.com/unitreerobotics/xr_teleoperate/blob/main/teleop/robot_control/robot_arm.py
+
+先退出旧部署和旧重力测试程序，不要同时运行两个身体控制器。
+在 yanjun / pku4090 交互终端执行以下整行，不需要手动换行：
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_xr_gravity_test.sh --execute
+
+第一次 Enter：原 SONICMJ 下半身站立，双臂尚未接管。
+等 standing_ready，确认站稳；可以用手托住双臂到想测试的姿态。
+第二次 Enter：采集这一刻的双臂实测角作为固定目标，启用 XR 风格位置 PD 和重力前馈。
+目标只采集一次，不随之后的下垂反馈更新。不移动到零位或数据集姿态。
+肩/肘关节 Kp=80、Kd=3；三个腕关节 Kp=40、Kd=1.5，来自宇树 XR G1_29_ArmController。
+这是有位置刚度的姿态保持模式，不是可随意拖动的零刚度示教模式。
+每秒打印 arm_control、arm_target、arm_feedback、arm_kp、arm_kd 和 calculated_arm_tau_nm。
+d：原路径立即全身阻尼；站立也停止，需要有支撑。
+r：阻尼后回待机，重新按两次 Enter。
+Ctrl+C：全身阻尼退出。不控制夹爪，不运行 WAM。
+
+仅检查配置/ONNX，不连接机器人：
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_xr_gravity_test.sh --check-config
+
+与宇树实现一致的部分：
+- 下发固定 q_target、dq=0 和 tau_ff，使用官方双臂 PD 增益。
+- 重力前馈计算在目标角；Pinocchio computeGeneralizedGravity 等价于 RNEA(q,0,0)。
+- 每侧14个双臂电机按15..28的Unitree身体槽位映射（左右各7关节）。
+
+适配本项目的部分：
+- 保留 SONICMJ 下半身站立、唯一身体写入者和独立 d 急停。
+- 控制频率沿用当前 SONICMJ（默认50Hz），没有直接照搬 XR 独立双臂发布器的250Hz或启动第二个写入者。
+- 保留实测IMU重力方向和腰部姿态；XR标准模型把腿腰和手关节固定。
+- 使用G1 29DOF本体，移除每侧170g橡胶手，再加入名义550g Dex1-1和官方标准直装质心；不使用Dex3惯量。
+- Dex1使用名义质量与CAD推导质心，并未实测标定；转接件/额外相机/持物尚未计入。位置PD用于纠偏。
+- --arm-gravity-payload 支持已知左右附加载荷，--arm-gravity-scale 默认1.0。
+- 没有添加动作阈值、力矩限幅或看门狗。
+
+上一版纯补偿仍可用旧 start_g1_gravity_test.sh 入口；现已为 Kp=0、Kd=0 且计入同一Dex1名义载荷，模型残差仍可能导致下坠。
+本次应使用上面的 start_g1_xr_gravity_test.sh 新入口。
+离线验证不等于实机效果验证；脚本更新不会替换已经运行进程的内存代码。

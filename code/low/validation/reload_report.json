@@ -1,0 +1,130 @@
+{
+  "run": "/root/ykj/lab-low/outputs/reload_check/2026-11-01_20-11-50",
+  "source_revision": "6d59244d4490e53a41939a7d7b0aab28fdf59c51",
+  "completed": true,
+  "gradient_checks": {
+    "action_backbone.action_decoder.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.5013784766197205
+    },
+    "action_context": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.020118936896324158
+    },
+    "video_context": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.004714687820523977
+    },
+    "lab_conditioner.memory.in_proj_weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.017559275031089783
+    },
+    "lab_conditioner.query": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 4.3154348531970754e-05
+    },
+    "lab_conditioner.hand.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.0009599163313396275
+    },
+    "lab_conditioner.skill.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.0009599163313396275
+    },
+    "lab_conditioner.visual.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.007316575851291418
+    }
+  },
+  "checkpoint_readback": {
+    "checkpoint": "outputs/reload_check/2026-11-01_20-11-50/checkpoint_step_1.safetensors",
+    "tensors": 858,
+    "exact_match": true,
+    "scope": "all saved delta tensors; frozen video weights supplied by foundation"
+  },
+  "transfer_report": {
+    "source": "/workspace/ykj/OpenWAM-assets/checkpoints/OpenWAM-Alpha-Pretrain-Foundation-Model/checkpoint_step_154000.safetensors",
+    "loaded_tensors": 2083,
+    "reinitialized": [
+      "action_backbone.action_decoder.bias",
+      "action_backbone.action_decoder.weight",
+      "action_backbone.action_encoder.bias",
+      "action_backbone.action_encoder.weight",
+      "lab_conditioner.film.bias",
+      "lab_conditioner.film.weight",
+      "lab_conditioner.hand.weight",
+      "lab_conditioner.keys.bias",
+      "lab_conditioner.keys.weight",
+      "lab_conditioner.mark_state.bias",
+      "lab_conditioner.mark_state.weight",
+      "lab_conditioner.memory.in_proj_bias",
+      "lab_conditioner.memory.in_proj_weight",
+      "lab_conditioner.memory.out_proj.bias",
+      "lab_conditioner.memory.out_proj.weight",
+      "lab_conditioner.memory_norm.bias",
+      "lab_conditioner.memory_norm.weight",
+      "lab_conditioner.norm.bias",
+      "lab_conditioner.norm.weight",
+      "lab_conditioner.output.bias",
+      "lab_conditioner.output.weight",
+      "lab_conditioner.query",
+      "lab_conditioner.role.weight",
+      "lab_conditioner.skill.weight",
+      "lab_conditioner.state_action.bias",
+      "lab_conditioner.state_action.weight",
+      "lab_conditioner.time.0.bias",
+      "lab_conditioner.time.0.weight",
+      "lab_conditioner.time.2.bias",
+      "lab_conditioner.time.2.weight",
+      "lab_conditioner.values.bias",
+      "lab_conditioner.values.weight",
+      "lab_conditioner.visual.bias",
+      "lab_conditioner.visual.weight",
+      "lab_conditioner.xy.bias",
+      "lab_conditioner.xy.weight",
+      "proprio_encoder.bias",
+      "proprio_encoder.weight"
+    ],
+    "discarded": [
+      "action_backbone.action_decoder.bias",
+      "action_backbone.action_decoder.weight",
+      "action_backbone.action_encoder.bias",
+      "action_backbone.action_encoder.weight",
+      "proprio_encoder.bias",
+      "proprio_encoder.weight"
+    ],
+    "action_dim": 19,
+    "state_dim": 31,
+    "delta": "/root/ykj/lab-low/outputs/acceptance/2026-11-01_20-05-34/checkpoint_step_3.safetensors"
+  },
+  "metrics": [
+    {
+      "loss_total": 0.1832861304283142,
+      "loss_video": 0.11046729236841202,
+      "loss_action": 0.07281884551048279,
+      "grad_norm": 0.8457640409469604,
+      "step": 1,
+      "optimizer_step": 1,
+      "jitter_weight": 0.9099671840667725,
+      "peak_gpu_mib": 45183.3388671875
+    }
+  ],
+  "validation": [
+    {
+      "step": 1,
+      "total": 1.4155638217926025,
+      "video": 0.06991516053676605,
+      "action": 1.3456486463546753,
+      "windows": 1,
+      "metric": "held-out flow loss, not rollout success"
+    }
+  ]
+}

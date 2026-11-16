@@ -1,0 +1,19 @@
+{
+  "train_windows": 567,
+  "val_windows": 182,
+  "train_episodes": 23,
+  "val_episodes": 7,
+  "future_observation_target_alignment": true,
+  "initial_only_marks": true,
+  "causal_history": true,
+  "target_skill_hand_sensitivity": {
+    "skill_id": 0.1871146559715271,
+    "hand_id": 0.14931617677211761,
+    "prior": 0.0037193000316619873
+  },
+  "closed_vocabulary": true,
+  "inactive_actuator_hold": true,
+  "jitter_weighting": true,
+  "conditioner_gradient_check": true,
+  "provenance": "Captured from ai2-root-4080 command stdout on 2026-11-01; original .cache/contract_results.json"
+}

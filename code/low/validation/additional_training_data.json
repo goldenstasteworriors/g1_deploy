@@ -1,0 +1,34 @@
+{
+  "return_dropper": {
+    "train_windows": 1350,
+    "val_windows": 252,
+    "train_segments": 34,
+    "val_segments": 6
+  },
+  "water_bath": {
+    "train_windows": 242,
+    "val_windows": 48,
+    "train_segments": 6,
+    "val_segments": 1
+  },
+  "return_tube": {
+    "train_windows": 1220,
+    "val_windows": 215,
+    "train_segments": 35,
+    "val_segments": 7
+  },
+  "take_tube_light": {
+    "train_windows": 5156,
+    "val_windows": 815,
+    "train_segments": 150,
+    "val_segments": 26
+  },
+  "lighting_checks": {
+    "changes_rgb": true,
+    "labels_and_boxes_unchanged": true,
+    "repeat_deterministic": true,
+    "epoch_varies": true,
+    "validation_unchanged": true,
+    "current_condition_equals_video": true
+  }
+}

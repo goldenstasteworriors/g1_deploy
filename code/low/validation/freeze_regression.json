@@ -1,0 +1,9 @@
+{
+  "frozen_video_parameter_gradients": false,
+  "condition_input_gradient": true,
+  "input_gradient_norm": 0.038284242153167725,
+  "upstream_control_detaches": true,
+  "device": "cpu",
+  "scope": "regression for exact LabArchitecture.freeze_modules method; not full foundation training",
+  "provenance": "Captured from ai2-root-4080 command stdout on 2026-11-01; original .cache/freeze_regression.json"
+}

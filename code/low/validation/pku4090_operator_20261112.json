@@ -1,0 +1,38 @@
+{
+  "host": "pku4090",
+  "code_commit": "c4413d2",
+  "scope": "No physical robot I/O; real robot model and ONNX; fake body/Dex1 lifecycle; real GPU model service start/stop",
+  "startup_command": "bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_operator.sh --check-config",
+  "config_check": "passed",
+  "lifecycle": {
+    "scope": "actual Pinocchio and lower ONNX, fake body/Dex1 transport and fake client process; no ROS/DDS/motor I/O",
+    "passed": [
+      "boot: no body/arm/gripper writes and vendor takeover deferred",
+      "first Enter: lower ONNX enabled; upper gains zero and Dex1 untouched",
+      "second Enter: bounded both-arm/native-Dex1 interpolation; measured convergence; ready persists",
+      "third Enter: starts only a fresh epoch-scoped inference client",
+      "d: immediate damping latch and client termination; queued targets discarded",
+      "r: restarts lower ramp then restores selected pose without extra Enter",
+      "pose selection persists exact skill/episode/frame for subsequent recovery",
+      "old inference epoch cannot re-arm after recovery/new inference",
+      "d during blocked takeover cancels pending keys and stale RPC cannot restart control"
+    ]
+  },
+  "gpu_service": {
+    "host": "pku4090",
+    "robot_io": false,
+    "tests": [
+      {
+        "test": "interrupt_loading",
+        "exit_code": 0,
+        "workers_reaped": true
+      },
+      {
+        "test": "loaded_service_shutdown",
+        "exit_code": 0,
+        "workers_reaped": true
+      }
+    ]
+  },
+  "physical_robot_acceptance": false
+}

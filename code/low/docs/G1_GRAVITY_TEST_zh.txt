@@ -1,0 +1,41 @@
+G1 双臂重力补偿独立测试
+运行位置：pku4090 / yanjun
+先在旧部署终端正常退出原控制程序，不要同时运行两个身体控制器。
+本脚本不加载 WAM、不读取目标框、不控制夹爪；下半身复用原 SONICMJ 零速度站立策略。
+双臂 Kp=0、Kd=0，不开位置或速度反馈，只增加根据实测关节及 IMU 计算的重力前馈。
+没有添加动作阈值、力矩限幅或看门狗。默认补偿双臂本体与每侧550g名义 Dex1-1，先移除URDF原有每侧170g橡胶手，避免叠加。
+Dex1质心采用官方G1-Dex1标准安装模型推导值，约位于腕yaw坐标系前方0.09943m；尚非这台机器的实测标定。
+额外转接件/相机/持物未计入。官方CAD夹爪总质量0.364946kg与产品标称550g不同；本配置用CAD质心并按550g总质量建模。
+因此不要用“能否锁住某个姿态”作为唯一判据，可用手托举感受是否减轻重量、方向是否正确。
+
+每个命令是一整行，不需要手动换行。
+
+1. 测试启动（在 yanjun 电脑交互终端中执行）
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_gravity_test.sh --execute
+
+刚启动：idle，不发送电机指令。
+第一次 Enter：接管并启动下半身站立，双臂 Kp/Kd/补偿力矩均为零。
+standing_ready 后，目视确认站稳，再按第二次 Enter：开启双臂重力补偿，Kp=0、Kd=0。
+running 时每秒打印14个手臂关节的计算补偿力矩（Nm），腿腰没有这项补偿。
+不移动到数据集初始姿态、不进行模型推理。
+d：原控制进程立即锁存全身阻尼；站立也停止，需要有支撑。
+r：阻尼后回到待机，再按两次 Enter 重走上述流程。
+Ctrl+C：全身阻尼退出。
+按键需在此测试终端中输入。
+
+2. 仅检查配置与下半身 ONNX，不连接机器人或发电机指令
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_gravity_test.sh --check-config
+
+3. 调整补偿比例（例：0.5倍）
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_gravity_test.sh --execute --arm-gravity-scale 0.5
+
+4. 可选的已知载荷文件
+--arm-gravity-payload /绝对路径/payload.json
+格式为 {"left":{"mass_kg":实际质量,"com_m":[x,y,z]},"right":{"mass_kg":实际质量,"com_m":[x,y,z]}}
+只填写已知数值；COM单位米，表达在对应 wrist_yaw_joint 坐标系。
+默认使用 configs/dex1_1_payload.json 中的名义夹爪载荷。
+此选项每侧覆盖的是夹爪+所有附件/持物的总质量与总质心，不是在默认550g上叠加，避免重复计算。
+单位为kg和m，质心以对应 wrist_yaw_joint 坐标系表达。
+
+已做加入Dex1后的独立重力/Jacobian/势能梯度交叉验证及不开PD测试；详见 validation/dex1_gravity_20261113.json。
+已做离线状态切换、关节映射、力矩输出及 d 急停检查。实机补偿效果需要操作者测试。

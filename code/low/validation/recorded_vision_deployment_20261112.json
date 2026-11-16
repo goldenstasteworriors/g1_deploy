@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-12",
+  "session": "sess_4136a170b69e4bd0",
+  "scope": "Local offline validation; no robot actuator I/O, no true-model prediction in this report",
+  "inputs": {
+    "state": "live robot body29 + left/right native Dex1",
+    "current_RGB": "selected dataset episode/start frame, advances once per issued action step",
+    "target_reference": "original annotated frame plus original initial boxes",
+    "prompt": "dataset English prompt checked against trained skill/hand",
+    "history": "execution-indexed live states and recorded RGB; no pre-start recorded state history",
+    "recorded_action": "never read"
+  },
+  "selection": "CLI episode/frame or p in staged operator; selecting p also changes recorded skill/hand/prompt; separate persistence from live camera mode",
+  "playback": "pause video during inference; execute up to 8 predicted steps at 30Hz per chunk; shorten at EOF then pause without success claim",
+  "unit": {
+    "scope": "Real dataset/camera decoding, real inference protocol/history/command pump, synthetic live state and model outputs, no robot I/O",
+    "passed": [
+      "350 episodes match initial-pose catalog, task/hand/prompts and frame ranges",
+      "all six skills decode original three-camera RGB and annotated reference; dispense needs no box",
+      "nonzero initial frame uses its current RGB, separate annotated frame/box, live reference state and no invented past history",
+      "existing live-camera reset protocol remains compatible without separate reference or prompt fields",
+      "real command pump + fake inference: inference wait pauses video, each issued step advances one frame with live feedback, short final prefix ends without claiming success",
+      "stopped/recovered operator epoch invalidates pending playback commands"
+    ]
+  },
+  "lifecycle": {
+    "scope": "actual Pinocchio and lower ONNX, fake body/Dex1 transport and fake client process; no ROS/DDS/motor I/O",
+    "passed": [
+      "boot: no body/arm/gripper writes and vendor takeover deferred",
+      "first Enter: lower ONNX enabled; upper gains zero and Dex1 untouched",
+      "second Enter: native interpolation and startup duration; no measured convergence guard; ready persists",
+      "third Enter: starts only a fresh epoch-scoped inference client",
+      "d: immediate damping latch and client termination; queued targets discarded",
+      "r: restarts lower ramp then restores selected pose without extra Enter",
+      "pose selection persists exact skill/episode/frame for subsequent recovery",
+      "old inference epoch cannot re-arm after recovery/new inference",
+      "d during blocked takeover cancels pending keys and stale RPC cannot restart control",
+      "shoulder excursion accepted; no arrival tolerance or automatic timeout"
+    ]
+  },
+  "launcher": "start_g1_recorded_operator.sh --episode 0 --frame 60 --check-config passed using actual controller environment and native ONNX; no ROS/DDS opened",
+  "unchanged": [
+    "original d/r immediate damping and epoch isolation",
+    "native SONICMJ limits/startup/interpolation",
+    "existing live-camera deployment behavior"
+  ],
+  "limitations": [
+    "Recorded images do not observe real objects; hybrid input is not live visual feedback",
+    "No real robot movement tested",
+    "Running old model service must be restarted by operator for recorded-reference protocol",
+    "Remote transfer and read-only DDS input check recorded separately when available"
+  ]
+}

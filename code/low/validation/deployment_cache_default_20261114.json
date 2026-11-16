@@ -1,0 +1,169 @@
+{
+  "health": {
+    "ready": true,
+    "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+    "optimizations": {
+      "condition_cache": true,
+      "compile_mode": "default",
+      "dit_cache_threshold": 0.99,
+      "dit_cache_max_skips": 3,
+      "warmup_seconds": 13.920170405006502,
+      "warmup_required": false,
+      "compiled_active": true
+    },
+    "denoise_steps": 10,
+    "protocol_features": [
+      "recorded_reference_v1",
+      "per_request_denoise_steps",
+      "isolated_client_scopes_v1"
+    ],
+    "execution_allowed": false,
+    "supported_skill_hands": [
+      [
+        "pick_up_test_tube",
+        "right"
+      ]
+    ],
+    "alive": true,
+    "worker_returncode": null
+  },
+  "robot_commands_sent": false,
+  "requests": [
+    {
+      "steps": 10,
+      "seconds": 0.24785788002191111,
+      "optimizations": {
+        "condition_cache": true,
+        "compile_mode": "default",
+        "dit_cache_threshold": 0.99,
+        "dit_cache_max_skips": 3,
+        "compiled_active": true,
+        "latent_cache_hits": 0,
+        "latent_cache_misses": 1,
+        "dit_cache_stats": {
+          "total_steps": 10,
+          "total_skips": 6,
+          "skip_rate": 0.6,
+          "cosine_threshold": 0.99
+        }
+      }
+    },
+    {
+      "steps": 10,
+      "seconds": 0.20967637200374156,
+      "optimizations": {
+        "condition_cache": true,
+        "compile_mode": "default",
+        "dit_cache_threshold": 0.99,
+        "dit_cache_max_skips": 3,
+        "compiled_active": true,
+        "latent_cache_hits": 1,
+        "latent_cache_misses": 1,
+        "dit_cache_stats": {
+          "total_steps": 10,
+          "total_skips": 6,
+          "skip_rate": 0.6,
+          "cosine_threshold": 0.99
+        }
+      }
+    },
+    {
+      "steps": 10,
+      "seconds": 0.20990891801193357,
+      "optimizations": {
+        "condition_cache": true,
+        "compile_mode": "default",
+        "dit_cache_threshold": 0.99,
+        "dit_cache_max_skips": 3,
+        "compiled_active": true,
+        "latent_cache_hits": 2,
+        "latent_cache_misses": 1,
+        "dit_cache_stats": {
+          "total_steps": 10,
+          "total_skips": 6,
+          "skip_rate": 0.6,
+          "cosine_threshold": 0.99
+        }
+      }
+    }
+  ],
+  "health_after": {
+    "ready": true,
+    "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+    "optimizations": {
+      "condition_cache": true,
+      "compile_mode": "default",
+      "dit_cache_threshold": 0.99,
+      "dit_cache_max_skips": 3,
+      "warmup_seconds": 13.920170405006502,
+      "warmup_required": false,
+      "compiled_active": true
+    },
+    "denoise_steps": 10,
+    "protocol_features": [
+      "recorded_reference_v1",
+      "per_request_denoise_steps",
+      "isolated_client_scopes_v1"
+    ],
+    "execution_allowed": false,
+    "supported_skill_hands": [
+      [
+        "pick_up_test_tube",
+        "right"
+      ]
+    ],
+    "alive": true,
+    "worker_returncode": null
+  },
+  "startup_checks": [
+    {
+      "command": [
+        "bash",
+        "/home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_operator.sh",
+        "--model",
+        "take_tube",
+        "--execute",
+        "--check-config"
+      ],
+      "denoise_steps": 10,
+      "mode": "sync",
+      "robot_io_opened": false
+    },
+    {
+      "command": [
+        "bash",
+        "/home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh",
+        "--model",
+        "take_tube",
+        "--episode",
+        "0",
+        "--frame",
+        "0",
+        "--execute",
+        "--check-config"
+      ],
+      "denoise_steps": 10,
+      "mode": "sync",
+      "robot_io_opened": false
+    },
+    {
+      "command": [
+        "bash",
+        "/home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh",
+        "--model",
+        "take_tube",
+        "--episode",
+        "0",
+        "--frame",
+        "0",
+        "--inference-mode",
+        "async",
+        "--execute",
+        "--check-config"
+      ],
+      "denoise_steps": 10,
+      "mode": "async",
+      "robot_io_opened": false
+    }
+  ]
+}

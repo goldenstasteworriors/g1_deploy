@@ -1,0 +1,13 @@
+{
+  "scope": "CPU protocol and fixture verification only; model generation substituted, no GPU, server, downloads, network robot or actuation",
+  "passed": [
+    "right-hand action gating uses measured left-hand state",
+    "reference preserved; history t-60,t-40,t-20,t; initial mark only",
+    "wrong binding rejected",
+    "failed reset invalidates previous skill",
+    "box-free dispense and fresh history",
+    "nonconsecutive observations rejected",
+    "stop clears target and history",
+    "manifest verifier accepts fixture and rejects damaged payload"
+  ]
+}

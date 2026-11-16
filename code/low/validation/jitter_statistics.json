@@ -1,0 +1,14 @@
+{
+  "source": "root_orientation angular-speed proxy",
+  "units": "rad/s",
+  "frames": 8860,
+  "score_quantiles": {
+    "p0": 0.0,
+    "p50": 0.0028437189757823944,
+    "p90": 0.007244230573996907,
+    "p99": 0.018379957675933832,
+    "max": 0.07105138897895813
+  },
+  "mean_frame_weight": 0.9700638651847839,
+  "scope": "all recorded episodes, diagnostic only; not used for fitting"
+}

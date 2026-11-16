@@ -1,0 +1,38 @@
+{
+  "status": "failed_gradient_assertion_not_final_acceptance",
+  "optimizer_steps": [
+    {
+      "loss_total": 0.25495007634162903,
+      "loss_video": 0.10120870918035507,
+      "loss_action": 0.15374135971069336,
+      "grad_norm": 0.8718667030334473,
+      "step": 1,
+      "optimizer_step": 1,
+      "jitter_weight": 0.7355154752731323,
+      "peak_gpu_mib": 45183.3388671875
+    },
+    {
+      "loss_total": 0.12862960994243622,
+      "loss_video": 0.11650729924440384,
+      "loss_action": 0.012122317217290401,
+      "grad_norm": 0.08597555756568909,
+      "step": 2,
+      "optimizer_step": 2,
+      "jitter_weight": 0.8790589570999146,
+      "peak_gpu_mib": 45197.14453125
+    },
+    {
+      "loss_total": 1.5205087661743164,
+      "loss_video": 0.13713400065898895,
+      "loss_action": 1.383374810218811,
+      "grad_norm": 9.46078872680664,
+      "step": 3,
+      "optimizer_step": 3,
+      "jitter_weight": 0.8730028867721558,
+      "peak_gpu_mib": 45197.14453125
+    }
+  ],
+  "issue": "Upstream recursive no_grad detached video context; fixed in 5b1f009",
+  "final_gpu_rerun": "passed; see acceptance_report.json and reload_report.json",
+  "checkpoint_readback": "not_reached"
+}

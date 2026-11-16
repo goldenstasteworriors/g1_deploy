@@ -1,0 +1,45 @@
+{
+  "session": "sess_4136a170b69e4bd0",
+  "date": "2026-11-14",
+  "incident": {
+    "controller": "fault after submitting observations at recorded frame 232",
+    "worker": "alive; other six-step prediction requests continued after real client exited",
+    "old_client_error": "HTTP 400; original response body was not preserved",
+    "finding": "Simulation and operator adapters used one persistent worker session; simulation reset replaces operator history/binding, and stale request errors clear the current session",
+    "certainty": "The code defect was reproduced offline; original incident's precise 400 error is unavailable, so cross-client interference remains an evidence-supported explanation rather than a captured error body"
+  },
+  "change": {
+    "routing": "operator and simulation scopes with one replaceable session each",
+    "legacy": "simulation- binding prefix routes old simulation clients to their own scope",
+    "weights": "shared model object, serialized inference, no second GPU model",
+    "errors": "Only an error from the current owner invalidates that owner's session; stale or unrelated requests do not invalidate current bindings",
+    "health": "Dead worker reports ready=false and exit code",
+    "diagnostics": "HTTP errors preserve response detail; reset, stop and failed RPCs log binding and error"
+  },
+  "validation": {
+    "environment": "decoupled_vla_collection",
+    "robot_io": false,
+    "actual_policy_inference": false,
+    "real_InferenceSession_and_OnlineConditionBuffer_checks": [
+      "Original single-session cross-client reset failure reproduced",
+      "Independent reference RGB, history and frame progress",
+      "Simulation failure/stop preserves operator binding",
+      "Retired operator observe/predict/stop preserves new recovery binding",
+      "Explicit scope and legacy simulation binding compatibility",
+      "Invalid scope leaves active sessions unchanged",
+      "Repeated reset retains at most two sessions sharing the same model object",
+      "Malformed active-owner reset still invalidates that owner's old binding"
+    ],
+    "actual_HTTP_transport_with_fake_worker_checks": [
+      "Response error detail reaches caller",
+      "Reset/error log includes binding and error",
+      "Worker exit 7 produces HTTP 503 with ready=false, alive=false and worker_returncode=7"
+    ],
+    "temporary_test_files": "None; checks executed using python -c; all fake worker/server processes stopped"
+  },
+  "limitations": [
+    "No robot motion or physical recovery tested",
+    "Shared GPU serialization can still increase latency",
+    "This does not fix the separate earlier native PyTorch segmentation fault"
+  ]
+}

@@ -1,0 +1,17 @@
+type: sonic_lerobot
+dataset_dir: /root/ykj/OpenWAM/data/pick_up_pipette
+action_key: action.wbc
+action_mode: wbc
+state_key: observation.state
+num_frames: 33
+video_stride: 4
+window_stride: 8
+height: 480
+width: 832
+multiview: true
+camera_layout:
+  - observation.images.ego_view
+  - observation.images.left_wrist_view
+  - observation.images.right_wrist_view
+normalize_mode: min-max
+unify_action: false

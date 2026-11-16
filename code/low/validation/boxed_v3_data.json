@@ -1,0 +1,26 @@
+{
+  "general": {
+    "train_episodes": 262,
+    "val_episodes": 46,
+    "train_windows": 13353,
+    "val_windows": 2162
+  },
+  "take_tube": {
+    "train_episodes": 150,
+    "val_episodes": 26,
+    "train_windows": 5156,
+    "val_windows": 815
+  },
+  "dispense": {
+    "train_episodes": 35,
+    "val_episodes": 6,
+    "train_windows": 4224,
+    "val_windows": 630
+  },
+  "take_dropper": {
+    "train_episodes": 37,
+    "val_episodes": 7,
+    "train_windows": 2381,
+    "val_windows": 417
+  }
+}

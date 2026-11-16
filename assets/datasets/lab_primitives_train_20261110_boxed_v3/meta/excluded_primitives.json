@@ -1,0 +1,68 @@
+[
+  {
+    "review_id": "TAKE_TUBE-124",
+    "previous_output_episode": 126,
+    "reason": "Source Nov3 EP000000: right wrist confirms pickup of the rightmost/front tube outside the ego right boundary; the visible ego tubes remain after pickup. Nearby raised-hand frames do not reveal the operated tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_TUBE_TO_RACK-002",
+    "previous_output_episode": 127,
+    "reason": "Return of the same tube in Nov3 EP000000: its actual destination slot is outside the ego right boundary during the initial ready interval; visible rack slots are different slots.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "TAKE_TUBE-157",
+    "previous_output_episode": 267,
+    "reason": "Nov7 EP16/17/18 operates the rightmost tube/slot outside the ego right boundary. Existing visible left and middle tubes remain unchanged across the pickup/return; wrist-camera event confirms the actual rightmost target. Earlier manual box pointed to a different visible tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_TUBE_TO_RACK-031",
+    "previous_output_episode": 271,
+    "reason": "Nov7 EP16/17/18 operates the rightmost tube/slot outside the ego right boundary. Existing visible left and middle tubes remain unchanged across the pickup/return; wrist-camera event confirms the actual rightmost target. Earlier manual box pointed to a different visible tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "TAKE_TUBE-158",
+    "previous_output_episode": 272,
+    "reason": "Nov7 EP16/17/18 operates the rightmost tube/slot outside the ego right boundary. Existing visible left and middle tubes remain unchanged across the pickup/return; wrist-camera event confirms the actual rightmost target. Earlier manual box pointed to a different visible tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_TUBE_TO_RACK-032",
+    "previous_output_episode": 276,
+    "reason": "Nov7 EP16/17/18 operates the rightmost tube/slot outside the ego right boundary. Existing visible left and middle tubes remain unchanged across the pickup/return; wrist-camera event confirms the actual rightmost target. Earlier manual box pointed to a different visible tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "TAKE_TUBE-159",
+    "previous_output_episode": 277,
+    "reason": "Nov7 EP16/17/18 operates the rightmost tube/slot outside the ego right boundary. Existing visible left and middle tubes remain unchanged across the pickup/return; wrist-camera event confirms the actual rightmost target. Earlier manual box pointed to a different visible tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_TUBE_TO_RACK-033",
+    "previous_output_episode": 281,
+    "reason": "Nov7 EP16/17/18 operates the rightmost tube/slot outside the ego right boundary. Existing visible left and middle tubes remain unchanged across the pickup/return; wrist-camera event confirms the actual rightmost target. Earlier manual box pointed to a different visible tube.",
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_DROPPER-001",
+    "reason": "User requested removal of RETURN_DROPPER 001–003 on 2026-11-10",
+    "previous_output_episode": 34,
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_DROPPER-002",
+    "reason": "User requested removal of RETURN_DROPPER 001–003 on 2026-11-10",
+    "previous_output_episode": 127,
+    "source_raw_data_retained": true
+  },
+  {
+    "review_id": "RETURN_DROPPER-003",
+    "reason": "User requested removal of RETURN_DROPPER 001–003 on 2026-11-10",
+    "previous_output_episode": 132,
+    "source_raw_data_retained": true
+  }
+]

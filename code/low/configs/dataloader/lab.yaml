@@ -1,0 +1,54 @@
+type: lab
+manifest: data/manifest.json
+artifact_dir: .cache/lab_data_manipulation
+seed: 42
+val_episodes: 7
+window_stride: 8
+num_frames: 33
+video_stride: 4
+width: 320
+height: 384
+# Cortex Appendix A.5.2 Table 10: 4 temporal frames, stride 20.
+# At THIS dataset's 30 Hz this spans 2 s; not a user-specified duration,
+# nor a verified duration of Cortex's unreleased real-world System-1 data.
+# Current frame is appended by LabDataset; initial target reference is separate.
+history_offsets: [-60, -40, -20]
+perturb_initial_box: true
+jitter_observation_key: null
+photometric:
+  enabled: false
+  probability: 0.8
+  brightness: [0.8, 1.2]
+  contrast: [0.85, 1.15]
+  saturation: [0.8, 1.2]
+  gamma: [0.85, 1.15]
+  white_balance: [0.92, 1.08]
+  illumination_gradient: 0.15
+  blur_probability: 0.1
+  blur_radius: [0.2, 0.6]
+  local:
+    enabled: false
+    probability: 0.7
+    regions: 2
+    radius_fraction: [0.18, 0.5]
+    gain: [-0.3, 0.3]
+box_augmentation:
+  mode: legacy
+  probability: 0.75
+  shift_fraction: 0.08
+  expansion: [1.0, 1.25]
+  trim_fraction: [0.05, 0.15]
+  minimum_retained_area: 0.75
+  minimum_iou: 0.6
+camera_augmentation:
+  enabled: false
+  probability: 0.7
+  translation_fraction: 0.008
+  rotation_degrees: 0.8
+  temporal_translation_fraction: 0.003
+  temporal_rotation_degrees: 0.2
+  frequency_hz: [0.2, 0.6]
+balance_skills: false
+action_mode: wbc
+normalize_mode: min-max
+unify_action: false

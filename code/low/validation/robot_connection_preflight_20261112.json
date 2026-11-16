@@ -1,0 +1,165 @@
+{
+  "dds": {
+    "scope": "DDS subscribers only; no command publishers, no mode switch, no standing, no gripper commands",
+    "interface": "enp132s0",
+    "time": "2026-11-12 16:15:03 +0800",
+    "topics": {
+      "body": {
+        "count": 12507,
+        "first_monotonic": 19900.535245359,
+        "last_monotonic": 19912.544082754,
+        "received": true,
+        "joints": 29,
+        "q": [
+          -0.3419157862663269,
+          0.10981597751379013,
+          0.09568509459495544,
+          0.9698849320411682,
+          -0.5417991280555725,
+          -0.04857315868139267,
+          -0.36432895064353943,
+          0.03518781438469887,
+          -0.1489446610212326,
+          0.9998230934143066,
+          -0.5741047859191895,
+          -0.15398670732975006,
+          -0.16383644938468933,
+          -0.04932539165019989,
+          -0.06649363785982132,
+          0.20603279769420624,
+          -0.008293083868920803,
+          0.9762229919433594,
+          1.1715419292449951,
+          0.6671498417854309,
+          0.2066439986228943,
+          -0.354565292596817,
+          0.1892189383506775,
+          0.020073577761650085,
+          -0.3844060003757477,
+          1.3733562231063843,
+          0.4137313961982727,
+          0.13176655769348145,
+          -0.17067933082580566
+        ],
+        "finite": true,
+        "mode_machine": 5,
+        "mode_pr": 0,
+        "imu_quaternion": [
+          0.9975302815437317,
+          0.02580977976322174,
+          -0.02722049131989479,
+          -0.05938239395618439
+        ],
+        "tick": 642358
+      },
+      "secondary_imu": {
+        "count": 12506,
+        "first_monotonic": 19900.534937881,
+        "last_monotonic": 19912.543803172,
+        "received": true,
+        "quaternion": [
+          0.9978758692741394,
+          0.01393979974091053,
+          -0.056711576879024506,
+          0.028865110129117966
+        ]
+      },
+      "left_dex1": {
+        "count": 6002,
+        "first_monotonic": 19900.533641703,
+        "last_monotonic": 19912.545159309,
+        "received": true,
+        "states": [
+          {
+            "q": 5.240124702453613,
+            "dq": -0.0029452431481331587,
+            "tau_est": 0.0
+          }
+        ]
+      },
+      "right_dex1": {
+        "count": 5999,
+        "first_monotonic": 19900.533503079,
+        "last_monotonic": 19912.544759903,
+        "received": true,
+        "states": [
+          {
+            "q": 0.9185400605201721,
+            "dq": -0.006872233934700489,
+            "tau_est": 0.0
+          }
+        ]
+      }
+    }
+  },
+  "env": {
+    "scope": "Real G1 deployment env + actual robot observations, strictly read-only, command Write and ReleaseMode forbidden",
+    "state": "idle",
+    "observation_shape": [
+      43
+    ],
+    "model_state_shape": [
+      31
+    ],
+    "all_finite": true,
+    "samples": 20,
+    "left_dex1": 5.240124702453613,
+    "right_dex1": 0.9185476899147034,
+    "motor_commands_attempted": 0,
+    "configured_mode_machine": 5,
+    "selected_initial_pose": {
+      "skill": "pick_up_test_tube",
+      "episode": 0,
+      "frame": 0
+    },
+    "standing_enabled": false
+  },
+  "formal_idle": {
+    "scope": "Formal operator main loop with real robot observations, no Enter, no execution flag; SDK motor Write/ReleaseMode forbidden",
+    "samples": 100,
+    "phase": "idle",
+    "motor_command_attempts": 0,
+    "standing_enabled": false,
+    "body_model_dofs": 43
+  },
+  "camera": {
+    "host": "192.168.123.164",
+    "port": 5555,
+    "messages": 240,
+    "fresh_valid_three_view_groups": 240,
+    "seconds": 8.037860964999709,
+    "shapes": {
+      "ego_view": [
+        480,
+        640,
+        3
+      ],
+      "left_wrist": [
+        480,
+        640,
+        3
+      ],
+      "right_wrist": [
+        480,
+        640,
+        3
+      ]
+    },
+    "errors": [],
+    "mode": "receive only; no images saved"
+  },
+  "shutdown": {
+    "reason": "control_exit",
+    "pid": 43818,
+    "confirmed": true,
+    "confirmation_scope": "diagnostic_read_only; no actuator commands published",
+    "elapsed_s": 0.5028124070013291
+  },
+  "host": "pku4090",
+  "ssh_address": "100.123.202.80",
+  "code_commit": "c929c7d",
+  "formal_process_exit_code": 0,
+  "scope": "Read-only commissioning; no standing or manipulation command issued",
+  "standalone_probe_note": "Observation succeeded; standalone interpreter finalization aborted. Formal operator teardown then tested successfully.",
+  "camera_endpoint_fix": "Default onboard 192.168.123.164:5555, forwarded through operator to inference client"
+}

@@ -1,0 +1,75 @@
+{
+  "repo_id": "ykjykj/LabWAM-Additional-30k-20261112",
+  "url": "https://modelscope.cn/models/ykjykj/LabWAM-Additional-30k-20261112",
+  "private": true,
+  "verified_files": 53,
+  "verified_bytes": 10324008180,
+  "verification": "remote SHA256/LFS object ID, or Git blob SHA1, and exact byte sizes",
+  "bundle": "/share/personal/yekangjie/lab-low/exports/additional_30k_20261112",
+  "models": [
+    {
+      "name": "return_dropper",
+      "source_run": "outputs/share_runs/return_dropper/2026-11-11_22-46-12_31230/weights/2026-11-11_22-49-24",
+      "final_step": 30000,
+      "supported_skill_hands": [
+        [
+          "return_dropper",
+          "left"
+        ]
+      ],
+      "photometric_augmentation": false,
+      "best": {
+        "step": 30000,
+        "total": 0.0810294073075056,
+        "video": 0.07182104662060737,
+        "action": 0.009208361919991147,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/return_dropper/2026-11-11_22-46-12_31230/weights/2026-11-11_22-49-24/checkpoint_step_30000.safetensors"
+      }
+    },
+    {
+      "name": "water_bath",
+      "source_run": "outputs/share_runs/water_bath/2026-11-11_22-46-12_31231/weights/2026-11-11_22-49-22",
+      "final_step": 30000,
+      "supported_skill_hands": [
+        [
+          "place_test_tube_in_water_bath",
+          "right"
+        ]
+      ],
+      "photometric_augmentation": false,
+      "best": {
+        "step": 21000,
+        "total": 0.10347302425652742,
+        "video": 0.08978083524852991,
+        "action": 0.013692189024732215,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/water_bath/2026-11-11_22-46-12_31231/weights/2026-11-11_22-49-22/checkpoint_best.safetensors"
+      }
+    },
+    {
+      "name": "return_tube",
+      "source_run": "outputs/share_runs/return_tube/2026-11-11_22-46-12_31233/weights/2026-11-11_22-49-23",
+      "final_step": 30000,
+      "supported_skill_hands": [
+        [
+          "return_test_tube_to_rack",
+          "right"
+        ]
+      ],
+      "photometric_augmentation": false,
+      "best": {
+        "step": 20000,
+        "total": 0.10560030378401279,
+        "video": 0.08431876488029957,
+        "action": 0.021281539362826153,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "/share/personal/yekangjie/lab-low/code/outputs/share_runs/return_tube/2026-11-11_22-46-12_31233/weights/2026-11-11_22-49-23/checkpoint_best.safetensors"
+      }
+    }
+  ],
+  "foundation_included": false
+}

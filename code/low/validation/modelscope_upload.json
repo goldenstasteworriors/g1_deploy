@@ -1,0 +1,67 @@
+{
+  "repo_id": "ykjykj/LabWAM-BoxedV3-30k-20261111",
+  "url": "https://modelscope.cn/models/ykjykj/LabWAM-BoxedV3-30k-20261111",
+  "private": true,
+  "verified_files": 61,
+  "verified_bytes": 14449054713,
+  "verification": "remote SHA256/LFS object ID, or Git blob SHA1, and exact byte sizes",
+  "bundle": "/share/personal/yekangjie/lab-low/exports/boxed_v3_30k_20261111",
+  "models": [
+    {
+      "name": "general",
+      "source_run": "outputs/boxed_v3_30k/general/2026-11-10_03-21-17",
+      "final_step": 30000,
+      "best": {
+        "step": 30000,
+        "total": 0.0958315184339881,
+        "video": 0.09175562728196382,
+        "action": 0.004075891657157627,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "outputs/boxed_v3_30k/general/2026-11-10_03-21-17/checkpoint_step_30000.safetensors"
+      }
+    },
+    {
+      "name": "take_tube",
+      "source_run": "outputs/boxed_v3_30k/take_tube/2026-11-10_14-30-10",
+      "final_step": 30000,
+      "best": {
+        "step": 26000,
+        "total": 0.08550372179597616,
+        "video": 0.084844970703125,
+        "action": 0.0006587497942973641,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "outputs/boxed_v3_30k/take_tube/2026-11-10_14-30-10/checkpoint_best.safetensors"
+      }
+    },
+    {
+      "name": "dispense",
+      "source_run": "outputs/boxed_v3_30k/dispense/2026-11-10_14-30-02",
+      "final_step": 30000,
+      "best": {
+        "step": 24000,
+        "total": 0.09313425552099944,
+        "video": 0.08962700087577105,
+        "action": 0.003507253534917254,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "outputs/boxed_v3_30k/dispense/2026-11-10_14-30-02/checkpoint_best.safetensors"
+      }
+    },
+    {
+      "name": "take_dropper",
+      "source_run": "outputs/boxed_v3_30k/take_dropper/2026-11-10_14-30-02",
+      "final_step": 30000,
+      "best": {
+        "step": 25000,
+        "total": 0.10025500729680062,
+        "video": 0.08616570085287094,
+        "action": 0.014089307058429767,
+        "windows": 10,
+        "metric": "held-out flow loss, not rollout success",
+        "checkpoint": "outputs/boxed_v3_30k/take_dropper/2026-11-10_14-30-02/checkpoint_best.safetensors"
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+数据集图像 + 当前实机状态：G1 部署
+正式部署已共用 XR 测试的目标角重力前馈及肩肘80/3、腕40/1.5位置PD；从双臂初始化起生效。
+更新日期：2026-11-12
+
+使用位置：pku4090（yanjun 电脑）的项目目录。
+每条命令均为一整行，不需要手动换行。
+先在旧部署控制终端正常退出旧程序，再启动新入口；不要同时启动两份机器人控制程序。
+
+1. 交互选择轨迹与起始帧，然后进入三次 Enter 部署
+
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --execute
+
+程序会先列出本机数据已齐全且当前模型支持的轨迹，输入“轨迹编号 起始帧”，例如：
+
+0 60
+
+这里的轨迹编号是 boxed_v3 数据集全局 episode 编号；帧从0开始。
+选中的帧同时用于双臂/夹爪初始化和视频播放起点。
+技能、左右手、英文 prompt 和初始框自动从该轨迹元数据读取，不需要 marks.json 或人工打框。
+
+2. 直接指定轨迹与帧（示例：轨迹0，从第60帧开始，使用取试管模型）
+
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_tube --episode 0 --frame 60 --execute
+
+3. 列出轨迹，不连接机器人
+
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model general --list
+
+4. 检查所选数据、初始姿态、控制配置和下半身 ONNX，不连接机器人、不发电机指令
+
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --episode 0 --frame 60 --check-config
+
+5. 只检查“真实机器人状态 + 数据集图像/框/技能/prompt”，不启动控制、不请求模型推理
+
+/home/yanjun/ykj/labwam_g1/.conda_controller/bin/python /home/yanjun/ykj/labwam_g1/code/low/scripts/run_g1_recorded_client.py --sonic-root /home/yanjun/ykj/labwam_g1/sonicmj --dataset /home/yanjun/ykj/labwam_g1/assets/datasets/lab_primitives_train_20261110_boxed_v3 --episode 0 --start-frame 60 --state-source dds --interface enp132s0 --check-input
+
+控制流程：
+- 待机后第一次 Enter：启动下半身站立，不控制双臂/夹爪。
+- standing_ready 后第二次 Enter：双臂/夹爪进入所选轨迹帧的 observation.state 姿态。
+- ready 后目视确认姿态，第三次 Enter：用实机状态和数据集视觉开始推理。
+- d：沿用原控制终端的立即阻尼急停；不等待模型或数据读取。
+- r：推理中可直接按，无需先按 d；停止当前推理，保持下半身站立，双臂/夹爪回到选中的初始姿态。
+  如果已经按 d 进入阻尼，则先恢复站立再回位。到 ready 后再次 Enter，从同一所选视频帧重新开始。
+- p：在 idle / standing_ready / ready / damped 时，按提示输入“动作编号 轨迹编号 起始帧”。
+  此入口的 p 同时改变初始姿态、视觉起始帧、技能、手别和 prompt。
+  当前模型不支持的技能不会列入可选菜单；不会自动替换成另一个任务。
+- Ctrl+C：阻尼退出。d/r 必须在机器人控制终端按，其他窗口不会转发按键。
+
+数据与执行语义：
+- 输入状态：始终为当前实机 body29 + 左右 Dex1 角度，共31维。
+- 模型输出：双臂14关节 + 两个 Dex1 目标，共16维；下半身继续由 SONICMJ 控制。
+- 数据集 observation.state 只通过原姿态库用于第二次 Enter 的初始化，不用作推理反馈。
+- 不读取或执行数据集 action；发送的是模型预测目标。
+- 初始目标参考：保留原标注帧的图像与框；这批数据一般标在第0帧。
+- 当前图像：从用户选择的起始帧开始，三相机同步取帧。
+- 选择非零起始帧时，不把第0帧的框直接画到该帧上。初始目标参考和当前图像是不同输入。
+- 加液轨迹按训练约定使用空框；技能和左右手条件仍保留。
+- 推理等待时视频不前进，控制器保持上一条有效双臂/夹爪目标，不逐帧跟随下沉的实测角；每个30Hz目标下发步进后推进一帧，采集实机反馈。
+- 默认每次执行预测动作块的前8步，然后再次推理。历史按这些执行步积累，不补入执行前的录制状态。
+- 目标参考图虽然来自录制的标注帧，关联的参考状态仍是本次启动时的实机状态。
+  这是明确的混合输入诊断，不代表录制图像与真实机器人/物体形成实时视觉闭环。
+- 轨迹末尾仅执行剩余帧对应的步数，然后退出当前推理客户端，控制终端进入 paused。
+  下半身继续站立；可用 r 回到初始姿态，或 d 阻尼急停。不循环视频，不声称操作成功。
+- 没有重新加入额外的动作阈值或看门狗。
+
+模型选择：
+general：取试管、取滴管吸液、加液、放回滴管、放入水浴。
+take_tube / take_dropper / dispense：对应单技能模型。
+return_dropper / water_bath / return_tube：对应另外三个单技能模型。
+试管归架请选择 --model return_tube；general 未训练该技能。
+
+所需数据均位于同一部署项目下：
+/home/yanjun/ykj/labwam_g1/assets/datasets/lab_primitives_train_20261110_boxed_v3
+
+本入口独立保存的初始姿态选择：
+/home/yanjun/ykj/labwam_g1/runtime/selected_recorded_pose.json
+
+日志目录：
+/home/yanjun/ykj/labwam_g1/logs/recorded_operator
+
+说明：运行中的旧模型服务不会自动加载新 Python 代码。先正常退出旧部署，再用此入口启动，
+让模型服务加载支持 reference_images 的新协议；不要只复用旧后台推理进程。
+
+2026-11-14：实机与仿真任务隔离
+- 模型服务共享一份权重，但 operator 与 simulation 各自保存目标绑定、参考图和历史。
+  仿真 reset/stop/错误不会清除实机任务；恢复前的旧请求不会清除恢复后的新绑定。
+- 仿真评估要求服务健康信息包含 isolated_client_scopes_v1；更新后需要重启模型服务。
+  旧评估器的 simulation- 前缀绑定也会自动进入仿真槽位。
+- 两类请求仍串行使用同一 GPU，仿真可能增加推理等待时间；任务隔离不代表独占算力。
+- HTTP 错误保留模型返回的具体原因；服务日志记录 reset、stop 和失败请求的绑定。
+  子进程退出时健康状态为 ready=false，并报告 worker_returncode。
+
+异步部署（2026-11-14）：
+以下为一整行，无需手动换行；先正常退出旧控制终端，再启动。
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_tube --episode 0 --frame 60 --execute --inference-mode async --denoise-steps 6
+
+不带 --inference-mode async 仍为原同步模式（20去噪步，每次执行前8个动作）。
+异步模式默认6去噪步、完整动作块32步，剩余16步时后台预取下一块；这里的6是去噪次数，不是每次执行6步。
+参考 OpenWAM 官方 AsyncInferenceExecutor：缓冲耗尽后切换，按发起请求至当前的控制步差跳过已过时的预测；不拼接执行旧动作。
+https://github.com/OpenWAM-Official/OpenWAM/blob/main/openwam/deploy/executors/async_executor.py
+首块推理等待时保持初始化姿态。后续缓冲耗尽时保持上一有效目标；图像和实测状态仍按30Hz控制时间推进，历史包含这些保持步。
+异步只适用于当前数据集图像入口，实时相机入口尚未接入；不是去噪器内部的异步双流算法。
+技能、手别、初始参考框和历史条件不变。当前图像传输使用JPEG质量95，初始目标参考仍为无损PNG。
+d/r沿用独立控制终端和会话epoch；待返回的预测只能进入本次客户端的内存队列，退出后不会下发。没有新增动作阈值或看门狗。
+模型服务支持每次请求选择去噪步数，同一份权重同时兼容同步20步和异步6步；去噪步数改变会影响生成结果，需单独验证任务效果。
+仿真使用数据集图像/初始框和MuJoCo实测状态反馈；图像不随仿真动作改变，无物体接触成功评估。

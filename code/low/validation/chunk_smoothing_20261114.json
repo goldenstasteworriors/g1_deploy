@@ -1,0 +1,648 @@
+{
+  "date": "2026-11-14",
+  "session": "sess_e4cb9650df004642",
+  "method": "Quintic boundary-offset decay on active arm joints only",
+  "formula": "q_sent[j] = q_model[j] + (1 - 10u^3 + 15u^4 - 6u^5)*(q_previous_sent - q_model[0]); u=min(1,j/(N-1))",
+  "denoise_steps": 10,
+  "horizon": 32,
+  "prefetch_remaining": 16,
+  "default_smoothing_steps": 0,
+  "windows_tested": [
+    6,
+    10
+  ],
+  "unit": {
+    "checks": [
+      "zero smoothing retains raw execution",
+      "first arm target matches initialization",
+      "chunk seam arm position exactly continuous",
+      "quintic offset decays to zero at sixth action",
+      "inactive arm and both grippers remain exactly raw",
+      "traces preserve raw model and actual smoothed target"
+    ],
+    "smoothing_steps": 6
+  },
+  "regression": {
+    "scope": "offline fake RPC/pump; no robot I/O",
+    "checks": [
+      "remaining-16 starts depth-one background request",
+      "32-step chunks adopted after previous buffer; elapsed16 skipped exactly",
+      "closed executor cannot adopt or launch a late prediction",
+      "fully expired results rejected at the model horizon boundary",
+      "recorded session advances consecutive achieved state/RGB timeline while predicting; no dropped observation indices",
+      "interrupt with blocked inference closes publication immediately; late result has no command path"
+    ],
+    "session": {
+      "event": "async_session_complete",
+      "inference_mode": "async",
+      "dataset_frame": 120,
+      "timeline_steps": 60,
+      "completion": null,
+      "warmup_hold_ticks": 1,
+      "underrun_hold_ticks": 0,
+      "chunks_adopted": 3,
+      "adoptions": [
+        {
+          "prediction_id": "06e1f539-12ff-4fca-8bf5-da630b88eae3",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "pipeline_seconds": 0.01
+        },
+        {
+          "prediction_id": "234716a0-6fb3-42f3-8b4f-e94c7c88cc95",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "pipeline_seconds": 0.01
+        },
+        {
+          "prediction_id": "108a519f-8fde-4e64-9cb6-4ad7aa72e5b7",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "pipeline_seconds": 0.01
+        }
+      ],
+      "smoothing_steps": 0,
+      "smoothing_mask": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    }
+  },
+  "results": {
+    "async10": {
+      "summary": {
+        "model": "take_tube",
+        "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+        "episode": 0,
+        "start_frame": 60,
+        "final_frame": 321,
+        "executed_steps": 261,
+        "video_frames": 298,
+        "fps": 30,
+        "video_seconds": 9.933333333333334,
+        "mean_inference_seconds": 0.6824805832743137,
+        "replan_steps": null,
+        "clipped_targets": 0,
+        "timeline_steps": 261,
+        "model_action_steps": 98,
+        "inference_horizon": 32,
+        "inference_delay_steps": 16,
+        "inference_mode": "async",
+        "denoise_steps": 10,
+        "async_stats": {
+          "event": "async_session_complete",
+          "inference_mode": "async",
+          "dataset_frame": 321,
+          "timeline_steps": 261,
+          "completion": null,
+          "warmup_hold_ticks": 36,
+          "underrun_hold_ticks": 163,
+          "chunks_adopted": 10,
+          "adoptions": [
+            {
+              "prediction_id": "0f9ec0cd-fcce-486d-af0c-2eb4e39e58d8",
+              "input_step": 0,
+              "skip_steps": 0,
+              "inference_mode": "async",
+              "adoption_step": 0,
+              "available": 32,
+              "pipeline_seconds": 1.197033181990264
+            },
+            {
+              "prediction_id": "b04e07dd-0e56-4e00-9857-d000a2444c29",
+              "input_step": 16,
+              "skip_steps": 23,
+              "inference_mode": "async",
+              "adoption_step": 39,
+              "available": 9,
+              "pipeline_seconds": 0.7514880279777572
+            },
+            {
+              "prediction_id": "6fb11e58-bcd5-4dfd-ab37-704e14ee11c3",
+              "input_step": 39,
+              "skip_steps": 24,
+              "inference_mode": "async",
+              "adoption_step": 63,
+              "available": 8,
+              "pipeline_seconds": 0.7877954700379632
+            },
+            {
+              "prediction_id": "2ee15640-7b6a-412f-95a6-20813c9549b5",
+              "input_step": 63,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 88,
+              "available": 7,
+              "pipeline_seconds": 0.8175749989750329
+            },
+            {
+              "prediction_id": "c421e97b-2d3f-47ef-a7a7-900b82cc26ec",
+              "input_step": 88,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 113,
+              "available": 7,
+              "pipeline_seconds": 0.8247632290003821
+            },
+            {
+              "prediction_id": "b6300491-119b-42f4-b278-6514d5a01f39",
+              "input_step": 113,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 138,
+              "available": 7,
+              "pipeline_seconds": 0.8231761039351113
+            },
+            {
+              "prediction_id": "f5e9acd6-93df-4e79-97e0-1cd7835a7b02",
+              "input_step": 138,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 163,
+              "available": 7,
+              "pipeline_seconds": 0.8293262640072498
+            },
+            {
+              "prediction_id": "416785a2-4da6-4e17-80cf-6a18599d4b2b",
+              "input_step": 163,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 188,
+              "available": 7,
+              "pipeline_seconds": 0.813682405045256
+            },
+            {
+              "prediction_id": "81b80b5d-4659-4762-a8f5-e78a2873646d",
+              "input_step": 188,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 213,
+              "available": 7,
+              "pipeline_seconds": 0.8078958799596876
+            },
+            {
+              "prediction_id": "38352ba3-6d7c-488f-b064-1c27feb942d4",
+              "input_step": 213,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 238,
+              "available": 7,
+              "pipeline_seconds": 0.8099798429757357
+            }
+          ]
+        },
+        "state_input": "achieved MuJoCo body29 + gripper positions; recorded state used only for initial reset",
+        "vision_input": "current recorded RGB and exact annotated reference image/initial box via deployed RPC",
+        "physics": "fixed base, XR PD, shared deployed Dex1 gravity model; no contact scene/task-success metric",
+        "gravity": {
+          "enabled": true,
+          "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+          "scale": 1.0,
+          "payload": {},
+          "end_effector_payload": {
+            "left": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            },
+            "right": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            }
+          },
+          "removed_rubber_hand_mass_kg": {
+            "left": 0.17,
+            "right": 0.17
+          },
+          "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+          "uncalibrated_extra_loads": [
+            "mount/camera adapters",
+            "held objects"
+          ],
+          "uncompensated_tools": []
+        },
+        "robot_io": false
+      },
+      "max_adjacent_arm_target_change_rad": 0.5381169021129608,
+      "max_chunk_boundary_arm_target_change_rad": 0.5381169021129608,
+      "mean_chunk_boundary_arm_target_change_rad": 0.13358781072828504,
+      "sim_arm_jerk_rms_rad_s3": 320.3038024902344,
+      "video": "outputs/async_20261114/take_tube_ep0_f60_async10/episode_000000/simulation.mp4",
+      "decoded_frames": 298
+    },
+    "async10_smooth6": {
+      "summary": {
+        "model": "take_tube",
+        "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+        "episode": 0,
+        "start_frame": 60,
+        "final_frame": 321,
+        "executed_steps": 261,
+        "video_frames": 281,
+        "fps": 30,
+        "video_seconds": 9.366666666666667,
+        "mean_inference_seconds": 0.6288970252737106,
+        "replan_steps": null,
+        "clipped_targets": 0,
+        "timeline_steps": 261,
+        "model_action_steps": 98,
+        "inference_horizon": 32,
+        "inference_delay_steps": 16,
+        "inference_mode": "async",
+        "denoise_steps": 10,
+        "chunk_smoothing_steps": 6,
+        "async_stats": {
+          "event": "async_session_complete",
+          "inference_mode": "async",
+          "dataset_frame": 321,
+          "timeline_steps": 261,
+          "completion": null,
+          "warmup_hold_ticks": 19,
+          "underrun_hold_ticks": 163,
+          "chunks_adopted": 10,
+          "adoptions": [
+            {
+              "prediction_id": "5ace228a-d403-4de6-9309-036f3f114b63",
+              "input_step": 0,
+              "skip_steps": 0,
+              "inference_mode": "async",
+              "adoption_step": 0,
+              "available": 32,
+              "pipeline_seconds": 0.6262706859852187
+            },
+            {
+              "prediction_id": "b494fb6c-5dbd-4cc0-a7c9-9e6e48946630",
+              "input_step": 16,
+              "skip_steps": 23,
+              "inference_mode": "async",
+              "adoption_step": 39,
+              "available": 9,
+              "pipeline_seconds": 0.7409316060075071
+            },
+            {
+              "prediction_id": "8feb5d05-0170-4c28-913f-36f26f49510b",
+              "input_step": 39,
+              "skip_steps": 24,
+              "inference_mode": "async",
+              "adoption_step": 63,
+              "available": 8,
+              "pipeline_seconds": 0.7861167909868527
+            },
+            {
+              "prediction_id": "b3d16efd-f17d-4ed9-ae96-f7d3b3359fef",
+              "input_step": 63,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 88,
+              "available": 7,
+              "pipeline_seconds": 0.807758872047998
+            },
+            {
+              "prediction_id": "ba7d01b0-caa9-4caf-b331-9380341b4b7f",
+              "input_step": 88,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 113,
+              "available": 7,
+              "pipeline_seconds": 0.8109281739743892
+            },
+            {
+              "prediction_id": "33aacb05-7362-4687-a02f-a2ee8a677f9a",
+              "input_step": 113,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 138,
+              "available": 7,
+              "pipeline_seconds": 0.8054230830166489
+            },
+            {
+              "prediction_id": "8c966be1-15c2-454f-9b55-349c367182c5",
+              "input_step": 138,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 163,
+              "available": 7,
+              "pipeline_seconds": 0.8107843350444455
+            },
+            {
+              "prediction_id": "3b9261ca-542c-4ea0-a31e-438f50c59dee",
+              "input_step": 163,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 188,
+              "available": 7,
+              "pipeline_seconds": 0.8084917780943215
+            },
+            {
+              "prediction_id": "477bb86f-b111-416d-802a-e508b640f5f4",
+              "input_step": 188,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 213,
+              "available": 7,
+              "pipeline_seconds": 0.8098106920660939
+            },
+            {
+              "prediction_id": "4bc55291-680a-4cb8-9181-c5eeda128a03",
+              "input_step": 213,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 238,
+              "available": 7,
+              "pipeline_seconds": 0.809555640007602
+            }
+          ],
+          "smoothing_steps": 6,
+          "smoothing_mask": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false
+          ]
+        },
+        "state_input": "achieved MuJoCo body29 + gripper positions; recorded state used only for initial reset",
+        "vision_input": "current recorded RGB and exact annotated reference image/initial box via deployed RPC",
+        "physics": "fixed base, XR PD, shared deployed Dex1 gravity model; no contact scene/task-success metric",
+        "gravity": {
+          "enabled": true,
+          "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+          "scale": 1.0,
+          "payload": {},
+          "end_effector_payload": {
+            "left": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            },
+            "right": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            }
+          },
+          "removed_rubber_hand_mass_kg": {
+            "left": 0.17,
+            "right": 0.17
+          },
+          "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+          "uncalibrated_extra_loads": [
+            "mount/camera adapters",
+            "held objects"
+          ],
+          "uncompensated_tools": []
+        },
+        "robot_io": false
+      },
+      "max_adjacent_arm_target_change_rad": 0.20047326038837412,
+      "max_chunk_boundary_arm_target_change_rad": 0.0,
+      "mean_chunk_boundary_arm_target_change_rad": 0.0,
+      "sim_arm_jerk_rms_rad_s3": 114.33985137939453,
+      "video": "outputs/async_20261114/take_tube_ep0_f60_async10_smooth6/episode_000000/simulation.mp4",
+      "decoded_frames": 281
+    },
+    "async10_smooth10": {
+      "summary": {
+        "model": "take_tube",
+        "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+        "episode": 0,
+        "start_frame": 60,
+        "final_frame": 321,
+        "executed_steps": 261,
+        "video_frames": 281,
+        "fps": 30,
+        "video_seconds": 9.366666666666667,
+        "mean_inference_seconds": 0.6294797151799272,
+        "replan_steps": null,
+        "clipped_targets": 0,
+        "timeline_steps": 261,
+        "model_action_steps": 100,
+        "inference_horizon": 32,
+        "inference_delay_steps": 16,
+        "inference_mode": "async",
+        "denoise_steps": 10,
+        "chunk_smoothing_steps": 10,
+        "async_stats": {
+          "event": "async_session_complete",
+          "inference_mode": "async",
+          "dataset_frame": 321,
+          "timeline_steps": 261,
+          "completion": null,
+          "warmup_hold_ticks": 19,
+          "underrun_hold_ticks": 161,
+          "chunks_adopted": 10,
+          "adoptions": [
+            {
+              "prediction_id": "d6201658-40a9-48ad-bc83-1debc886aa5c",
+              "input_step": 0,
+              "skip_steps": 0,
+              "inference_mode": "async",
+              "adoption_step": 0,
+              "available": 32,
+              "pipeline_seconds": 0.625912518997211
+            },
+            {
+              "prediction_id": "90a227f5-5245-4a6d-81fb-3041f39a9b50",
+              "input_step": 16,
+              "skip_steps": 22,
+              "inference_mode": "async",
+              "adoption_step": 38,
+              "available": 10,
+              "pipeline_seconds": 0.7308791420364287
+            },
+            {
+              "prediction_id": "4edcb2ff-e4b1-4f3a-a236-d94b4d0db1d7",
+              "input_step": 38,
+              "skip_steps": 23,
+              "inference_mode": "async",
+              "adoption_step": 61,
+              "available": 9,
+              "pipeline_seconds": 0.7577122910297476
+            },
+            {
+              "prediction_id": "f7335c61-45d1-4485-8c38-9e7f88e0556e",
+              "input_step": 61,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 86,
+              "available": 7,
+              "pipeline_seconds": 0.8013451049337164
+            },
+            {
+              "prediction_id": "ddfcc38d-6a18-4f9c-9796-d88cb9a5d47f",
+              "input_step": 86,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 111,
+              "available": 7,
+              "pipeline_seconds": 0.8223244318796787
+            },
+            {
+              "prediction_id": "211dfff3-f589-4013-85a9-0999d080d3a9",
+              "input_step": 111,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 136,
+              "available": 7,
+              "pipeline_seconds": 0.8100998140871525
+            },
+            {
+              "prediction_id": "821ec5ab-d13d-4923-b432-e34ca380bdca",
+              "input_step": 136,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 161,
+              "available": 7,
+              "pipeline_seconds": 0.8146393390197773
+            },
+            {
+              "prediction_id": "72cce2c2-40ea-4c4b-99df-063ef1a1e814",
+              "input_step": 161,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 186,
+              "available": 7,
+              "pipeline_seconds": 0.812270262016682
+            },
+            {
+              "prediction_id": "d62c788a-cfe8-4759-999e-2a9073744863",
+              "input_step": 186,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 211,
+              "available": 7,
+              "pipeline_seconds": 0.8103877698886208
+            },
+            {
+              "prediction_id": "2f9e6a41-5408-40cb-a45d-2d6adebd2aeb",
+              "input_step": 211,
+              "skip_steps": 25,
+              "inference_mode": "async",
+              "adoption_step": 236,
+              "available": 7,
+              "pipeline_seconds": 0.8094191249983851
+            }
+          ],
+          "smoothing_steps": 10,
+          "smoothing_mask": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false
+          ]
+        },
+        "state_input": "achieved MuJoCo body29 + gripper positions; recorded state used only for initial reset",
+        "vision_input": "current recorded RGB and exact annotated reference image/initial box via deployed RPC",
+        "physics": "fixed base, XR PD, shared deployed Dex1 gravity model; no contact scene/task-success metric",
+        "gravity": {
+          "enabled": true,
+          "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+          "scale": 1.0,
+          "payload": {},
+          "end_effector_payload": {
+            "left": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            },
+            "right": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            }
+          },
+          "removed_rubber_hand_mass_kg": {
+            "left": 0.17,
+            "right": 0.17
+          },
+          "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+          "uncalibrated_extra_loads": [
+            "mount/camera adapters",
+            "held objects"
+          ],
+          "uncompensated_tools": []
+        },
+        "robot_io": false
+      },
+      "max_adjacent_arm_target_change_rad": 0.10361822502604459,
+      "max_chunk_boundary_arm_target_change_rad": 0.0,
+      "mean_chunk_boundary_arm_target_change_rad": 0.0,
+      "sim_arm_jerk_rms_rad_s3": 77.67674255371094,
+      "video": "outputs/async_20261114/take_tube_ep0_f60_async10_smooth10/episode_000000/simulation.mp4",
+      "decoded_frames": 281
+    }
+  },
+  "limits": [
+    "No real robot actuation; no task-success/contact evaluation.",
+    "Live policy feedback changes future predictions, and measured latency changes skip counts; these are end-to-end rollouts, not an isolated fixed-output ablation.",
+    "Smoothing does not remove inference underrun holds.",
+    "Long windows add lag; if the remaining chunk is shorter than the window, the next chunk restarts correction at the last sent pose.",
+    "Gripper targets and timing are not smoothed.",
+    "Existing recorded live-camera and synchronous defaults remain unchanged; feature opt-in on async recorded entry only."
+  ]
+}

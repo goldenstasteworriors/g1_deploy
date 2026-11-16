@@ -1,0 +1,410 @@
+{
+  "session": "sess_e4cb9650df004642",
+  "date": "2026-11-14",
+  "old_video_skip_steps": {
+    "async6_final": [
+      0,
+      16,
+      16,
+      16,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17
+    ],
+    "async10": [
+      0,
+      23,
+      24,
+      25,
+      25,
+      25,
+      25,
+      25,
+      25,
+      25
+    ],
+    "async10_smooth6": [
+      0,
+      23,
+      24,
+      25,
+      25,
+      25,
+      25,
+      25,
+      25,
+      25
+    ],
+    "async10_smooth10": [
+      0,
+      22,
+      23,
+      25,
+      25,
+      25,
+      25,
+      25,
+      25,
+      25
+    ]
+  },
+  "frequency_sources": {
+    "openwam_libero_client": "https://github.com/OpenWAM-Official/OpenWAM/blob/main/benchmarks/libero/single_eval.py",
+    "libero_environment_default_20hz": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/libero/libero/envs/env_wrapper.py",
+    "openpi_aloha_max_50hz": "https://github.com/Physical-Intelligence/openpi/blob/main/examples/aloha_real/main.py",
+    "openwam_async_counter": "https://github.com/OpenWAM-Official/OpenWAM/blob/main/openwam/deploy/executors/async_executor.py"
+  },
+  "dataset": {
+    "name": "lab_primitives_train_20261110_boxed_v3",
+    "meta_fps": 30,
+    "episode": 0,
+    "timestamp_median_interval_seconds": 0.03333330154418945
+  },
+  "decision": "Keep trained 30Hz target cadence; align skip counting with official returned-action counter. Preserve separate real-time observation/history clock.",
+  "unit": {
+    "checks": [
+      "official returned-action counter pauses while waiting: skip16 despite24 elapsed ticks",
+      "measured .8s latency still creates8 hold ticks per chunk",
+      "dataset images pause during hold while observation history stays consecutive30Hz",
+      "all80 model actions executed; no extra stale-step trimming"
+    ],
+    "summary": {
+      "event": "async_session_complete",
+      "inference_mode": "async",
+      "dataset_frame": 140,
+      "timeline_steps": 104,
+      "execution_steps": 80,
+      "completion": null,
+      "warmup_hold_ticks": 24,
+      "underrun_hold_ticks": 24,
+      "chunks_adopted": 4,
+      "adoptions": [
+        {
+          "prediction_id": "bacbed3b-8fd5-4365-9e0f-921eefbee29c",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "adoption_clock_step": 0,
+          "pipeline_seconds": 0.8
+        },
+        {
+          "prediction_id": "0d0133e3-2c83-4ed0-8ad1-1de67f7a824f",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "adoption_clock_step": 40,
+          "pipeline_seconds": 0.8
+        },
+        {
+          "prediction_id": "7ab8043f-2f2d-4f2e-8ca4-e725bcbed628",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "adoption_clock_step": 64,
+          "pipeline_seconds": 0.8
+        },
+        {
+          "prediction_id": "1c3470ea-b31b-4fac-80e7-22b5d3b358a7",
+          "input_step": 48,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 64,
+          "available": 16,
+          "adoption_clock_step": 88,
+          "pipeline_seconds": 0.8
+        }
+      ],
+      "smoothing_steps": 0,
+      "smoothing_mask": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    }
+  },
+  "new_simulation": {
+    "model": "take_tube",
+    "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+    "episode": 0,
+    "start_frame": 60,
+    "final_frame": 321,
+    "executed_steps": 261,
+    "video_frames": 407,
+    "fps": 30,
+    "video_seconds": 13.566666666666666,
+    "mean_inference_seconds": 0.6299131138712255,
+    "replan_steps": null,
+    "clipped_targets": 0,
+    "timeline_steps": 387,
+    "model_action_steps": 261,
+    "inference_horizon": 32,
+    "inference_delay_steps": 16,
+    "inference_mode": "async",
+    "denoise_steps": 10,
+    "chunk_smoothing_steps": 10,
+    "async_stats": {
+      "event": "async_session_complete",
+      "inference_mode": "async",
+      "dataset_frame": 321,
+      "timeline_steps": 387,
+      "execution_steps": 261,
+      "completion": null,
+      "warmup_hold_ticks": 19,
+      "underrun_hold_ticks": 126,
+      "chunks_adopted": 16,
+      "adoptions": [
+        {
+          "prediction_id": "8db91983-bea3-4981-b541-50476561cc54",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "adoption_clock_step": 0,
+          "pipeline_seconds": 0.6239032899902668
+        },
+        {
+          "prediction_id": "87948722-bf97-4b93-a274-4b607842ac06",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "adoption_clock_step": 38,
+          "pipeline_seconds": 0.7039790449780412
+        },
+        {
+          "prediction_id": "98fe0481-0646-4baa-89d4-4c0eabe45492",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "adoption_clock_step": 61,
+          "pipeline_seconds": 0.7500336719676852
+        },
+        {
+          "prediction_id": "f9f40d03-e8c9-4128-aa27-5265e3916bd8",
+          "input_step": 48,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 64,
+          "available": 16,
+          "adoption_clock_step": 85,
+          "pipeline_seconds": 0.7748749179881997
+        },
+        {
+          "prediction_id": "b7e4ee61-241b-493c-9ece-aa247aac40fb",
+          "input_step": 64,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 80,
+          "available": 16,
+          "adoption_clock_step": 109,
+          "pipeline_seconds": 0.7818930529465433
+        },
+        {
+          "prediction_id": "dc43b327-f505-462f-b791-3f807d0882c7",
+          "input_step": 80,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 96,
+          "available": 16,
+          "adoption_clock_step": 133,
+          "pipeline_seconds": 0.7822672069014516
+        },
+        {
+          "prediction_id": "f42314a8-da9b-446d-b5fb-9ac3f1ded297",
+          "input_step": 96,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 112,
+          "available": 16,
+          "adoption_clock_step": 158,
+          "pipeline_seconds": 0.8155650780245196
+        },
+        {
+          "prediction_id": "4494c4f8-8ccc-4ff0-8589-3f30c6a82573",
+          "input_step": 112,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 128,
+          "available": 16,
+          "adoption_clock_step": 183,
+          "pipeline_seconds": 0.8208678859809879
+        },
+        {
+          "prediction_id": "bd7dfc7e-76b4-47c5-a35d-d90ef8b27912",
+          "input_step": 128,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 144,
+          "available": 16,
+          "adoption_clock_step": 207,
+          "pipeline_seconds": 0.792910655902233
+        },
+        {
+          "prediction_id": "65ea7247-9087-4900-866f-949a1be6317c",
+          "input_step": 144,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 160,
+          "available": 16,
+          "adoption_clock_step": 232,
+          "pipeline_seconds": 0.8044703519553877
+        },
+        {
+          "prediction_id": "b4f1857d-de0a-47bb-8954-ebadd561185b",
+          "input_step": 160,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 176,
+          "available": 16,
+          "adoption_clock_step": 257,
+          "pipeline_seconds": 0.8103896889660973
+        },
+        {
+          "prediction_id": "9a8f40fa-bd1a-4d6b-b5c4-48b9bfefae37",
+          "input_step": 176,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 192,
+          "available": 16,
+          "adoption_clock_step": 282,
+          "pipeline_seconds": 0.8134270310983993
+        },
+        {
+          "prediction_id": "53a655aa-fabc-43a4-af8b-5e3b453d67b7",
+          "input_step": 192,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 208,
+          "available": 16,
+          "adoption_clock_step": 307,
+          "pipeline_seconds": 0.8197687289502937
+        },
+        {
+          "prediction_id": "3c668a24-a227-4b59-b610-1ec55ccc58df",
+          "input_step": 208,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 224,
+          "available": 16,
+          "adoption_clock_step": 332,
+          "pipeline_seconds": 0.8078512830252293
+        },
+        {
+          "prediction_id": "df02cd87-0044-4ffe-be86-c6bed9687ef9",
+          "input_step": 224,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 240,
+          "available": 16,
+          "adoption_clock_step": 357,
+          "pipeline_seconds": 0.8274918940733187
+        },
+        {
+          "prediction_id": "0bfff0ba-983a-4e9f-b951-4e25bb8df628",
+          "input_step": 240,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 256,
+          "available": 16,
+          "adoption_clock_step": 382,
+          "pipeline_seconds": 0.8133389729773626
+        }
+      ],
+      "smoothing_steps": 10,
+      "smoothing_mask": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    },
+    "state_input": "achieved MuJoCo body29 + gripper positions; recorded state used only for initial reset",
+    "vision_input": "current recorded RGB and exact annotated reference image/initial box via deployed RPC",
+    "physics": "fixed base, XR PD, shared deployed Dex1 gravity model; no contact scene/task-success metric",
+    "gravity": {
+      "enabled": true,
+      "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+      "scale": 1.0,
+      "payload": {},
+      "end_effector_payload": {
+        "left": {
+          "mass_kg": 0.55,
+          "com_m": [
+            0.0994305720243543,
+            -6.848746937903122e-05,
+            7.343262126451591e-06
+          ]
+        },
+        "right": {
+          "mass_kg": 0.55,
+          "com_m": [
+            0.0994305720243543,
+            -6.848746937903122e-05,
+            7.343262126451591e-06
+          ]
+        }
+      },
+      "removed_rubber_hand_mass_kg": {
+        "left": 0.17,
+        "right": 0.17
+      },
+      "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+      "uncalibrated_extra_loads": [
+        "mount/camera adapters",
+        "held objects"
+      ],
+      "uncompensated_tools": []
+    },
+    "robot_io": false
+  },
+  "limitations": [
+    "Real robot control not executed.",
+    "Simulated recorded RGB pauses during holds; image observation is not physical scene feedback.",
+    "Real state/history continue at30Hz while action execution count pauses.",
+    "Inference remains too slow to eliminate all underruns; no change to native SONIC low-level controller rate.",
+    "Previous videos advanced dataset imagery on holds; they did not execute all261 model target steps. New run executes all261 targets and is therefore longer."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "source_revision": "6d59244d4490e53a41939a7d7b0aab28fdf59c51",
+  "completed": true,
+  "run": "/root/ykj/lab-low/outputs/acceptance/2026-11-01_20-05-34",
+  "gradient_checks": {
+    "action_backbone.action_decoder.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 8.27295970916748
+    },
+    "action_context": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.5795315504074097
+    },
+    "video_context": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.019861696287989616
+    },
+    "lab_conditioner.memory.in_proj_weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.20450274646282196
+    },
+    "lab_conditioner.query": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.0013486717361956835
+    },
+    "lab_conditioner.hand.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.009501784108579159
+    },
+    "lab_conditioner.skill.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.009501784108579159
+    },
+    "lab_conditioner.visual.weight": {
+      "finite": true,
+      "nonzero": true,
+      "norm": 0.11783158779144287
+    }
+  },
+  "checkpoint_readback": {
+    "checkpoint": "outputs/acceptance/2026-11-01_20-05-34/checkpoint_step_3.safetensors",
+    "tensors": 858,
+    "exact_match": true,
+    "scope": "all saved delta tensors; frozen video weights supplied by foundation"
+  },
+  "metrics": [
+    {
+      "loss_total": 0.2468107044696808,
+      "loss_video": 0.1356494128704071,
+      "loss_action": 0.11116129159927368,
+      "grad_norm": 2.736440658569336,
+      "step": 1,
+      "optimizer_step": 1,
+      "jitter_weight": 0.9099671840667725,
+      "peak_gpu_mib": 45183.3388671875
+    },
+    {
+      "loss_total": 0.12087596952915192,
+      "loss_video": 0.1082102507352829,
+      "loss_action": 0.01266571693122387,
+      "grad_norm": 0.4268806278705597,
+      "step": 2,
+      "optimizer_step": 2,
+      "jitter_weight": 0.8421972990036011,
+      "peak_gpu_mib": 45197.14453125
+    },
+    {
+      "loss_total": 1.7761142253875732,
+      "loss_video": 0.16671423614025116,
+      "loss_action": 1.6094000339508057,
+      "grad_norm": 12.31396198272705,
+      "step": 3,
+      "optimizer_step": 3,
+      "jitter_weight": 0.8859414458274841,
+      "peak_gpu_mib": 45197.14453125
+    }
+  ],
+  "validation": [
+    {
+      "step": 3,
+      "total": 1.828111469745636,
+      "video": 0.09652253240346909,
+      "action": 1.7315889596939087,
+      "windows": 2,
+      "metric": "held-out flow loss, not rollout success"
+    }
+  ],
+  "checkpoint_bytes": 2045582662
+}

@@ -1,0 +1,262 @@
+{
+  "date": "2026-11-14",
+  "unit": {
+    "plan_templates": [
+      "TAKE_TUBE",
+      "TAKE_DROPPER_AND_ASPIRATE"
+    ],
+    "rgb_roundtrip": true,
+    "rejected": [
+      "different_image",
+      "different_frame",
+      "different_request",
+      "different_skill",
+      "uncertain",
+      "outside_image",
+      "unbound_old_box"
+    ],
+    "dispense_without_qwen": true,
+    "d_independent_of_grounding": true,
+    "initial_inference_requires_bound_reference": true,
+    "robot_io": false,
+    "synthetic_images": true
+  },
+  "startup": [
+    {
+      "model": "take_tube",
+      "returncode": 0,
+      "check": {
+        "check": "operator configuration, catalog and ONNX",
+        "selection": {
+          "skill": "pick_up_test_tube",
+          "episode": 0,
+          "frame": 0
+        },
+        "control": "three Enter / d / r / p",
+        "robot_io_opened": false,
+        "camera_host": "192.168.123.164",
+        "camera_port": 5555,
+        "recorded_task": null,
+        "inference_mode": "sync",
+        "denoise_steps": 10,
+        "chunk_smoothing_steps": 0,
+        "policy_url": "http://127.0.0.1:8849",
+        "inference_horizon": 32,
+        "inference_delay_steps": 16,
+        "arm_gravity": {
+          "enabled": true,
+          "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+          "scale": 1.0,
+          "payload": {},
+          "end_effector_payload": {
+            "left": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            },
+            "right": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            }
+          },
+          "removed_rubber_hand_mass_kg": {
+            "left": 0.17,
+            "right": 0.17
+          },
+          "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+          "uncalibrated_extra_loads": [
+            "mount/camera adapters",
+            "held objects"
+          ],
+          "uncompensated_tools": [],
+          "evaluation": "desired_arm_pose; measured_waist_and_pelvis_IMU",
+          "arm_pd": "Unitree XR G1_29",
+          "arm_kp": [
+            80.0,
+            80.0,
+            80.0,
+            80.0,
+            40.0,
+            40.0,
+            40.0,
+            80.0,
+            80.0,
+            80.0,
+            80.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "arm_kd": [
+            3.0,
+            3.0,
+            3.0,
+            3.0,
+            1.5,
+            1.5,
+            1.5,
+            3.0,
+            3.0,
+            3.0,
+            3.0,
+            1.5,
+            1.5,
+            1.5
+          ]
+        }
+      }
+    },
+    {
+      "model": "dispense",
+      "returncode": 0,
+      "check": {
+        "check": "operator configuration, catalog and ONNX",
+        "selection": {
+          "skill": "dispense_into_held_test_tube",
+          "episode": 133,
+          "frame": 0
+        },
+        "control": "three Enter / d / r / p",
+        "robot_io_opened": false,
+        "camera_host": "192.168.123.164",
+        "camera_port": 5555,
+        "recorded_task": null,
+        "inference_mode": "sync",
+        "denoise_steps": 10,
+        "chunk_smoothing_steps": 0,
+        "policy_url": "http://127.0.0.1:8850",
+        "inference_horizon": 32,
+        "inference_delay_steps": 16,
+        "arm_gravity": {
+          "enabled": true,
+          "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+          "scale": 1.0,
+          "payload": {},
+          "end_effector_payload": {
+            "left": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            },
+            "right": {
+              "mass_kg": 0.55,
+              "com_m": [
+                0.0994305720243543,
+                -6.848746937903122e-05,
+                7.343262126451591e-06
+              ]
+            }
+          },
+          "removed_rubber_hand_mass_kg": {
+            "left": 0.17,
+            "right": 0.17
+          },
+          "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+          "uncalibrated_extra_loads": [
+            "mount/camera adapters",
+            "held objects"
+          ],
+          "uncompensated_tools": [],
+          "evaluation": "desired_arm_pose; measured_waist_and_pelvis_IMU",
+          "arm_pd": "Unitree XR G1_29",
+          "arm_kp": [
+            80.0,
+            80.0,
+            80.0,
+            80.0,
+            40.0,
+            40.0,
+            40.0,
+            80.0,
+            80.0,
+            80.0,
+            80.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "arm_kd": [
+            3.0,
+            3.0,
+            3.0,
+            3.0,
+            1.5,
+            1.5,
+            1.5,
+            3.0,
+            3.0,
+            3.0,
+            3.0,
+            1.5,
+            1.5,
+            1.5
+          ]
+        }
+      }
+    }
+  ],
+  "integration": {
+    "source": "offline_dataset_sample_not_live_camera",
+    "qwen_seconds": 12.638581634004368,
+    "action_shape": [
+      32,
+      16
+    ],
+    "inference_seconds": 0.2470081599894911,
+    "client_scope": "simulation",
+    "robot_commands_sent": false,
+    "original_reference_and_later_current_image": true,
+    "live_camera_verified": false
+  },
+  "binding": {
+    "reference_images_used": true,
+    "box": [
+      {
+        "role": 0,
+        "camera": "observation.images.ego_view",
+        "box": [
+          566,
+          131,
+          605,
+          238
+        ],
+        "confidence": 0.5
+      }
+    ],
+    "completion_receipt_sent": false
+  },
+  "camera": {
+    "command": [
+      "bash",
+      "/home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_live_operator.sh",
+      "--model",
+      "take_tube",
+      "--episode",
+      "0",
+      "--frame",
+      "0",
+      "--target-description",
+      "the rightmost transparent test tube in the rack",
+      "--check-inputs"
+    ],
+    "returncode": 1,
+    "seconds": 15.154861092974897,
+    "camera_tcp_connected": true,
+    "live_camera_verified": false,
+    "robot_io": false,
+    "reason": "TCP 5555 reachable, but no ZMQ camera messages received; no fallback to recorded imagery."
+  },
+  "robot_motion_tested": false,
+  "code_commit": "724bd20",
+  "temporary_test_scripts_created": false
+}

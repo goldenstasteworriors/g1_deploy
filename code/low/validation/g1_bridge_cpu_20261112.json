@@ -1,0 +1,13 @@
+{
+  "scope": "real robot kinematics and ONNX on CPU; no ROS/DDS initialization or actuation",
+  "passed": [
+    "real 43D Pinocchio joint mapping",
+    "lower 15 joints unchanged",
+    "inactive left arm and gripper hold measured state",
+    "0.5 rad/s active-arm limit",
+    "duplicate command rejected",
+    "expired target cleared",
+    "real Balance ONNX output retained exactly on lower body",
+    "invalid arm command holds measured arms without raising through the balance loop"
+  ]
+}

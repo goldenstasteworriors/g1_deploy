@@ -1,0 +1,8 @@
+{
+  "scope": "isolated localhost ROS domain 213, recorded images/state, fake model HTTP; no G1 DDS or actuators",
+  "passed": {
+    "commands": 38,
+    "stops": 1,
+    "predictions": 2
+  }
+}

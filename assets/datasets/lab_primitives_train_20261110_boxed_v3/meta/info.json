@@ -1,0 +1,614 @@
+{
+  "codebase_version": "v2.1",
+  "robot_type": null,
+  "total_episodes": 364,
+  "total_frames": 147675,
+  "total_tasks": 9,
+  "total_videos": 1092,
+  "total_chunks": 1,
+  "chunks_size": 1000,
+  "fps": 30,
+  "splits": {
+    "train": "0:364"
+  },
+  "data_path": "data/chunk-{episode_chunk:03d}/episode_{episode_index:06d}.parquet",
+  "video_path": "videos/chunk-{episode_chunk:03d}/{video_key}/episode_{episode_index:06d}.mp4",
+  "features": {
+    "observation.images.ego_view": {
+      "dtype": "video",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "names": [
+        "height",
+        "width",
+        "channel"
+      ],
+      "info": {
+        "video.height": 480,
+        "video.width": 640,
+        "video.codec": "h264",
+        "video.pix_fmt": "yuv420p",
+        "video.is_depth_map": false,
+        "video.fps": 30,
+        "video.channels": 3,
+        "has_audio": false
+      }
+    },
+    "observation.state": {
+      "dtype": "float64",
+      "shape": [
+        31
+      ],
+      "names": [
+        "left_hip_pitch_joint",
+        "left_hip_roll_joint",
+        "left_hip_yaw_joint",
+        "left_knee_joint",
+        "left_ankle_pitch_joint",
+        "left_ankle_roll_joint",
+        "right_hip_pitch_joint",
+        "right_hip_roll_joint",
+        "right_hip_yaw_joint",
+        "right_knee_joint",
+        "right_ankle_pitch_joint",
+        "right_ankle_roll_joint",
+        "waist_yaw_joint",
+        "waist_roll_joint",
+        "waist_pitch_joint",
+        "left_shoulder_pitch_joint",
+        "left_shoulder_roll_joint",
+        "left_shoulder_yaw_joint",
+        "left_elbow_joint",
+        "left_wrist_roll_joint",
+        "left_wrist_pitch_joint",
+        "left_wrist_yaw_joint",
+        "right_shoulder_pitch_joint",
+        "right_shoulder_roll_joint",
+        "right_shoulder_yaw_joint",
+        "right_elbow_joint",
+        "right_wrist_roll_joint",
+        "right_wrist_pitch_joint",
+        "right_wrist_yaw_joint",
+        "left_hand_dex1_motor",
+        "right_hand_dex1_motor"
+      ]
+    },
+    "observation.eef_state": {
+      "dtype": "float64",
+      "shape": [
+        14
+      ],
+      "names": [
+        "left_wrist_pos",
+        "left_wrist_abs_quat",
+        "right_wrist_pos",
+        "right_wrist_abs_quat"
+      ]
+    },
+    "action.wbc": {
+      "dtype": "float64",
+      "shape": [
+        31
+      ],
+      "names": [
+        "left_hip_pitch_joint",
+        "left_hip_roll_joint",
+        "left_hip_yaw_joint",
+        "left_knee_joint",
+        "left_ankle_pitch_joint",
+        "left_ankle_roll_joint",
+        "right_hip_pitch_joint",
+        "right_hip_roll_joint",
+        "right_hip_yaw_joint",
+        "right_knee_joint",
+        "right_ankle_pitch_joint",
+        "right_ankle_roll_joint",
+        "waist_yaw_joint",
+        "waist_roll_joint",
+        "waist_pitch_joint",
+        "left_shoulder_pitch_joint",
+        "left_shoulder_roll_joint",
+        "left_shoulder_yaw_joint",
+        "left_elbow_joint",
+        "left_wrist_roll_joint",
+        "left_wrist_pitch_joint",
+        "left_wrist_yaw_joint",
+        "right_shoulder_pitch_joint",
+        "right_shoulder_roll_joint",
+        "right_shoulder_yaw_joint",
+        "right_elbow_joint",
+        "right_wrist_roll_joint",
+        "right_wrist_pitch_joint",
+        "right_wrist_yaw_joint",
+        "left_hand_dex1_motor",
+        "right_hand_dex1_motor"
+      ]
+    },
+    "observation.root_orientation": {
+      "dtype": "float64",
+      "shape": [
+        4
+      ],
+      "names": [
+        "base_qw",
+        "base_qx",
+        "base_qy",
+        "base_qz"
+      ]
+    },
+    "observation.projected_gravity": {
+      "dtype": "float64",
+      "shape": [
+        3
+      ],
+      "names": [
+        "gravity_x",
+        "gravity_y",
+        "gravity_z"
+      ]
+    },
+    "observation.cpp_rotation_offset": {
+      "dtype": "float64",
+      "shape": [
+        4
+      ],
+      "names": [
+        "rot_offset_qw",
+        "rot_offset_qx",
+        "rot_offset_qy",
+        "rot_offset_qz"
+      ]
+    },
+    "observation.init_base_quat": {
+      "dtype": "float64",
+      "shape": [
+        4
+      ],
+      "names": [
+        "init_base_qw",
+        "init_base_qx",
+        "init_base_qy",
+        "init_base_qz"
+      ]
+    },
+    "teleop.delta_heading": {
+      "dtype": "float64",
+      "shape": [
+        1
+      ],
+      "names": [
+        "delta_heading"
+      ]
+    },
+    "action.motion_token": {
+      "dtype": "float64",
+      "shape": [
+        64
+      ],
+      "names": "motion_token"
+    },
+    "teleop.smpl_joints": {
+      "dtype": "float32",
+      "shape": [
+        72
+      ],
+      "names": "smpl_joints"
+    },
+    "teleop.smpl_pose": {
+      "dtype": "float32",
+      "shape": [
+        63
+      ],
+      "names": "smpl_pose"
+    },
+    "teleop.body_quat_w": {
+      "dtype": "float32",
+      "shape": [
+        4
+      ],
+      "names": "body_quat_w"
+    },
+    "teleop.target_body_orientation": {
+      "dtype": "float32",
+      "shape": [
+        6
+      ],
+      "names": [
+        "target_body_r00",
+        "target_body_r10",
+        "target_body_r01",
+        "target_body_r11",
+        "target_body_r02",
+        "target_body_r12"
+      ]
+    },
+    "teleop.left_hand_joints": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "left_hand_dex1_motor"
+      ]
+    },
+    "teleop.right_hand_joints": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "right_hand_dex1_motor"
+      ]
+    },
+    "teleop.smpl_frame_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": [
+        "smpl_frame_index"
+      ]
+    },
+    "teleop.left_wrist_joints": {
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "names": [
+        "left_wrist_roll",
+        "left_wrist_pitch",
+        "left_wrist_yaw"
+      ]
+    },
+    "teleop.right_wrist_joints": {
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "names": [
+        "right_wrist_roll",
+        "right_wrist_pitch",
+        "right_wrist_yaw"
+      ]
+    },
+    "teleop.stream_mode": {
+      "dtype": "int32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "stream_mode"
+      ]
+    },
+    "teleop.planner_mode": {
+      "dtype": "int32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "locomotion_mode"
+      ]
+    },
+    "teleop.planner_movement": {
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "names": [
+        "movement_x",
+        "movement_y",
+        "movement_z"
+      ]
+    },
+    "teleop.planner_facing": {
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "names": [
+        "facing_x",
+        "facing_y",
+        "facing_z"
+      ]
+    },
+    "teleop.planner_speed": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "speed"
+      ]
+    },
+    "teleop.planner_height": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "height"
+      ]
+    },
+    "teleop.vr_3pt_position": {
+      "dtype": "float32",
+      "shape": [
+        9
+      ],
+      "names": [
+        "lwrist_x",
+        "lwrist_y",
+        "lwrist_z",
+        "rwrist_x",
+        "rwrist_y",
+        "rwrist_z",
+        "neck_x",
+        "neck_y",
+        "neck_z"
+      ]
+    },
+    "teleop.vr_3pt_orientation": {
+      "dtype": "float32",
+      "shape": [
+        18
+      ],
+      "names": [
+        "lwrist_r00",
+        "lwrist_r10",
+        "lwrist_r01",
+        "lwrist_r11",
+        "lwrist_r02",
+        "lwrist_r12",
+        "rwrist_r00",
+        "rwrist_r10",
+        "rwrist_r01",
+        "rwrist_r11",
+        "rwrist_r02",
+        "rwrist_r12",
+        "neck_r00",
+        "neck_r10",
+        "neck_r01",
+        "neck_r11",
+        "neck_r02",
+        "neck_r12"
+      ]
+    },
+    "observation.images.left_wrist": {
+      "dtype": "video",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "names": [
+        "height",
+        "width",
+        "channel"
+      ],
+      "info": {
+        "video.height": 480,
+        "video.width": 640,
+        "video.codec": "h264",
+        "video.pix_fmt": "yuv420p",
+        "video.is_depth_map": false,
+        "video.fps": 30,
+        "video.channels": 3,
+        "has_audio": false
+      }
+    },
+    "observation.images.right_wrist": {
+      "dtype": "video",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "names": [
+        "height",
+        "width",
+        "channel"
+      ],
+      "info": {
+        "video.height": 480,
+        "video.width": 640,
+        "video.codec": "h264",
+        "video.pix_fmt": "yuv420p",
+        "video.is_depth_map": false,
+        "video.fps": 30,
+        "video.channels": 3,
+        "has_audio": false
+      }
+    },
+    "observation.camera_timestamps": {
+      "dtype": "float64",
+      "shape": [
+        3
+      ],
+      "names": [
+        "ego_view",
+        "left_wrist",
+        "right_wrist"
+      ]
+    },
+    "observation.camera_sync_skew_ms": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "inter_view_skew_ms"
+      ]
+    },
+    "observation.camera_receive_age_ms": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": [
+        "receive_monotonic_age_ms"
+      ]
+    },
+    "timestamp": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "frame_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "episode_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "task_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    }
+  },
+  "script_config": {
+    "wbc_version": "gear_wbc",
+    "wbc_model_path": "policy/GR00T-WholeBodyControl-Balance.onnx,policy/GR00T-WholeBodyControl-Walk.onnx",
+    "wbc_policy_class": "G1DecoupledWholeBodyPolicy",
+    "interface": "enx00e04c36c4e8",
+    "simulator": "mujoco",
+    "sim_sync_mode": false,
+    "control_frequency": 50,
+    "sim_frequency": 200,
+    "diagnostic_read_only": false,
+    "enable_waist": false,
+    "with_hands": true,
+    "hand_type": "dex1",
+    "dex1_released_q": [
+      5.4,
+      5.4
+    ],
+    "dex1_pressed_q": [
+      0.5,
+      0.9
+    ],
+    "dex1_pressed_grip_q": [
+      0.0,
+      0.0
+    ],
+    "high_elbow_pose": false,
+    "verbose": true,
+    "enable_offscreen": false,
+    "enable_onscreen": true,
+    "upper_body_joint_speed": 1000.0,
+    "startup_t_pose": false,
+    "startup_t_pose_duration": 4.0,
+    "startup_elbow_pose_duration": 4.0,
+    "startup_final_pose_duration": 4.0,
+    "startup_final_elbow_angle": -0.34906585,
+    "env_name": "default",
+    "ik_indicator": false,
+    "verbose_timing": false,
+    "keyboard_dispatcher_type": "raw",
+    "enable_gravity_compensation": false,
+    "gravity_compensation_joints": null,
+    "body_control_device": "dummy",
+    "hand_control_device": "dummy",
+    "body_streamer_ip": "10.112.210.229",
+    "body_streamer_keyword": "knee",
+    "enable_visualization": false,
+    "pico_vis_smpl": false,
+    "enable_real_device": true,
+    "teleop_frequency": 20,
+    "teleop_replay_path": null,
+    "robot_ip": "192.168.123.164",
+    "data_collection": true,
+    "data_collection_frequency": 20,
+    "root_output_dir": "outputs",
+    "enable_upper_body_operation": true,
+    "upper_body_operation_mode": "teleop",
+    "decoupled_vla_exporter": {
+      "dataset_name": "pick_up_test_tube_20261027_104843",
+      "hand_type": "dex1",
+      "dex1_preset": "default",
+      "dex1_profile": "/home/data-collection/GR00T-WholeBodyControl-worktrees/thinkpad-wired-pico-onboard/.runtime/dex1_profiles/default.json",
+      "task_prompt": "pick up the test tube",
+      "root_output_dir": "/home/data-collection/GR00T-WholeBodyControl-worktrees/thinkpad-wired-pico-onboard/outputs",
+      "data_collection_frequency": 30,
+      "overwrite_existing_dataset": false,
+      "left_hand_only": false,
+      "inspire_hand_pose_config": "/home/data-collection/GR00T-WholeBodyControl-worktrees/thinkpad-wired-pico-onboard/gear_sonic/config/data_collection/inspire_hand_pose.json",
+      "camera_host": "127.0.0.1",
+      "camera_port": 5558,
+      "state_topic_name": "G1Env/env_state_act",
+      "robot_config_service_name": "WBCPolicy/robot_config",
+      "robot_config_timeout": 30.0,
+      "sonic_zmq_host": "localhost",
+      "sonic_zmq_port": 5556,
+      "sonic_pose_max_age": 0.2,
+      "planner_max_age": 0.2,
+      "use_sonic_pose_when_stream_off": true,
+      "default_stream_mode_when_pose_available": 1,
+      "require_sonic_pose": false,
+      "record_wrist_cameras": true,
+      "camera_sync_tolerance_ms": 30.0,
+      "camera_max_hold_ms": 250.0,
+      "text_to_speech": false,
+      "audio_cues": true,
+      "audio_cue_volume": 0.35,
+      "discard_audio_cue_volume": 0.9,
+      "profile_timing": true,
+      "profile_interval": 1.0
+    },
+    "data_source": {
+      "robot_state": "decoupled_ros",
+      "pico_pose": "optional_sonic_zmq",
+      "camera": "gear_sonic_composed_camera"
+    },
+    "schema_compatibility": "g1_dex1_31dof",
+    "camera_sync": {
+      "views": [
+        "ego_view",
+        "left_wrist",
+        "right_wrist"
+      ],
+      "timestamp_clock": "capture_host_wall_time",
+      "max_skew_ms": 30.0,
+      "max_receive_hold_ms": 250.0,
+      "method": "bounded_software_timestamp_grouping",
+      "usb_timestamp_semantics": "host_read_completion_not_exposure"
+    },
+    "hand_position_unit": "rad",
+    "hand_data_mode": "both",
+    "active_hands": [
+      "left",
+      "right"
+    ],
+    "right_hand_data": {
+      "source": "hardware",
+      "default_pose": null,
+      "default_inspire_6d": null
+    }
+  },
+  "processing": {
+    "annotations": "/home/ykj/project/SONICMJ/GR00T-WholeBodyControl/outputs/thinkpad_imports/processed/remove_return_dropper_001_003_20261110.json",
+    "intervals": "source frames [start, end)",
+    "video_alignment": "same frame interval for all three views and parquet",
+    "source_data_unchanged": true
+  }
+}

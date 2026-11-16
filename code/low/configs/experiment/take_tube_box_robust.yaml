@@ -1,0 +1,6 @@
+# @package _global_
+dataloader:
+  photometric:
+    enabled: true
+  box_augmentation:
+    mode: structured

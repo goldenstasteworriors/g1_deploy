@@ -1,0 +1,49 @@
+数据集图像部署：已同步轨迹与启动命令（2026-11-14）
+
+输入：机器人实时 state + 所选轨迹的三路 RGB + 初始框（加液无框）+ 技能/手别/prompt。
+初始化：所选轨迹、所选帧的 observation 双臂/夹爪状态。不是 dataset action。
+按执行进度播放数据图像。以下命令保持当前同步执行方式、10步去噪和默认缓存。
+每个 bash 开头的行都是一条完整命令，不需要手动换行。
+修改 --frame 后面的数字即可选择初始帧；帧从0开始。
+使用不同模型前先正常退出上一个部署程序。以下命令只选择对应数据/模型，不代表实物操作成功。
+启动后仍按原流程：Enter 站立 → 等待完成 → Enter 双臂/夹爪初始化 → 等待完成 → Enter 推理。
+d 阻尼；r 恢复初始化；到 ready 后再 Enter 推理。
+
+端口：取试管复用当前8849服务；其他模型用8850，由启动程序自动启动并在退出时关闭它启动的服务。
+没有停止或更改现有8849取试管服务。
+若显示模型未就绪，等待对应模型加载完成后再开始推理。
+混匀没有数据和训练权重，因此不在本次清单中。
+general 通用模型支持除试管归架之外的下面五种基本操作；归架必须使用 return_tube。
+
+取试管（原有）：模型 take_tube，episode 0，可选帧 0..321
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_tube --episode 0 --frame 0 --denoise-steps 10 --execute
+
+取试管（新增）：模型 take_tube，episode 1，可选帧 0..297
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_tube --episode 1 --frame 0 --denoise-steps 10 --execute
+
+取试管（新增）：模型 take_tube，episode 2，可选帧 0..204
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_tube --episode 2 --frame 0 --denoise-steps 10 --execute
+
+取滴管并吸液：模型 take_dropper，episode 33，可选帧 0..578
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_dropper --episode 33 --frame 0 --denoise-steps 10 --policy-url http://127.0.0.1:8850 --execute
+
+向手持试管加液（无框）：模型 dispense，episode 133，可选帧 0..623
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model dispense --episode 133 --frame 0 --denoise-steps 10 --policy-url http://127.0.0.1:8850 --execute
+
+放回滴管：模型 return_dropper，episode 147，可选帧 0..278
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model return_dropper --episode 147 --frame 0 --denoise-steps 10 --policy-url http://127.0.0.1:8850 --execute
+
+试管归架：模型 return_tube，episode 34，可选帧 0..456
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model return_tube --episode 34 --frame 0 --denoise-steps 10 --policy-url http://127.0.0.1:8850 --execute
+
+放入水浴：模型 water_bath，episode 337，可选帧 0..344
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model water_bath --episode 337 --frame 0 --denoise-steps 10 --policy-url http://127.0.0.1:8850 --execute
+
+通用模型示例（将 episode 改成上表除34之外的其他编号也可以）：
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model general --episode 1 --frame 0 --denoise-steps 10 --policy-url http://127.0.0.1:8850 --execute
+
+查看视频索引（此文件就在项目根目录）：
+xdg-open /home/yanjun/ykj/labwam_g1/已部署数据轨迹视频.html
+
+检查范围：39个轨迹资产SHA256一致，全部24个视频逐帧可解码；首/中/末帧图像与初始化姿态读取正常；8个启动组合通过 --execute --check-config；未启动机器人I/O，未新运行各模型的完整推理。临时检查环境已删除，原来的初始化选择保留。
+结果：analysis/recorded_assets_20261114/asset_validation.json 和 startup_validation.json。

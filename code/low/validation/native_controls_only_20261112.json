@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-12",
+  "session": "sess_4136a170b69e4bd0",
+  "scope": "Local offline tests with real G1 kinematics, ONNX, SONICMJ interpolation/keyboard/damping code, captured motor publisher; no real robot I/O",
+  "supersedes": [
+    "initial_pose_reentry_20261112.json: initialization guard behavior",
+    "arm_gravity_20261112.json: added saturation/slew behavior",
+    "operator_lifecycle_20261112.json: arrival guard behavior"
+  ],
+  "removed": [
+    "arm software/URDF target rejection in adapter and pose selection",
+    "0.35 rad shoulder-only reentry path",
+    "adapter 0.5 rad/s arm and 0.8 rad/s gripper initialization limits",
+    "adapter 0.18 rad duplicate Dex1 clamp",
+    "0.25 s command expiry and sent-time checks",
+    "0.04/0.1 rad pose convergence tolerances, 0.3 s settle, duration+20 s timeout",
+    "extra 2 s standing gate",
+    "gravity torque clamp/slew/gap reset and arbitrary payload/quaternion norm ranges",
+    "0.15 s state/image interruption, 75 ms sampling gap fault",
+    "0.5 s binding ACK deadline, 30 s initial sensor deadline",
+    "0.1 rad inference drift rejection",
+    "120 s inference RPC timeout",
+    "300-frame history cap/overflow abort and batch size cap",
+    "default million-chunk automatic end",
+    "10-attempt vendor takeover limit"
+  ],
+  "retained": [
+    "native SONICMJ JointSafetyMonitor startup and warnings",
+    "native InterpolationPolicy using native upper_body_joint_speed default",
+    "native Dex1 validation/feedback step limit",
+    "native ImageBundleBuffer defaults",
+    "native MotionSwitcher 5 s RPC timeout, cancellable unlimited release loop",
+    "native KeyboardEStop -> DampingShutdown -> enter_damping",
+    "manual lifecycle, client cancellation, epoch/binding isolation",
+    "finite shapes, trained skill/hand and target protocol validation",
+    "service readiness probe and stopped-process cleanup deadlines, not robot watchdogs"
+  ],
+  "native_sources": {
+    "root": "/home/ykj/project/SONICMJ/GR00T-WholeBodyControl/.worktrees/thinkpad-wired-pico-onboard",
+    "upper_speed": "decoupled_wbc/control/main/teleop/configs/configs.py:169",
+    "interpolator": "decoupled_wbc/control/policy/interpolation_policy.py",
+    "startup": "decoupled_wbc/control/envs/g1/utils/joint_safety.py",
+    "damping": "decoupled_wbc/control/utils/damping_shutdown.py",
+    "keyboard": "decoupled_wbc/control/utils/keyboard_dispatcher.py",
+    "camera": "gear_sonic/camera/synchronization.py"
+  },
+  "tests": {
+    "native_controls_lifecycle": {
+      "scope": "actual Pinocchio and lower ONNX, fake body/Dex1 transport and fake client process; no ROS/DDS/motor I/O",
+      "passed": [
+        "boot: no body/arm/gripper writes and vendor takeover deferred",
+        "first Enter: lower ONNX enabled; upper gains zero and Dex1 untouched",
+        "second Enter: native interpolation and startup duration; no measured convergence guard; ready persists",
+        "third Enter: starts only a fresh epoch-scoped inference client",
+        "d: immediate damping latch and client termination; queued targets discarded",
+        "r: restarts lower ramp then restores selected pose without extra Enter",
+        "pose selection persists exact skill/episode/frame for subsequent recovery",
+        "old inference epoch cannot re-arm after recovery/new inference",
+        "d during blocked takeover cancels pending keys and stale RPC cannot restart control",
+        "shoulder excursion accepted; no arrival tolerance or automatic timeout"
+      ]
+    },
+    "native_buffer": {
+      "scope": "offline real SONICMJ interpolator, no robot I/O",
+      "passed": [
+        "native upper speed default retained",
+        "software shoulder excursion accepted",
+        "old command timestamp does not reject",
+        "long gap does not clear target or binding",
+        "inactive hand follows measured state",
+        "explicit stop clears target",
+        "nonfinite protocol payload rejected"
+      ]
+    },
+    "native_gravity_numeric": {
+      "scope": "Offline CPU numerical tests; no robot I/O",
+      "random_poses": 30,
+      "max_free_flyer_agreement_error_nm": 1.3322676295501878e-15,
+      "max_potential_gradient_error_nm": 6.954710585205248e-09,
+      "uncapped_gravity_no_time_ramp_and_disabled_zero": "passed",
+      "payload_isolation": "passed",
+      "configuration": {
+        "enabled": true,
+        "model": "g1_29dof.urdf; no Dex3 hand inertia",
+        "scale": 1.0,
+        "payload": {},
+        "uncompensated_tools": [
+          "left",
+          "right"
+        ]
+      }
+    },
+    "native_gravity_transport": {
+      "scope": "Real Unitree LowCmd serialization and CRC, captured publisher, no DDS initialization or robot I/O",
+      "passed": [
+        "arm gravity reaches motor.tau with correct joint-to-motor mapping",
+        "legs/waist zero feedforward",
+        "position targets unchanged",
+        "standing-stage arm gate suppresses compensation and grippers",
+        "damping immediately clears feedforward and blocks queued targets",
+        "recovery enables raw compensation without added slew cap",
+        "read-only publishes nothing"
+      ]
+    }
+  },
+  "limitations": [
+    "No real robot motion acceptance; mock motor transports only",
+    "ready means interpolation sent, not measured convergence",
+    "missing Dex1/tool payload parameters remain unchanged"
+  ]
+}

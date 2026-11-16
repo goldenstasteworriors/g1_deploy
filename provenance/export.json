@@ -1,0 +1,14 @@
+{
+  "export_date": "2026-11-16",
+  "session": "sess_4136a170b69e4bd0",
+  "source_host": "pku4090",
+  "source_root": "/home/yanjun/ykj/labwam_g1",
+  "low_source": "git archive HEAD low from source_root/code",
+  "low_revision": "353faea",
+  "sonicmj_source": "Actual deployed source_root/sonicmj, with exclusions listed separately",
+  "dataset_scope": "Only example episodes already present on the deployment machine; not the full training dataset",
+  "new_files": "Repository README, runtime path preparation helper, environment inventories and export provenance",
+  "excluded": ["Credentials", "Python environments", "Foundation and fine-tuned safetensors (download from ModelScope)", "Runtime logs and caches", "Optional Manus/PICO vendor binaries listed in excluded_vendor_binaries.json"],
+  "robot_commands_sent": false,
+  "deployment_logic_changed": false
+}

@@ -1,0 +1,77 @@
+{
+  "model": "take_tube",
+  "checkpoint": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube/checkpoint_step_30000.safetensors",
+  "episode": 0,
+  "start_frame": 60,
+  "final_frame": 321,
+  "executed_steps": 261,
+  "video_frames": 1453,
+  "fps": 30,
+  "video_seconds": 48.43333333333333,
+  "mean_inference_seconds": 1.1925537153649863,
+  "replan_steps": 8,
+  "clipped_targets": 0,
+  "state_input": "achieved MuJoCo body29 + gripper positions; recorded state used only for initial reset",
+  "vision_input": "current recorded RGB and exact annotated reference image/initial box via deployed RPC",
+  "physics": "fixed base, XR PD, shared deployed Dex1 gravity model; no contact scene/task-success metric",
+  "gravity": {
+    "enabled": true,
+    "model": "G1 body with rubber hands replaced by Dex1-1; no Dex3 inertia",
+    "scale": 1.0,
+    "payload": {},
+    "end_effector_payload": {
+      "left": {
+        "mass_kg": 0.55,
+        "com_m": [
+          0.0994305720243543,
+          -6.848746937903122e-05,
+          7.343262126451591e-06
+        ]
+      },
+      "right": {
+        "mass_kg": 0.55,
+        "com_m": [
+          0.0994305720243543,
+          -6.848746937903122e-05,
+          7.343262126451591e-06
+        ]
+      }
+    },
+    "removed_rubber_hand_mass_kg": {
+      "left": 0.17,
+      "right": 0.17
+    },
+    "payload_assumption": "Official G1 direct mount. COM from mass-weighted official URDF links; total mass uniformly scaled from 0.364946 kg URDF to 0.55 kg product nominal. Not measured on this robot. Symmetric fingers cancel opening-dependent lateral COM.",
+    "uncalibrated_extra_loads": [
+      "mount/camera adapters",
+      "held objects"
+    ],
+    "uncompensated_tools": []
+  },
+  "robot_io": false,
+  "date": "2026-11-14",
+  "episode_split": "train trajectory diagnostic, not held-out success evaluation",
+  "mujoco_version": "3.10.0",
+  "video": "outputs/sim_20261114/take_tube_ep0_f60_xr/episode_000000/simulation.mp4",
+  "video_sha256": "68032b3ba9704a8754f8465ed9bdc57db6c279dffc4357454edc4676dcaf58e5",
+  "video_bytes": 2162354,
+  "checks": [
+    "headless renderer and one-second hold checked before rollout",
+    "all 1453 video frames decode without error",
+    "first/middle/final frames visually inspected",
+    "262 achieved simulator states and 261 targets finite",
+    "initial box shown only on exact annotated reference frame",
+    "model session closed after rollout; no robot I/O"
+  ],
+  "reproduction": {
+    "python": "/home/ykj/miniconda3/envs/decoupled_vla_collection/bin/python",
+    "entry": "scripts/eval_recorded_vision_sim.py",
+    "variant": "take_tube",
+    "episode": 0,
+    "start_frame": 60,
+    "execute": 8,
+    "rpc_host": "yanjun@100.123.202.80",
+    "rpc_root": "/home/yanjun/ykj/labwam_g1",
+    "dataset": "/home/ykj/project/SONICMJ/GR00T-WholeBodyControl/outputs/thinkpad_imports/processed/lab_primitives_train_20261110_boxed_v3"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "real_dispense_episodes": [
+    138,
+    139
+  ],
+  "train_windows": 74,
+  "unmarked_real_dataset": true,
+  "online_reset_clears_old_marks": true,
+  "other_skills_require_marks": true,
+  "both_hands_required": true,
+  "unmarked_reference_and_stale_prior_invariance": true,
+  "mixed_batch_finite": true,
+  "conditioner_backward": true,
+  "scope": "CPU real data + conditioner + online interface; no full GPU training or skill-success evaluation"
+}

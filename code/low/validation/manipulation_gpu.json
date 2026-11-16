@@ -1,0 +1,432 @@
+{
+  "server": "ai2-root-4080",
+  "code_commit": "b058fc43b7e415b2bb2c998c425efc178bb5063a",
+  "contract": "spacetime_manip_v3",
+  "torch": "2.7.1+cu128",
+  "cuda_runtime": "12.8",
+  "runs": {
+    "manipulation_acceptance": {
+      "path": "/root/ykj/lab-low/outputs/manipulation_acceptance/2026-11-02_18-40-52",
+      "completed": true,
+      "metrics": [
+        {
+          "loss_total": 0.26881104707717896,
+          "loss_video": 0.1354946345090866,
+          "loss_action": 0.13331641256809235,
+          "grad_norm": 5.380760669708252,
+          "step": 1,
+          "optimizer_step": 1,
+          "jitter_weight": 0.9099671840667725,
+          "peak_gpu_mib": 45207.3076171875
+        },
+        {
+          "loss_total": 0.13048434257507324,
+          "loss_video": 0.11605451256036758,
+          "loss_action": 0.014429837465286255,
+          "grad_norm": 2.311985492706299,
+          "step": 2,
+          "optimizer_step": 2,
+          "jitter_weight": 0.8421972990036011,
+          "peak_gpu_mib": 45244.69921875
+        },
+        {
+          "loss_total": 1.7249187231063843,
+          "loss_video": 0.16693972051143646,
+          "loss_action": 1.5579789876937866,
+          "grad_norm": 11.896892547607422,
+          "step": 3,
+          "optimizer_step": 3,
+          "jitter_weight": 0.8859414458274841,
+          "peak_gpu_mib": 45244.69921875
+        }
+      ],
+      "validation": [
+        {
+          "step": 3,
+          "total": 1.6602176427841187,
+          "video": 0.09604997932910919,
+          "action": 1.5641676187515259,
+          "windows": 2,
+          "metric": "held-out flow loss, not rollout success"
+        }
+      ],
+      "gradients": {
+        "action_backbone.action_decoder.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 8.65383243560791
+        },
+        "action_context": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.36986252665519714
+        },
+        "video_context": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.03699232265353203
+        },
+        "lab_conditioner.state_action.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.05581725016236305
+        },
+        "lab_conditioner.query": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.0007648846949450672
+        },
+        "lab_conditioner.visual_memory.blocks.3.temporal.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.12554743885993958
+        },
+        "lab_conditioner.visual_memory.blocks.3.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.12298791855573654
+        },
+        "lab_conditioner.visual_memory.blocks.2.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.12362849712371826
+        },
+        "lab_conditioner.visual_memory.blocks.1.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.14003850519657135
+        },
+        "lab_conditioner.visual_memory.blocks.0.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.12181591242551804
+        },
+        "lab_conditioner.hand.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.013728520832955837
+        },
+        "lab_conditioner.skill.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.013728520832955837
+        },
+        "lab_conditioner.visual.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.13282230496406555
+        }
+      },
+      "checkpoint": {
+        "checkpoint": "outputs/manipulation_acceptance/2026-11-02_18-40-52/checkpoint_step_3.safetensors",
+        "tensors": 902,
+        "exact_match": true,
+        "scope": "all saved delta tensors; frozen video weights supplied by foundation"
+      },
+      "checkpoint_bytes": 2051762192,
+      "checkpoint_shapes": {
+        "action_backbone.action_encoder.weight": [
+          1024,
+          16
+        ],
+        "action_backbone.action_decoder.weight": [
+          16,
+          1024
+        ],
+        "lab_conditioner.hand.weight": [
+          3,
+          256
+        ],
+        "lab_conditioner.skill.weight": [
+          7,
+          256
+        ],
+        "lab_conditioner.state_action.weight": [
+          256,
+          48
+        ]
+      },
+      "data_contract": {
+        "train_episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          16,
+          17,
+          20,
+          21,
+          22,
+          23,
+          24,
+          26,
+          30,
+          31,
+          32
+        ],
+        "val_episodes": [
+          33,
+          18,
+          8,
+          28,
+          27,
+          25,
+          6
+        ],
+        "excluded": [],
+        "train_windows": 567,
+        "val_windows": 182,
+        "target_mode": "initial_reference_only",
+        "future_tracking_annotations": false,
+        "action_source": "observation.state",
+        "action_alignment": "state[t] -> state[t+1:t+33]",
+        "memory_motion": "past achieved observation delta, NOT executed command",
+        "memory_architecture": "spacetime_manip_v3",
+        "visual_memory": "causal spatial/temporal patches before target pooling; reference independent",
+        "state_memory": "one continuous token per rolling observation; invalid tokens masked",
+        "completion_supervision": false,
+        "jitter_source": "root_orientation angular-speed proxy, rad/s",
+        "action_dim": 16,
+        "state_dim": 31,
+        "manipulation_only": true,
+        "skill_vocabulary": [
+          "take_dropper_and_aspirate",
+          "pick_up_test_tube",
+          "dispense_into_held_test_tube",
+          "return_dropper",
+          "mix_test_tube",
+          "return_test_tube_to_rack",
+          "place_test_tube_in_water_bath"
+        ],
+        "hand_ids": {
+          "left": 0,
+          "right": 1,
+          "both": 2
+        },
+        "cameras": 3,
+        "history_offsets": [
+          -60,
+          -40,
+          -20
+        ],
+        "skills": [
+          "pick_up_test_tube"
+        ],
+        "hands": [
+          "right"
+        ]
+      },
+      "delta_source": null
+    },
+    "manipulation_reload": {
+      "path": "/root/ykj/lab-low/outputs/manipulation_reload/2026-11-02_18-44-32",
+      "completed": true,
+      "metrics": [
+        {
+          "loss_total": 0.17477993667125702,
+          "loss_video": 0.11381667852401733,
+          "loss_action": 0.060963258147239685,
+          "grad_norm": 0.7642573118209839,
+          "step": 1,
+          "optimizer_step": 1,
+          "jitter_weight": 0.9099671840667725,
+          "peak_gpu_mib": 45207.3076171875
+        }
+      ],
+      "validation": [
+        {
+          "step": 1,
+          "total": 1.6441166996955872,
+          "video": 0.09816987812519073,
+          "action": 1.5459468364715576,
+          "windows": 2,
+          "metric": "held-out flow loss, not rollout success"
+        }
+      ],
+      "gradients": {
+        "action_backbone.action_decoder.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.303285151720047
+        },
+        "action_context": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.009957305155694485
+        },
+        "video_context": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.008932812139391899
+        },
+        "lab_conditioner.state_action.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.008234208449721336
+        },
+        "lab_conditioner.query": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 4.7280958824558184e-05
+        },
+        "lab_conditioner.visual_memory.blocks.3.temporal.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.005854237359017134
+        },
+        "lab_conditioner.visual_memory.blocks.3.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.006653464864939451
+        },
+        "lab_conditioner.visual_memory.blocks.2.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.00608805799856782
+        },
+        "lab_conditioner.visual_memory.blocks.1.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.006964362692087889
+        },
+        "lab_conditioner.visual_memory.blocks.0.spatial.in_proj_weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.00685396883636713
+        },
+        "lab_conditioner.hand.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.002011932898312807
+        },
+        "lab_conditioner.skill.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.002011932898312807
+        },
+        "lab_conditioner.visual.weight": {
+          "finite": true,
+          "nonzero": true,
+          "norm": 0.006742736324667931
+        }
+      },
+      "checkpoint": {
+        "checkpoint": "outputs/manipulation_reload/2026-11-02_18-44-32/checkpoint_step_1.safetensors",
+        "tensors": 902,
+        "exact_match": true,
+        "scope": "all saved delta tensors; frozen video weights supplied by foundation"
+      },
+      "checkpoint_bytes": 2051762192,
+      "checkpoint_shapes": {
+        "action_backbone.action_encoder.weight": [
+          1024,
+          16
+        ],
+        "action_backbone.action_decoder.weight": [
+          16,
+          1024
+        ],
+        "lab_conditioner.hand.weight": [
+          3,
+          256
+        ],
+        "lab_conditioner.skill.weight": [
+          7,
+          256
+        ],
+        "lab_conditioner.state_action.weight": [
+          256,
+          48
+        ]
+      },
+      "data_contract": {
+        "train_episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          16,
+          17,
+          20,
+          21,
+          22,
+          23,
+          24,
+          26,
+          30,
+          31,
+          32
+        ],
+        "val_episodes": [
+          33,
+          18,
+          8,
+          28,
+          27,
+          25,
+          6
+        ],
+        "excluded": [],
+        "train_windows": 567,
+        "val_windows": 182,
+        "target_mode": "initial_reference_only",
+        "future_tracking_annotations": false,
+        "action_source": "observation.state",
+        "action_alignment": "state[t] -> state[t+1:t+33]",
+        "memory_motion": "past achieved observation delta, NOT executed command",
+        "memory_architecture": "spacetime_manip_v3",
+        "visual_memory": "causal spatial/temporal patches before target pooling; reference independent",
+        "state_memory": "one continuous token per rolling observation; invalid tokens masked",
+        "completion_supervision": false,
+        "jitter_source": "root_orientation angular-speed proxy, rad/s",
+        "action_dim": 16,
+        "state_dim": 31,
+        "manipulation_only": true,
+        "skill_vocabulary": [
+          "take_dropper_and_aspirate",
+          "pick_up_test_tube",
+          "dispense_into_held_test_tube",
+          "return_dropper",
+          "mix_test_tube",
+          "return_test_tube_to_rack",
+          "place_test_tube_in_water_bath"
+        ],
+        "hand_ids": {
+          "left": 0,
+          "right": 1,
+          "both": 2
+        },
+        "cameras": 3,
+        "history_offsets": [
+          -60,
+          -40,
+          -20
+        ],
+        "skills": [
+          "pick_up_test_tube"
+        ],
+        "hands": [
+          "right"
+        ]
+      },
+      "delta_source": "/root/ykj/lab-low/outputs/manipulation_acceptance/2026-11-02_18-40-52/checkpoint_step_3.safetensors"
+    }
+  },
+  "scope": "Full foundation + 3 optimizer steps, held-out loss, save/readback, delta reload + 1 optimizer step. Not robot rollout or skill mastery."
+}

@@ -1,0 +1,38 @@
+取试管夹爪部署修正（2026-11-14）
+
+默认生效于正式部署的共用控制桥：实时相机输入、数据集图像输入，以及同步/异步推理。
+仅针对 pick_up_test_tube 技能选中的活动夹爪；左右手按技能手别选择。
+
+规则（Dex1 原生电机角度，单位 rad，已经反归一化）：
+如果 0.8 <= 模型目标 <= 1.1，下发前目标 = min(模型目标, 0.85)。
+区间外保持原目标。0.82 不会被改成更松的 0.85。
+
+示例：0.80→0.80；0.82→0.82；0.85→0.85；0.90→0.85；1.00→0.85；1.10→0.85；1.12→1.12。
+
+不应用于初始姿态插值、r 回位、其他基本操作或非活动夹爪。
+推理等待或客户端停止时保持最后修正后的目标；新的初始化指令仍使用所选轨迹的原姿态。
+不修改模型权重、归一化、实测状态反馈、Dex1 原驱动或重力前馈。
+原驱动的目标范围与基于反馈的步长处理仍保留，因此这里记录的是进入驱动前的目标。
+
+使用原来的启动命令即可，不需要额外参数或重启模型服务。
+已在运行的控制进程不会热加载 Python 代码；需要正常退出后重新启动控制程序。
+不要同时启动两份机器人控制程序。
+
+数据集图像部署：下面是一整行命令，无需手动换行。
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_recorded_operator.sh --model take_tube --episode 0 --frame 60 --execute
+
+实时相机部署：下面是一整行命令，无需手动换行；仍需按原流程提供实时目标标记。
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_operator.sh --model take_tube --execute
+
+启动时应出现：
+[夹爪标定] 取试管活动夹爪：0.8～1.1 rad 内取 min(预测值, 0.85)；初始化不应用。
+
+日志：logs/operator 或 logs/recorded_operator 下的 control_trace_*.jsonl。
+schema 中 gripper_calibration 记录规则；motor_command 中 gripper_calibration 记录：
+- raw_gated_targets_rad：技能门控后、修正前的左右夹爪目标。
+- calibrated_targets_rad：修正后送往原驱动的左右目标。
+- adjusted：本帧左右夹爪是否发生修正。
+requested_target16 继续保留收到的原始16维目标；measured_gripper_q 保留实测角度。
+
+验证只使用模拟的传输端，检查了共用下发链路，没有向机器人发出测试动作。
+0.85 的实际夹持稳定性尚需现场验证，测试通过不代表已经确认试管不会滑落。

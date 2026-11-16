@@ -1,0 +1,900 @@
+{
+  "date": "2026-11-14",
+  "session": "sess_e4cb9650df004642",
+  "metrics": {
+    "scope": "saved fixed predictions; all inference/hold ticks excluded; no new model or robot calls",
+    "source": "outputs/async_20261114/take_tube_ep0_f60_async10_smooth10_official_count/episode_000000",
+    "intra": {
+      "model": {
+        "max_step_rad": 0.03926175832748413,
+        "p95_step_rad": 0.01154649630188942,
+        "acceleration_rms_rad_s2": 7.293006688488331,
+        "jerk_rms_rad_s3": 402.89115735722004,
+        "reversal_fraction": 0.4365079365079365
+      },
+      "recorded_reference": {
+        "max_step_rad": 0.03445464372634888,
+        "p95_step_rad": 0.007949133962392803,
+        "acceleration_rms_rad_s2": 1.9367443966379627,
+        "jerk_rms_rad_s3": 91.4054168542278,
+        "reversal_fraction": 0.11555555555555555
+      },
+      "matched_chunks": 15,
+      "savgol5_candidate": {
+        "max_step_rad": 0.025932548727308005,
+        "p95_step_rad": 0.007565309690045442,
+        "acceleration_rms_rad_s2": 2.6104278462070507,
+        "jerk_rms_rad_s3": 125.50432414684754,
+        "reversal_fraction": 0.3358730158730159
+      },
+      "per_joint": [
+        {
+          "joint": "right_shoulder_pitch_joint",
+          "model": {
+            "max_step_rad": 0.024866461753845215,
+            "p95_step_rad": 0.00785258412361145,
+            "acceleration_rms_rad_s2": 6.185982935433525,
+            "jerk_rms_rad_s3": 344.99266357248615,
+            "reversal_fraction": 0.46
+          },
+          "recorded": {
+            "max_step_rad": 0.015339791774749756,
+            "p95_step_rad": 0.005786007642745963,
+            "acceleration_rms_rad_s2": 1.6928088394256289,
+            "jerk_rms_rad_s3": 80.18402224065221,
+            "reversal_fraction": 0.10222222222222223
+          }
+        },
+        {
+          "joint": "right_shoulder_roll_joint",
+          "model": {
+            "max_step_rad": 0.012204110622406006,
+            "p95_step_rad": 0.006102055311203003,
+            "acceleration_rms_rad_s2": 4.851804913617879,
+            "jerk_rms_rad_s3": 261.92797491306885,
+            "reversal_fraction": 0.34444444444444444
+          },
+          "recorded": {
+            "max_step_rad": 0.00619584321975708,
+            "p95_step_rad": 0.0032021760940551735,
+            "acceleration_rms_rad_s2": 0.6971698926606039,
+            "jerk_rms_rad_s3": 33.38574241584558,
+            "reversal_fraction": 0.10888888888888888
+          }
+        },
+        {
+          "joint": "right_shoulder_yaw_joint",
+          "model": {
+            "max_step_rad": 0.021168576553463936,
+            "p95_step_rad": 0.01154649630188942,
+            "acceleration_rms_rad_s2": 8.726585110837746,
+            "jerk_rms_rad_s3": 483.9514531896426,
+            "reversal_fraction": 0.46444444444444444
+          },
+          "recorded": {
+            "max_step_rad": 0.008724518120288849,
+            "p95_step_rad": 0.005332980304956436,
+            "acceleration_rms_rad_s2": 0.9663480970297661,
+            "jerk_rms_rad_s3": 45.58109640096238,
+            "reversal_fraction": 0.1688888888888889
+          }
+        },
+        {
+          "joint": "right_elbow_joint",
+          "model": {
+            "max_step_rad": 0.03926175832748413,
+            "p95_step_rad": 0.020785629749298096,
+            "acceleration_rms_rad_s2": 10.66255256358728,
+            "jerk_rms_rad_s3": 589.6303616271717,
+            "reversal_fraction": 0.3088888888888889
+          },
+          "recorded": {
+            "max_step_rad": 0.03445464372634888,
+            "p95_step_rad": 0.01955107450485225,
+            "acceleration_rms_rad_s2": 4.244642105836801,
+            "jerk_rms_rad_s3": 199.75427950360645,
+            "reversal_fraction": 0.06666666666666667
+          }
+        },
+        {
+          "joint": "right_wrist_roll_joint",
+          "model": {
+            "max_step_rad": 0.01647278666496277,
+            "p95_step_rad": 0.008236393332481384,
+            "acceleration_rms_rad_s2": 7.377896098381567,
+            "jerk_rms_rad_s3": 407.87571007571984,
+            "reversal_fraction": 0.46
+          },
+          "recorded": {
+            "max_step_rad": 0.008724510669708252,
+            "p95_step_rad": 0.0026245415210723877,
+            "acceleration_rms_rad_s2": 0.826420617563703,
+            "jerk_rms_rad_s3": 37.76280245581651,
+            "reversal_fraction": 0.11333333333333333
+          }
+        },
+        {
+          "joint": "right_wrist_pitch_joint",
+          "model": {
+            "max_step_rad": 0.021839097142219543,
+            "p95_step_rad": 0.008992567658424377,
+            "acceleration_rms_rad_s2": 6.812246066251613,
+            "jerk_rms_rad_s3": 376.7171769327351,
+            "reversal_fraction": 0.5066666666666667
+          },
+          "recorded": {
+            "max_step_rad": 0.013614073395729065,
+            "p95_step_rad": 0.007679490745067593,
+            "acceleration_rms_rad_s2": 1.642718376444675,
+            "jerk_rms_rad_s3": 78.66469173122202,
+            "reversal_fraction": 0.12444444444444444
+          }
+        },
+        {
+          "joint": "right_wrist_yaw_joint",
+          "model": {
+            "max_step_rad": 0.01042330265045166,
+            "p95_step_rad": 0.00615922212600708,
+            "acceleration_rms_rad_s2": 4.452624836816603,
+            "jerk_rms_rad_s3": 241.80858568852193,
+            "reversal_fraction": 0.5111111111111111
+          },
+          "recorded": {
+            "max_step_rad": 0.006028063595294952,
+            "p95_step_rad": 0.0037510618567466736,
+            "acceleration_rms_rad_s2": 0.7568978970579523,
+            "jerk_rms_rad_s3": 36.701428979202994,
+            "reversal_fraction": 0.12444444444444444
+          }
+        }
+      ]
+    },
+    "stitched": {
+      "raw": {
+        "trajectory": {
+          "max_step_rad": 0.15011845529079437,
+          "p95_step_rad": 0.01616659788414836,
+          "acceleration_rms_rad_s2": 14.061219979692353,
+          "jerk_rms_rad_s3": 743.1371165872989,
+          "reversal_fraction": 0.4335355763927192
+        },
+        "boundaries": {
+          "rows": [
+            {
+              "step": 32,
+              "max_position_jump_rad": 0.11143408715724945,
+              "max_velocity_jump_rad_s": 3.152487650513649,
+              "incoming_speed_rad_s": 0.3882113332554595,
+              "crossing_speed_rad_s": 3.6668085244896584,
+              "outgoing_speed_rad_s": 0.732287134405075,
+              "velocity_direction_cosine": 0.22350321454308353
+            },
+            {
+              "step": 48,
+              "max_position_jump_rad": 0.09757700562477112,
+              "max_velocity_jump_rad_s": 3.2217738032341003,
+              "incoming_speed_rad_s": 0.4385687022455822,
+              "crossing_speed_rad_s": 3.868917455520043,
+              "outgoing_speed_rad_s": 0.6496687319424475,
+              "velocity_direction_cosine": 0.5110017143081469
+            },
+            {
+              "step": 64,
+              "max_position_jump_rad": 0.08083301782608032,
+              "max_velocity_jump_rad_s": 2.3903480172157288,
+              "incoming_speed_rad_s": 0.24088204434434982,
+              "crossing_speed_rad_s": 2.692795316076453,
+              "outgoing_speed_rad_s": 0.31605761968414403,
+              "velocity_direction_cosine": 0.23411158897912998
+            },
+            {
+              "step": 80,
+              "max_position_jump_rad": 0.022504866123199463,
+              "max_velocity_jump_rad_s": 0.6893599033355713,
+              "incoming_speed_rad_s": 0.26450664478568015,
+              "crossing_speed_rad_s": 1.0048993844032375,
+              "outgoing_speed_rad_s": 0.34746627010923986,
+              "velocity_direction_cosine": 0.306865912761311
+            },
+            {
+              "step": 96,
+              "max_position_jump_rad": 0.025404661893844604,
+              "max_velocity_jump_rad_s": 0.7621398568153381,
+              "incoming_speed_rad_s": 0.33969845807369287,
+              "crossing_speed_rad_s": 1.2839586973026196,
+              "outgoing_speed_rad_s": 0.4926603808101514,
+              "velocity_direction_cosine": -0.1970155361165465
+            },
+            {
+              "step": 112,
+              "max_position_jump_rad": 0.04849982261657715,
+              "max_velocity_jump_rad_s": 1.6628506779670715,
+              "incoming_speed_rad_s": 0.3276254240496927,
+              "crossing_speed_rad_s": 2.331234734247997,
+              "outgoing_speed_rad_s": 0.08713163280097086,
+              "velocity_direction_cosine": -0.5460519091358755
+            },
+            {
+              "step": 128,
+              "max_position_jump_rad": 0.08660683035850525,
+              "max_velocity_jump_rad_s": 2.4249914288520813,
+              "incoming_speed_rad_s": 0.27999379226501275,
+              "crossing_speed_rad_s": 3.0286275776442704,
+              "outgoing_speed_rad_s": 0.4096779207321111,
+              "velocity_direction_cosine": 0.08658402037596442
+            },
+            {
+              "step": 144,
+              "max_position_jump_rad": 0.04157125949859619,
+              "max_velocity_jump_rad_s": 1.2471377849578857,
+              "incoming_speed_rad_s": 0.4382708789920925,
+              "crossing_speed_rad_s": 2.0077925007789874,
+              "outgoing_speed_rad_s": 0.5498247086393965,
+              "velocity_direction_cosine": 0.6712021329196188
+            },
+            {
+              "step": 160,
+              "max_position_jump_rad": 0.030023694038391113,
+              "max_velocity_jump_rad_s": 1.1432093381881714,
+              "incoming_speed_rad_s": 0.27241547625390305,
+              "crossing_speed_rad_s": 1.3687601996636485,
+              "outgoing_speed_rad_s": 0.6789841491776673,
+              "velocity_direction_cosine": 0.23335518132967142
+            },
+            {
+              "step": 176,
+              "max_position_jump_rad": 0.030322343111038208,
+              "max_velocity_jump_rad_s": 0.9883671998977661,
+              "incoming_speed_rad_s": 0.36823053479490986,
+              "crossing_speed_rad_s": 1.713969975477543,
+              "outgoing_speed_rad_s": 0.33478487277817887,
+              "velocity_direction_cosine": -0.23310344667648694
+            },
+            {
+              "step": 192,
+              "max_position_jump_rad": 0.08025564253330231,
+              "max_velocity_jump_rad_s": 2.0439206063747406,
+              "incoming_speed_rad_s": 0.48068803186421744,
+              "crossing_speed_rad_s": 2.437446972731865,
+              "outgoing_speed_rad_s": 0.43793257122411156,
+              "velocity_direction_cosine": -0.1294758637306787
+            },
+            {
+              "step": 208,
+              "max_position_jump_rad": 0.11865131743252277,
+              "max_velocity_jump_rad_s": 3.6201643757522106,
+              "incoming_speed_rad_s": 0.15260139161853978,
+              "crossing_speed_rad_s": 3.975376826210839,
+              "outgoing_speed_rad_s": 0.684989017694759,
+              "velocity_direction_cosine": -0.06936447177787029
+            },
+            {
+              "step": 224,
+              "max_position_jump_rad": 0.15011845529079437,
+              "max_velocity_jump_rad_s": 4.572839140892029,
+              "incoming_speed_rad_s": 0.3256514409485058,
+              "crossing_speed_rad_s": 4.7769528667393155,
+              "outgoing_speed_rad_s": 0.469577340585955,
+              "velocity_direction_cosine": 0.27680989840317977
+            },
+            {
+              "step": 240,
+              "max_position_jump_rad": 0.07390445470809937,
+              "max_velocity_jump_rad_s": 2.5635606050491333,
+              "incoming_speed_rad_s": 0.4471138206458708,
+              "crossing_speed_rad_s": 3.5828245574191575,
+              "outgoing_speed_rad_s": 0.5243422311176501,
+              "velocity_direction_cosine": -0.4999626682032222
+            },
+            {
+              "step": 256,
+              "max_position_jump_rad": 0.1404823735356331,
+              "max_velocity_jump_rad_s": 4.503133669495583,
+              "incoming_speed_rad_s": 0.4128520563666328,
+              "crossing_speed_rad_s": 5.316728237251831,
+              "outgoing_speed_rad_s": 0.43016474048277725,
+              "velocity_direction_cosine": 0.614544889410546
+            }
+          ],
+          "max_position_jump_rad": 0.15011845529079437,
+          "mean_position_jump_rad": 0.07587932211657365,
+          "mean_velocity_jump_rad_s": 2.3324189372360706,
+          "forced_zero_crossings": 0
+        }
+      },
+      "offset10": {
+        "trajectory": {
+          "max_step_rad": 0.04295100295709996,
+          "p95_step_rad": 0.013089859212782726,
+          "acceleration_rms_rad_s2": 7.326537322946815,
+          "jerk_rms_rad_s3": 395.57298179796993,
+          "reversal_fraction": 0.39051296194153334
+        },
+        "boundaries": {
+          "rows": [
+            {
+              "step": 32,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.24709179997444153,
+              "incoming_speed_rad_s": 0.3882113332554595,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.771099677785727,
+              "velocity_direction_cosine": 0.23197314153352427
+            },
+            {
+              "step": 48,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.2944636344909668,
+              "incoming_speed_rad_s": 0.4385687022455822,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.6237864451447545,
+              "velocity_direction_cosine": 0.46915935148886256
+            },
+            {
+              "step": 64,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.16472786664962769,
+              "incoming_speed_rad_s": 0.24088204434434982,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.33951738869864395,
+              "velocity_direction_cosine": 0.24220316647982398
+            },
+            {
+              "step": 80,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.17668336629867554,
+              "incoming_speed_rad_s": 0.26450664478568015,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.3542751023438755,
+              "velocity_direction_cosine": 0.31775099305651866
+            },
+            {
+              "step": 96,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.24709179997444153,
+              "incoming_speed_rad_s": 0.33969845807369287,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.4995851145470892,
+              "velocity_direction_cosine": -0.19615065662857725
+            },
+            {
+              "step": 112,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.20785599946975708,
+              "incoming_speed_rad_s": 0.3276254240496927,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.09930427572541507,
+              "velocity_direction_cosine": -0.6516990829895732
+            },
+            {
+              "step": 128,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.17321348190307617,
+              "incoming_speed_rad_s": 0.27999379226501275,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.3977390247656404,
+              "velocity_direction_cosine": 0.15459798848183012
+            },
+            {
+              "step": 144,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.30831679701805115,
+              "incoming_speed_rad_s": 0.4382708789920925,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.5357790726353637,
+              "velocity_direction_cosine": 0.6765854863323798
+            },
+            {
+              "step": 160,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.242498517036438,
+              "incoming_speed_rad_s": 0.27241547625390305,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.6781925821997864,
+              "velocity_direction_cosine": 0.22077300971859384
+            },
+            {
+              "step": 176,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.32945573329925537,
+              "incoming_speed_rad_s": 0.36823053479490986,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.344960479788301,
+              "velocity_direction_cosine": -0.26001393620163904
+            },
+            {
+              "step": 192,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.3637486696243286,
+              "incoming_speed_rad_s": 0.48068803186421744,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.4414544250301452,
+              "velocity_direction_cosine": -0.07807225855735711
+            },
+            {
+              "step": 208,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.12204140424728394,
+              "incoming_speed_rad_s": 0.15260139161853978,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.7250862838453145,
+              "velocity_direction_cosine": -0.07172178897743091
+            },
+            {
+              "step": 224,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.2312374860048294,
+              "incoming_speed_rad_s": 0.3256514409485058,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.41988233074536013,
+              "velocity_direction_cosine": 0.28108649551780474
+            },
+            {
+              "step": 240,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.34642696380615234,
+              "incoming_speed_rad_s": 0.4471138206458708,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.5454911881146431,
+              "velocity_direction_cosine": -0.5488430429906033
+            },
+            {
+              "step": 256,
+              "max_position_jump_rad": 0.0,
+              "max_velocity_jump_rad_s": 0.28866246342658997,
+              "incoming_speed_rad_s": 0.4128520563666328,
+              "crossing_speed_rad_s": 0.0,
+              "outgoing_speed_rad_s": 0.463996522411159,
+              "velocity_direction_cosine": 0.5426248882692389
+            }
+          ],
+          "max_position_jump_rad": 0.0,
+          "mean_position_jump_rad": 0.0,
+          "mean_velocity_jump_rad_s": 0.24956773221492767,
+          "forced_zero_crossings": 15
+        }
+      },
+      "velocity_matched6_candidate": {
+        "trajectory": {
+          "max_step_rad": 0.05136331271546905,
+          "p95_step_rad": 0.014447081736346483,
+          "acceleration_rms_rad_s2": 7.361664905818903,
+          "jerk_rms_rad_s3": 385.59022094689175,
+          "reversal_fraction": 0.3894098179812466
+        },
+        "boundaries": {
+          "rows": [
+            {
+              "step": 32,
+              "max_position_jump_rad": 0.011139041427982804,
+              "max_velocity_jump_rad_s": 0.1436362786356496,
+              "incoming_speed_rad_s": 0.3882113332554595,
+              "crossing_speed_rad_s": 0.44097525109483365,
+              "outgoing_speed_rad_s": 1.0366606173489055,
+              "velocity_direction_cosine": 0.420830865396334
+            },
+            {
+              "step": 48,
+              "max_position_jump_rad": 0.006679139306975723,
+              "max_velocity_jump_rad_s": 0.12187109777220984,
+              "incoming_speed_rad_s": 0.4385687022455822,
+              "crossing_speed_rad_s": 0.29927908821827365,
+              "outgoing_speed_rad_s": 0.4432612593178733,
+              "velocity_direction_cosine": -0.6469089125990962
+            },
+            {
+              "step": 64,
+              "max_position_jump_rad": 0.0048886624705276605,
+              "max_velocity_jump_rad_s": 0.09820785442436142,
+              "incoming_speed_rad_s": 0.24088204434434982,
+              "crossing_speed_rad_s": 0.2676844603300483,
+              "outgoing_speed_rad_s": 0.6227215109470773,
+              "velocity_direction_cosine": 0.3831574600645571
+            },
+            {
+              "step": 80,
+              "max_position_jump_rad": 0.00627186195349988,
+              "max_velocity_jump_rad_s": 0.04160444286686382,
+              "incoming_speed_rad_s": 0.26450664478568015,
+              "crossing_speed_rad_s": 0.26385323962794993,
+              "outgoing_speed_rad_s": 0.35894766608973105,
+              "velocity_direction_cosine": 0.6351994647913654
+            },
+            {
+              "step": 96,
+              "max_position_jump_rad": 0.007609342811284253,
+              "max_velocity_jump_rad_s": 0.07060646851271106,
+              "incoming_speed_rad_s": 0.33969845807369287,
+              "crossing_speed_rad_s": 0.29334064083372763,
+              "outgoing_speed_rad_s": 0.4024488975285565,
+              "velocity_direction_cosine": 0.11002226344218133
+            },
+            {
+              "step": 112,
+              "max_position_jump_rad": 0.005148109912377907,
+              "max_velocity_jump_rad_s": 0.0790687740125029,
+              "incoming_speed_rad_s": 0.3276254240496927,
+              "crossing_speed_rad_s": 0.23589580540514465,
+              "outgoing_speed_rad_s": 0.3619907727714415,
+              "velocity_direction_cosine": -0.49568038948278825
+            },
+            {
+              "step": 128,
+              "max_position_jump_rad": 0.00764046066705093,
+              "max_velocity_jump_rad_s": 0.05600033810845173,
+              "incoming_speed_rad_s": 0.27999379226501275,
+              "crossing_speed_rad_s": 0.3309896092093187,
+              "outgoing_speed_rad_s": 0.5654947480510076,
+              "velocity_direction_cosine": 0.8846062686781332
+            },
+            {
+              "step": 144,
+              "max_position_jump_rad": 0.009554608345583637,
+              "max_velocity_jump_rad_s": 0.03982472643083723,
+              "incoming_speed_rad_s": 0.4382708789920925,
+              "crossing_speed_rad_s": 0.39962944817653956,
+              "outgoing_speed_rad_s": 0.35124355820156195,
+              "velocity_direction_cosine": 0.6482854571585209
+            },
+            {
+              "step": 160,
+              "max_position_jump_rad": 0.005951083690663939,
+              "max_velocity_jump_rad_s": 0.06396600631651983,
+              "incoming_speed_rad_s": 0.27241547625390305,
+              "crossing_speed_rad_s": 0.2381455552427906,
+              "outgoing_speed_rad_s": 0.40571575624113804,
+              "velocity_direction_cosine": 0.08660983108111867
+            },
+            {
+              "step": 176,
+              "max_position_jump_rad": 0.008488484589314033,
+              "max_velocity_jump_rad_s": 0.07480119561983439,
+              "incoming_speed_rad_s": 0.36823053479490986,
+              "crossing_speed_rad_s": 0.2847986040795717,
+              "outgoing_speed_rad_s": 0.3629038331238219,
+              "velocity_direction_cosine": -0.2731748883982436
+            },
+            {
+              "step": 192,
+              "max_position_jump_rad": 0.013485091427961948,
+              "max_velocity_jump_rad_s": 0.04659581256823399,
+              "incoming_speed_rad_s": 0.48068803186421744,
+              "crossing_speed_rad_s": 0.4864259644933287,
+              "outgoing_speed_rad_s": 0.604109024196142,
+              "velocity_direction_cosine": 0.761179159720613
+            },
+            {
+              "step": 208,
+              "max_position_jump_rad": 0.004697397719194862,
+              "max_velocity_jump_rad_s": 0.1944844031068324,
+              "incoming_speed_rad_s": 0.15260139161853978,
+              "crossing_speed_rad_s": 0.23044684768095008,
+              "outgoing_speed_rad_s": 1.0069177709761945,
+              "velocity_direction_cosine": -0.04336611412615933
+            },
+            {
+              "step": 224,
+              "max_position_jump_rad": 0.006776146602207489,
+              "max_velocity_jump_rad_s": 0.12889444603826128,
+              "incoming_speed_rad_s": 0.3256514409485058,
+              "crossing_speed_rad_s": 0.288035398334973,
+              "outgoing_speed_rad_s": 0.6121348945428314,
+              "velocity_direction_cosine": -0.018753386277942326
+            },
+            {
+              "step": 240,
+              "max_position_jump_rad": 0.007400776409072662,
+              "max_velocity_jump_rad_s": 0.12440367153397247,
+              "incoming_speed_rad_s": 0.4471138206458708,
+              "crossing_speed_rad_s": 0.2588219673274569,
+              "outgoing_speed_rad_s": 0.6670114615354643,
+              "velocity_direction_cosine": -0.8314114525050865
+            },
+            {
+              "step": 256,
+              "max_position_jump_rad": 0.009833273558337019,
+              "max_velocity_jump_rad_s": 0.1876751209298766,
+              "incoming_speed_rad_s": 0.4128520563666328,
+              "crossing_speed_rad_s": 0.4051642720232314,
+              "outgoing_speed_rad_s": 1.05530044156721,
+              "velocity_direction_cosine": 0.07120238143087279
+            }
+          ],
+          "max_position_jump_rad": 0.013485091427961948,
+          "mean_position_jump_rad": 0.007704232059468983,
+          "mean_velocity_jump_rad_s": 0.09810937579180791,
+          "forced_zero_crossings": 0
+        }
+      },
+      "intra_sg5_velocity6_candidate": {
+        "trajectory": {
+          "max_step_rad": 0.050380401874592924,
+          "p95_step_rad": 0.011875594304985904,
+          "acceleration_rms_rad_s2": 3.362354492347366,
+          "jerk_rms_rad_s3": 131.24407007616094,
+          "reversal_fraction": 0.2763375620518478
+        },
+        "boundaries": {
+          "rows": [
+            {
+              "step": 32,
+              "max_position_jump_rad": 0.014423507678394759,
+              "max_velocity_jump_rad_s": 0.12487990822194617,
+              "incoming_speed_rad_s": 0.36595112575670236,
+              "crossing_speed_rad_s": 0.48429498375923863,
+              "outgoing_speed_rad_s": 1.0180658635867987,
+              "velocity_direction_cosine": 0.8933338732886571
+            },
+            {
+              "step": 48,
+              "max_position_jump_rad": 0.006666718907917091,
+              "max_velocity_jump_rad_s": 0.12489124139149876,
+              "incoming_speed_rad_s": 0.4354744269096143,
+              "crossing_speed_rad_s": 0.31904836351951826,
+              "outgoing_speed_rad_s": 0.49699136139295896,
+              "velocity_direction_cosine": -0.41902995641955226
+            },
+            {
+              "step": 64,
+              "max_position_jump_rad": 0.010217941187755653,
+              "max_velocity_jump_rad_s": 0.06601901003529198,
+              "incoming_speed_rad_s": 0.30916980434031255,
+              "crossing_speed_rad_s": 0.3738355605208129,
+              "outgoing_speed_rad_s": 0.6379173544006445,
+              "velocity_direction_cosine": 0.9604691441272505
+            },
+            {
+              "step": 80,
+              "max_position_jump_rad": 0.005129914982425016,
+              "max_velocity_jump_rad_s": 0.02077873703585198,
+              "incoming_speed_rad_s": 0.18673973308500988,
+              "crossing_speed_rad_s": 0.17722768096956354,
+              "outgoing_speed_rad_s": 0.21344553067158456,
+              "velocity_direction_cosine": 0.5539654861966389
+            },
+            {
+              "step": 96,
+              "max_position_jump_rad": 0.004999231569455753,
+              "max_velocity_jump_rad_s": 0.04268404029349193,
+              "incoming_speed_rad_s": 0.2091921288562534,
+              "crossing_speed_rad_s": 0.2079924080249667,
+              "outgoing_speed_rad_s": 0.3588230028869467,
+              "velocity_direction_cosine": 0.42063221998438377
+            },
+            {
+              "step": 112,
+              "max_position_jump_rad": 0.002440324900721158,
+              "max_velocity_jump_rad_s": 0.06286706944937437,
+              "incoming_speed_rad_s": 0.1272401436536675,
+              "crossing_speed_rad_s": 0.12209898622047759,
+              "outgoing_speed_rad_s": 0.4211062450081173,
+              "velocity_direction_cosine": -0.16039521526159653
+            },
+            {
+              "step": 128,
+              "max_position_jump_rad": 0.003191531966629288,
+              "max_velocity_jump_rad_s": 0.07324010194845854,
+              "incoming_speed_rad_s": 0.16369745072335926,
+              "crossing_speed_rad_s": 0.17331498398192793,
+              "outgoing_speed_rad_s": 0.45771040349862685,
+              "velocity_direction_cosine": 0.15060093438085098
+            },
+            {
+              "step": 144,
+              "max_position_jump_rad": 0.003555987661004678,
+              "max_velocity_jump_rad_s": 0.057236884755115236,
+              "incoming_speed_rad_s": 0.22923981174887034,
+              "crossing_speed_rad_s": 0.17823369523506663,
+              "outgoing_speed_rad_s": 0.3244372337379655,
+              "velocity_direction_cosine": -0.26853793483612787
+            },
+            {
+              "step": 160,
+              "max_position_jump_rad": 0.006103201995634855,
+              "max_velocity_jump_rad_s": 0.0623721478989836,
+              "incoming_speed_rad_s": 0.2692731836046462,
+              "crossing_speed_rad_s": 0.20266270433610423,
+              "outgoing_speed_rad_s": 0.19040521847397274,
+              "velocity_direction_cosine": -0.430552575969712
+            },
+            {
+              "step": 176,
+              "max_position_jump_rad": 0.005139512901163157,
+              "max_velocity_jump_rad_s": 0.055588391860798836,
+              "incoming_speed_rad_s": 0.2970186097788797,
+              "crossing_speed_rad_s": 0.2506701580208587,
+              "outgoing_speed_rad_s": 0.38187458245194517,
+              "velocity_direction_cosine": 0.005815720627595071
+            },
+            {
+              "step": 192,
+              "max_position_jump_rad": 0.008415555243086403,
+              "max_velocity_jump_rad_s": 0.09409971318389942,
+              "incoming_speed_rad_s": 0.24440461694369917,
+              "crossing_speed_rad_s": 0.2945562355650834,
+              "outgoing_speed_rad_s": 0.636439820129031,
+              "velocity_direction_cosine": 0.6368803698987292
+            },
+            {
+              "step": 208,
+              "max_position_jump_rad": 0.011892345422113898,
+              "max_velocity_jump_rad_s": 0.15138853496838564,
+              "incoming_speed_rad_s": 0.23058745604234196,
+              "crossing_speed_rad_s": 0.37439067063658266,
+              "outgoing_speed_rad_s": 1.031642869007593,
+              "velocity_direction_cosine": 0.8316728846427581
+            },
+            {
+              "step": 224,
+              "max_position_jump_rad": 0.0044282358996340365,
+              "max_velocity_jump_rad_s": 0.15174977872372764,
+              "incoming_speed_rad_s": 0.30088938618906025,
+              "crossing_speed_rad_s": 0.18813408041521743,
+              "outgoing_speed_rad_s": 0.5990014080419074,
+              "velocity_direction_cosine": -0.6386968579484399
+            },
+            {
+              "step": 240,
+              "max_position_jump_rad": 0.00802611388410629,
+              "max_velocity_jump_rad_s": 0.08980676346512673,
+              "incoming_speed_rad_s": 0.42874057170085567,
+              "crossing_speed_rad_s": 0.3063275463707134,
+              "outgoing_speed_rad_s": 0.5612415086505024,
+              "velocity_direction_cosine": -0.45927830501566563
+            },
+            {
+              "step": 256,
+              "max_position_jump_rad": 0.00835647444508486,
+              "max_velocity_jump_rad_s": 0.17829357528388823,
+              "incoming_speed_rad_s": 0.25259772271900643,
+              "crossing_speed_rad_s": 0.3099711138080234,
+              "outgoing_speed_rad_s": 1.0475422192393224,
+              "velocity_direction_cosine": 0.11663009869123024
+            }
+          ],
+          "max_position_jump_rad": 0.014423507678394759,
+          "mean_position_jump_rad": 0.00686577324300846,
+          "mean_velocity_jump_rad_s": 0.09039305990105592,
+          "forced_zero_crossings": 0
+        }
+      }
+    },
+    "control_50hz": {
+      "input_trajectory": "same offset10-smoothed targets for both samplers",
+      "native_current_bridge": {
+        "max_step_rad": 0.04295100295709996,
+        "p95_step_rad": 0.010981857776641846,
+        "acceleration_rms_rad_s2": 17.519138272792716,
+        "jerk_rms_rad_s3": 1540.8018373063403,
+        "reversal_fraction": 0.08459512837393021
+      },
+      "time_correct_linear": {
+        "max_step_rad": 0.025770601774259515,
+        "p95_step_rad": 0.007505389116573944,
+        "acceleration_rms_rad_s2": 7.926484652570057,
+        "jerk_rms_rad_s3": 591.64326656296,
+        "reversal_fraction": 0.2314022383146807
+      },
+      "native_all_joint_hold_fraction": 0.4367816091954023,
+      "linear_all_joint_hold_fraction": 0.0367816091954023
+    },
+    "nominal_gripper_point_fk": {
+      "point": "10cm along right wrist-yaw joint local X; uncalibrated proxy TCP",
+      "fixed_other_joints": true,
+      "model_intra_acceleration_rms_m_s2": 2.716702715419542,
+      "reference_intra_acceleration_rms_m_s2": 0.512637661936454,
+      "stitched": {
+        "raw": {
+          "max_boundary_displacement_mm": 39.16971546942432,
+          "acceleration_rms_m_s2": 4.668086598212539
+        },
+        "offset10": {
+          "max_boundary_displacement_mm": 0.0,
+          "acceleration_rms_m_s2": 2.6534060473091494
+        },
+        "velocity_matched6_candidate": {
+          "max_boundary_displacement_mm": 4.048732430580382,
+          "acceleration_rms_m_s2": 2.655524798674448
+        },
+        "intra_sg5_velocity6_candidate": {
+          "max_boundary_displacement_mm": 3.0326432625269653,
+          "acceleration_rms_m_s2": 1.1858232511851796
+        }
+      }
+    },
+    "limits": [
+      "Recorded state is a smoothness reference; it is not matching policy feedback ground truth.",
+      "Velocity-matched curve is an offline candidate, not deployed or a proven task-success improvement.",
+      "Savitzky-Golay window5 polynomial2 is applied to each complete predicted chunk before trimming, active arm only.",
+      "Command-space metrics are not actual motor acceleration or jerk.",
+      "The 50Hz comparison calls the real ArmTargetBuffer using the same saved raw targets; no ROS/DDS.",
+      "No physical replay is inferred from trajectory resampling."
+    ]
+  },
+  "checks": {
+    "checks": [
+      "ideal clock excludes even4s model duration, advances exactly80 action periods",
+      "after first32, official16-step skips preserved with no holds",
+      "ideal clock rejected for real/non-simulation executor",
+      "actual formal ArmTargetBuffer produces40percent duplicate50Hz samples for constant30Hz ramp",
+      "timestamp-correct50Hz sampler preserves uniform0.03rad/s velocity"
+    ],
+    "ideal_clock_stats": {
+      "warmup_hold_ticks": 0,
+      "underrun_hold_ticks": 0,
+      "chunks_adopted": 4,
+      "adoptions": [
+        {
+          "prediction_id": "test",
+          "input_step": 0,
+          "skip_steps": 0,
+          "inference_mode": "async",
+          "adoption_step": 0,
+          "available": 32,
+          "adoption_clock_step": 0,
+          "pipeline_seconds": 4.0
+        },
+        {
+          "prediction_id": "test",
+          "input_step": 16,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 32,
+          "available": 16,
+          "adoption_clock_step": 32,
+          "pipeline_seconds": 4.0
+        },
+        {
+          "prediction_id": "test",
+          "input_step": 32,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 48,
+          "available": 16,
+          "adoption_clock_step": 48,
+          "pipeline_seconds": 4.0
+        },
+        {
+          "prediction_id": "test",
+          "input_step": 48,
+          "skip_steps": 16,
+          "inference_mode": "async",
+          "adoption_step": 64,
+          "available": 16,
+          "adoption_clock_step": 64,
+          "pipeline_seconds": 4.0
+        }
+      ],
+      "smoothing_steps": 0,
+      "smoothing_mask": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    }
+  },
+  "source_notes": {
+    "seed_difference": "Lab uses42+last_frame; OpenWAM defaults42. Not isolated experimentally.",
+    "simulation_clock": "ideal freezes physics/video/history while waiting; unavailable to real executor.",
+    "original_inference_service": "not running; not started or modified to avoid interfering with user acceleration work.",
+    "fixed_replay_alignment": "offset10 active-arm targets match saved executed targets to1e-10 excluding hold indices."
+  },
+  "sources": [
+    "https://github.com/NVIDIA/Isaac-GR00T/blob/main/getting_started/real_world_deployment.md#fixing-jittering",
+    "https://github.com/nvidia-isaac/isaac-os/blob/main/operators/gr00t_action_handler/gr00t_action_handler_op.cc",
+    "https://github.com/OpenWAM-Official/OpenWAM/blob/main/openwam/deploy/engine.py"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "verified_files": 21,
+  "verified_bytes": 4125779959,
+  "foundation_included": false,
+  "kind": "additional",
+  "code_revision": "60a0f09101d49d89be428de0687afb51ea592435",
+  "repo": "ykjykj/LabWAM-TakeTube-Light-30k-20261112",
+  "hostname": "pku4090",
+  "bundle": "/home/yanjun/ykj/labwam_g1/assets/modelscope_take_tube_light_20261112",
+  "completed_at": "2026-11-12 19:36:47 +0800",
+  "models": [
+    {
+      "name": "take_tube_light",
+      "runtime": "/home/yanjun/ykj/labwam_g1/runtime/models/take_tube_light",
+      "pairs": [
+        [
+          "pick_up_test_tube",
+          "right"
+        ]
+      ],
+      "checkpoint_tensors": {
+        "checkpoint_best.safetensors": 902,
+        "checkpoint_step_30000.safetensors": 902
+      },
+      "normalization_loaded": true
+    }
+  ],
+  "foundation_sha256": "180a02653118b0f96da28a9cae9ec7b4c1c1e6cd0e4608b56c7b4884f8001d3d",
+  "foundation_verified": true,
+  "runtime_staged": true,
+  "robot_control_started": false,
+  "gpu_inference_started": false
+}

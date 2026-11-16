@@ -1,0 +1,12 @@
+{
+  "scope": "Offline real gravity and joint mapping, native DampingShutdown, mocked motor transport; no robot I/O",
+  "passed": [
+    "idle no output",
+    "first Enter standing, no arm torque/gains",
+    "second Enter pure arm gravity with native Kd and Kp=0",
+    "legs/waist no gravity feedforward",
+    "no hand control",
+    "d callback immediately latches damping and cancels takeover",
+    "read-only no output"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-12",
+  "host": "pku4090",
+  "user": "yanjun",
+  "scope": "USB direct SSH and route verification; no robot control or model inference started",
+  "local": {
+    "interface": "enp7s0",
+    "connection": "Wired connection 1",
+    "uuid": "a6c78637-79e4-3bcb-b48d-daaadca027c8",
+    "added_address": "192.168.124.1/30",
+    "preserved_address": "192.168.123.221/24",
+    "never_default": true
+  },
+  "remote_usb": {
+    "interface": "enx00e04c36c4e8",
+    "connection": "labwam-usb-direct",
+    "uuid": "9af119ae-7ff2-43b0-a649-b9decd6c9af8",
+    "address": "192.168.124.2/30",
+    "autoconnect": true,
+    "never_default": true,
+    "gateway": null,
+    "dns": [],
+    "persistent": true
+  },
+  "robot_interface": {
+    "interface": "enp132s0",
+    "address": "192.168.123.222/24",
+    "configuration_modified": false,
+    "route_probe_destination": "192.168.123.161",
+    "route_probe_device": "enp132s0",
+    "route_probe_source": "192.168.123.222",
+    "robot_reachability_tested": false
+  },
+  "checks": {
+    "ssh_over_usb_hostname": "pku4090",
+    "ping_sent": 3,
+    "ping_received": 3,
+    "ping_average_ms": 0.911,
+    "remote_route_to_local_device": "enx00e04c36c4e8",
+    "remote_route_to_local_source": "192.168.124.2",
+    "usb_default_route_created": false,
+    "wifi_configuration_modified": false,
+    "forwarding_enabled_by_this_task": false
+  }
+}

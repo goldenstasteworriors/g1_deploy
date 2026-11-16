@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "models": [
+    "dispense",
+    "general",
+    "return_dropper",
+    "return_tube",
+    "take_dropper",
+    "take_tube",
+    "water_bath"
+  ],
+  "existing_destination_protected": true,
+  "source_configs_unchanged": true,
+  "robot_io_opened": false,
+  "weights_loaded": false
+}

@@ -1,0 +1,6 @@
+# @package _global_
+dataloader:
+  photometric:
+    enabled: true
+    local:
+      enabled: true

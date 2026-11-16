@@ -1,0 +1,15 @@
+{
+  "files": 1061,
+  "bytes": 138573212,
+  "python_ast_checked": 262,
+  "shell_syntax_checked": 12,
+  "credential_pattern_matches": [],
+  "robot_io_opened": false,
+  "deployed_archive_files_identical": 405,
+  "configuration_check": {
+    "passed": true,
+    "command": "LABWAM_CONTROLLER_PYTHON=/home/ykj/miniconda3/envs/decoupled_vla_collection/bin/python bash code/low/scripts/start_g1_operator.sh --model take_tube --check-config",
+    "robot_io_opened": false,
+    "verified": "Exported G1 URDF, Dex1 gravity payload, initial-pose catalog, Balance/Walk ONNX loaded. No physical deployment was executed."
+  }
+}

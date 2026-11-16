@@ -1,0 +1,53 @@
+{
+  "contract": "spacetime_manip_v3",
+  "action_dim": 16,
+  "state_dim": 31,
+  "skills": [
+    "take_dropper_and_aspirate",
+    "pick_up_test_tube",
+    "dispense_into_held_test_tube",
+    "return_dropper",
+    "mix_test_tube",
+    "return_test_tube_to_rack",
+    "place_test_tube_in_water_bath"
+  ],
+  "hand_ids": {
+    "left": 0,
+    "right": 1,
+    "both": 2
+  },
+  "action_observation_indices": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    29,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    30
+  ],
+  "train_windows": 567,
+  "val_windows": 182,
+  "exact_observation_label_alignment": true,
+  "hand_gating": true,
+  "old_19d_action_and_normalizer_rejected": true,
+  "moving_skill_rejected": true,
+  "online_offline_state_motion_parity": true,
+  "full_size_bf16_conditioner_optimizer_step": true,
+  "conditioner_loss": 0.006322616245597601,
+  "output_tokens": [
+    1,
+    10,
+    4096
+  ],
+  "parameters": 4769792,
+  "scope": "CPU full-size condition module + real data pipeline; not complete WAM GPU training"
+}

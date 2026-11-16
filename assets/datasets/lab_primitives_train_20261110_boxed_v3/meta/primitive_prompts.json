@@ -1,0 +1,11 @@
+{
+  "TAKE_DROPPER_AND_ASPIRATE": "Use the left gripper to take the indicated dropper from the source bottle and aspirate reagent once. Keep holding the dropper.",
+  "TAKE_TUBE": "Use the right gripper to pick up the indicated test tube and keep holding it.",
+  "DISPENSE_TO_HELD_TUBE": "Use the dropper held by the left gripper to dispense into the test tube held by the right gripper. Do not aspirate again. Keep holding both objects.",
+  "RETURN_DROPPER": "Use the left gripper to return the held dropper directly to the indicated source bottle and release it.",
+  "RETURN_TUBE_TO_RACK": "Use the right gripper to place the held test tube into the indicated empty rack slot and release it once supported.",
+  "PLACE_TUBE_IN_BATH": "Use the right gripper to place the held test tube at the indicated supported position in the water bath and release it once stable.",
+  "WALK_BACKWARD": "Walk backward while keeping the test tube held by the right gripper, then stop.",
+  "WALK_LEFT_HOLDING_TUBE": "Walk to the left while keeping the test tube held by the right gripper, then stop.",
+  "WALK_FORWARD_TO_BATH": "Walk forward while keeping the test tube held by the right gripper. Stop in front of the indicated beaker, ready to place the tube inside. Keep holding the tube."
+}

@@ -1,0 +1,9 @@
+{
+  "scope": "Offline real G1 model, LowCmd/CRC, mocked publisher; no robot/DDS writes",
+  "passed": [
+    "actual LowCmd q/kp/kd/tau equals captured publisher, distinct from requested/model/measured; correct identity and time alignment",
+    "native damping recorded with actual zero KP/tau and Kd8; async log flushed on close",
+    "logging does not swallow transport exceptions",
+    "recorded inference attaches prediction/frame/action metadata without changing command steps"
+  ]
+}

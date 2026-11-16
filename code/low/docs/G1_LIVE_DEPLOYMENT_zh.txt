@@ -1,0 +1,68 @@
+实时相机＋Qwen初始框部署（2026-11-14）
+
+入口：scripts/start_g1_live_operator.sh。
+在 pku4090 / yanjun 桌面终端运行。每条命令均是一整行，无需手动换行。
+下面选择“架子中最右侧透明试管”；实际目标不同，请改英文 --target-description。
+
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_live_operator.sh --model take_tube --episode 0 --frame 0 --target-description "the rightmost transparent test tube in the rack" --denoise-steps 10 --execute
+
+操作：
+1. 第一次 Enter：下半身站立，双臂/夹爪不主动初始化。
+2. standing_ready 后第二次 Enter：双臂/夹爪进入指定 observation 初始姿态。
+3. 到 ready 后按 b：捕获当前 ego＋双腕图像，Qwen 对这张 ego 自动打框，通常约十秒。
+4. 看到“实时目标已就绪”，核对目标框/预览后，第三次 Enter 开始推理。
+5. d：原有全身阻尼急停；不等待 Qwen 或 WAM。r：恢复初始化，再 Enter 可重试同一目标。
+6. 场景/目标发生变化时，恢复后重新按 b。p 仍可选择初始化动作、轨迹、帧。
+键盘焦点需在控制终端；本入口不会自动弹窗抢走急停键焦点。
+
+输入始终是真实 ego＋左右腕相机和实机31维状态。
+episode/frame 只用于初始化双臂/夹爪，不会读取数据视频作为推理观测。
+只在基本操作开始时提供框；框绑定打框时的未画框原始三路参考图。后续不持续调用Qwen或SAM。
+参考PNG、图像SHA256、Qwen响应、预览和marks保存在 runtime/live_operator/<本次ID>/captures。
+模型仍为10步、官方默认缓存；当前实时入口为同步chunk执行，沿用已有live client。
+保留Dex1-1重力前馈、XR PD、取试管夹爪修正和d/r/p；没有增加运动阈值或控制看门狗。
+
+只检查部署配置，不打开机器人I/O：
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_live_operator.sh --model take_tube --episode 0 --frame 0 --target-description "the rightmost transparent test tube in the rack" --denoise-steps 10 --execute --check-config
+
+只检查真实相机＋高层标框，不启动机器人控制、不运行WAM动作推理：
+bash /home/yanjun/ykj/labwam_g1/code/low/scripts/start_g1_live_operator.sh --model take_tube --episode 0 --frame 0 --target-description "the rightmost transparent test tube in the rack" --check-inputs
+
+模型/高层范围：
+- take_tube：上面的独立单步流程。
+- take_dropper：--model take_dropper --episode 33 --target-description "the dropper in the left reagent bottle"；此默认计划声明左手空、没有任务绑定的右手物体。若右手已持物，请用反映实际状态的 --grounding-plan JSON。
+- dispense：--model dispense --episode 133；无需 --target-description。b 仅取实时图像，targets=[]，不请求高层框。
+- general：还需 --skill，例如 --skill pick_up_test_tube。模型不会包含试管归架。
+- return_tube：--model return_tube --episode 34，使用描述实际右手持管/左手空/目标槽位的 --grounding-plan JSON，或已有 --grounding-session ID。
+- return_dropper：现有高层服务无法从真实持滴管状态独立建立单步会话；须使用 --grounding-session ID 接续真实取滴管/加液回执后的高层会话。
+- water_bath：低层有权重，但当前高层服务不支持自动标框，本入口明确拒绝，不伪造框或借用其他操作。
+--grounding-plan 文件含 plan/layout，全部模型输入必须英文，plan.execution_allowed=false。
+--grounding-session 接入真实高层账本，只读取当前步骤并请求框；本入口不提交完成回执、不自动推进实验。
+不得将框生成成功当作操作完成。现有高层回执由操作者/上层流程另行提交。
+
+连接：
+- 相机：192.168.123.164:5555，需原有三路相机服务在线。
+- Qwen：pku4090 的 http://127.0.0.1:19113，通过 ykj 本机的同端口转发连接现有高层服务。
+- WAM：take_tube 默认8849；其他模型默认8850。先正常退出上一控制程序，再切换模型。
+- 高层框是未校准置信度0.5的提案，不代表物体身份已被独立验证。
+
+当前高层端口转发依赖 ykj 本机在线，以及其原有 ai2-root-4080 高层19113隧道在线。
+在 ykj 本机检查新增转发：
+systemctl --user status labwam-pku-grounding-tunnel.service --no-pager
+
+若转发进程需重启，在 ykj 本机运行：
+systemctl --user restart labwam-pku-grounding-tunnel.service
+
+若本机重启后临时单元已不存在，先恢复高层会话的19113服务转发，再在 ykj 本机运行这一整行：
+systemd-run --user --unit=labwam-pku-grounding-tunnel --property=Restart=on-failure --property=RestartSec=5 /usr/bin/ssh -N -T -o HostKeyAlias=100.123.202.80 -o BatchMode=yes -o ConnectTimeout=25 -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -R 127.0.0.1:19113:127.0.0.1:19113 -- yanjun@fd7a:115c:a1e0::531:ca51
+
+这是SSH端口转发保活，不是机器人运动看门狗；没有更改SSH配置、系统网络或显卡驱动。
+
+2026-11-14 验证范围：
+已通过取试管和加液的实际启动命令 --execute --check-config，均未打开机器人I/O。
+已从pku4090调用实际Qwen，并将原始参考图＋不同时间的当前图送到实际WAM，得到32×16有限动作。
+这项联调用的是明确标记的离线数据样本和隔离的simulation会话，没有控制机器人。
+Qwen本次12.64秒，WAM本次0.247秒；不是多次平均或实时相机运行性能。
+真实 --check-inputs 尚未通过：相机5555端口能连，但15秒没有收到三路图像。
+需要现场恢复相机服务后重跑 --check-inputs；程序不会偷偷使用数据集图像作为替代。
+验证记录在项目 analysis/live_operator_20261114，代码仓库摘要见 validation/live_operator_20261114.json。
